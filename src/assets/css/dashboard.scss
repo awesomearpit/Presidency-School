@@ -1,0 +1,339 @@
+@import "../css/colors.scss";
+
+.dashboard{
+    margin-top:64px !important;
+    .dashboard-header-box{
+        width:100% !important;
+        height:192px !important;
+        background-color: $color-disable !important;
+        .header-box-container{
+            width: 70% !important;
+            margin:auto !important;
+            padding-top: 32px !important;
+            .name{
+                font-size:32px !important;
+                font-family: "Roboto" !important;
+                color: $color-white !important; 
+                display: inline-block !important;
+                font-weight: bold !important;
+                padding:0 !important;
+            }
+            .btn-box{
+                padding:0 !important;
+                display: inline-block !important;
+                text-align: right !important;
+                .new-enquiry-btn{
+                    background-color: transparent !important;
+                    border-radius: 0px !important;
+                    border: 1px solid #ffffff87 !important;
+                    font-size:15px !important;
+                    font-family: "Roboto" !important;
+                    color: $color-white !important;  
+                    &:hover{
+                        background-color: $color-hover !important;
+                    }  
+                }
+            }
+            .text{
+                font-size:16px !important;
+                font-family: "Roboto" !important;
+                color: $color-white !important;
+                padding:8px 0px 0px 0px !important;
+            }
+        }
+    }
+
+    .dashboard-body{
+        width:70% !important;
+        margin:auto !important;
+        .dashboard-body-container{
+            margin:-49px 0px 0px 0px !important;
+            .body-box{
+                box-shadow: 0px 1px 1px #00000014 !important;
+                height: 95px !important;
+                background-color: $color-white !important;
+                padding:20px !important;
+                margin-bottom: 12px !important;
+                .enquiry-text{
+                    font-size:16px !important;
+                    font-family: "Roboto" !important;
+                    color: $color-text1 !important;
+                    padding:0px 0px 10px 0px !important;
+                }
+                .pending-box{
+                    width: 93px !important;
+                    height: 24px !important;
+                    background-color: #FCF1CD !important;
+                    border-radius: 2px !important;
+                    font-size:13px !important;
+                    font-family: "Roboto" !important;
+                    color: #8A6116 !important;
+                    padding:2px 10px 2px 10px !important;
+                    text-transform: uppercase;
+                    font-weight:bold !important;
+                }
+                .submitted-box{
+                    width: 93px !important;
+                    height: 24px !important;
+                    background-color: #EBF5FA !important;
+                    border-radius: 2px !important;
+                    font-size:13px !important;
+                    font-family: "Roboto" !important;
+                    color: #007ACE !important;
+                    padding:2px 10px 2px 10px !important;
+                    text-transform: uppercase;
+                    font-weight:bold !important;
+                }
+                .approved-box{
+                    width: 93px !important;
+                    height: 24px !important;
+                    background-color: #EEFFEA !important;
+                    border-radius: 2px !important;
+                    font-size:13px !important;
+                    font-family: "Roboto" !important;
+                    color: #46B132 !important;
+                    padding:2px 10px 2px 10px !important;
+                    text-transform: uppercase;
+                    font-weight:bold !important;
+                }
+                .reject-box{
+                    width: 93px !important;
+                    height: 24px !important;
+                    background-color: #FFF2F2 !important;
+                    border-radius: 2px !important;
+                    font-size:13px !important;
+                    font-family: "Roboto" !important;
+                    color: #E03A1E !important;
+                    padding:2px 10px 2px 10px !important;
+                    text-transform: uppercase;
+                    font-weight:bold !important;
+                }
+                .application-number{
+                    font-size:14px !important;
+                    font-family: "Roboto" !important;
+                    color: $color-text3 !important;
+                    padding: 0px 0px 10px 0px !important;
+                }
+                .last-updated{
+                    font-size:14px !important;
+                    font-family: "Roboto" !important;
+                    color: #919EAB !important;
+                }
+                .date-update{
+                    font-size:14px !important;
+                    font-family: "Roboto" !important;
+                    color: $color-text3 !important;
+                }
+                .btn-block{
+                    text-align: right !important;
+                    display: inline-block !important;
+                    padding: 15px 0px 0px 0px  !important;
+                    vertical-align: top !important;
+                    .btn-view{
+                        background-color: $color-white !important;
+                        border:  1px solid $color-yellow2 !important;
+                        border-radius: 0px !important;
+                        font-size:14px !important;
+                        font-family: "Roboto" !important;
+                        color: $color-yellow2 !important;
+                        font-weight: bold !important;
+                        width: 200px !important;
+                        height: 32px !important;
+                    }
+                    .btn-start{
+                        background-color: $color-yellow2 !important;
+                        border:  1px solid $color-yellow2 !important;
+                        border-radius: 0px !important;
+                        font-size:14px !important;
+                        font-family: "Roboto" !important;
+                        color: $color-white !important;
+                        font-weight: bold !important;
+                        width: 200px !important;
+                        height: 32px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.enquiry-form{
+    background-color: $color-grey1 !important;
+    width:100% !important;
+    .enquiryForm-box{
+        width:70% !important;
+        margin:auto !important;
+        padding-top:100px !important;
+        .lsq-external-form-container .tab-content{
+            overflow:visible !important;
+        }
+        
+        .tab-content.mx-custom > .active{
+            max-height: none !important;
+            overflow-y:visible !important;
+        }
+
+        .fullscreen.modal-v4 .modal-footer{
+            background-color: $color-grey1 !important;
+            border-radius: 0 !important;
+            border:0 !important;
+            padding: 20px 0px 20px 0px !important;
+            .btn-primary{
+                margin-right: 0px !important;
+                border-radius: 0 !important;
+                background-color: $color-button !important;
+                font-family: "Roboto" !important;
+                font-weight: bold !important;
+                &:hover{
+                    background-color: $color-hover !important;
+                }
+            }
+        }
+
+        .lsq-form-field-label{
+            font-size:15px !important;
+            font-family: "Roboto" !important;
+            color: $color-text2 !important;
+        }
+
+        .ui-selectmenu-open{
+            background-color: $color-white !important;
+        }
+
+        .enquiry-form-header{
+            padding:30px !important;
+            font-size: 14px !important;
+            color: $color-text3 !important;
+            span{
+                font-weight: bold !important;
+            }
+        }
+        
+    }
+}
+
+.enquiry-success{
+    background-color: $color-grey1 !important;
+    width:100% !important;
+    .enquirySuccess-box{
+        width:70% !important;
+        margin:auto !important;
+        padding:100px 0px 20px 0px !important;
+        .enquiry-container{
+            background-color: $color-white !important;
+            width:100% !important;
+            height: 500px !important;
+            padding: 150px 150px 150px 150px !important;
+            .check-box{
+                padding:0 !important;
+                text-align: center !important;
+                i{
+                    color: $color-success !important;
+                    font-size: 70px !important;
+                }
+            }
+            .heading{
+                padding: 35px 0px 9px 0px !important;
+                font-size:20px !important;
+                font-family: "Roboto" !important;
+                color: $color-text1 !important;
+                text-align:center !important;
+                font-weight: bold !important;
+            }
+            .text{
+                padding:0 !important;
+                font-size:14px !important;
+                font-family: "Roboto" !important;
+                color: $color-text2 !important;
+                text-align:center !important
+            }
+        }
+    }
+}
+
+
+.changePassword-modal{
+    .modal-dialog{
+        max-width:490px !important;
+        margin-top:100px !important;
+        .modal-content{
+            border-radius:0 !important;
+            border: 0 !important;
+            .changePassword-close{
+                text-align: right !important;
+                padding: 16px 16px 0px 0px !important;
+                button{
+                    color: $color-close !important;
+                    font-size: 22px !important
+                }
+            }
+            .success-container{
+                width:100% !important;
+                background-color: $color-white;
+                position: relative;
+                padding: 65px 66px 65px 66px;
+                .check-box{
+                    padding:0 !important;
+                    text-align: center !important;
+                    i{
+                        color: $color-success !important;
+                        font-size: 70px !important;
+                    }
+                }
+                .text{
+                    text-align: center;
+                    font-size: 18px !important;
+                    font-family: "Roboto" !important;
+                    color:$color-text1 !important;
+                    font-weight: 900 !important;
+                    padding: 40px 0px 0px 0px !important;
+                }
+            }
+            .changePassword-box{
+                padding: 0px 60px 40px 60px !important;
+                margin:0 !important;
+                .heading{
+                    padding-bottom: 30px !important;
+                    font-size:22px !important;
+                    font-family: "Roboto" !important;
+                    color: $color-heading !important;
+                    text-align:center !important;
+                    font-weight: bold !important;
+                }
+                .input-box{
+                    padding:0px 0px 32px 0px !important;
+                    input{
+                        border-radius: 0 !important;
+                        border: 0 !important;
+                        border-bottom: 1px solid $color-border !important;
+                        height:27px !important;
+                        font-size:15px !important;
+                        font-family: "Roboto" !important;
+                        color: $color-text2 !important;
+                        padding-left:0px !important;
+                    }
+                    .error-warning{
+                        color: $color-error;
+                        font-size: 12px;
+                        font-family: "Roboto"
+                    }
+                }
+                .changePassword-btn{
+                    border-radius: 0 !important;
+                    border: 0 !important;
+                    height:40px !important;
+                    font-size:15px !important;
+                    font-family: "Roboto" !important;
+                    color: $color-white !important;
+                    font-weight: bold !important;
+                    background-color: $color-button !important;
+                    width:100% !important;
+                    &:hover{
+                        background-color: $color-hover !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
