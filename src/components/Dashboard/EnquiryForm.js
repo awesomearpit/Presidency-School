@@ -64,11 +64,15 @@ class EnquiryForm extends Component {
 
   componentDidMount() {
     let { activityId } = this.props.match.params;
+    var id = activityId ? activityId : "";
+
+    console.log("id", id);
 
     window.lsq_setupForm({
       id: `${ENQUIRY_FORM_ID}`,
       authKeyProvider: `${PRIVATE_AUTH_KEY}`,
       leadId: `${LEAD_ID}`,
+      activityId: `${id}`,
     });
 
     this.lsqFormContainer.addEventListener(

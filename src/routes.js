@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard";
 import EnquiryForm from "./components/Dashboard/EnquiryForm";
 import EnquirySuccess from "./components/Dashboard/EnquirySuccess";
 import ApplicationForm from "./components/Dashboard/ApplicationForm";
+import ApplicationPreview from "./components/Dashboard/ApplicationPreview";
 
 class Routes extends Component {
   constructor(props) {
@@ -55,6 +56,12 @@ class Routes extends Component {
         component: ApplicationForm,
         title: "applicationForm",
       },
+      {
+        path: "/applicationPreview",
+        exact: true,
+        component: ApplicationPreview,
+        title: "applicationPreview",
+      },
     ];
   }
 
@@ -66,6 +73,8 @@ class Routes extends Component {
         title !== "resetPassword"
       ) {
         return <RouteComponent {...props} />;
+      } else if (title === "homepage") {
+        return <Homepage {...props} />;
       }
       // return <Redirect to="/dashboard" />;
     } else {
@@ -75,12 +84,8 @@ class Routes extends Component {
         return <ForgotPassword {...props} />;
       } else if (title === "resetPassword") {
         return <ResetPassword {...props} />;
-      } else if (
-        title !== "homepage" &&
-        title !== "forgotPassword" &&
-        title !== "resetPassword"
-      ) {
-        return <Redirect to="/" />;
+      } else if (title !== "forgotPassword" && title !== "resetPassword") {
+        return <Homepage {...props} />;
       }
     }
   };
@@ -92,21 +97,16 @@ class Routes extends Component {
   render() {
     return (
       <div>
-        <main>
-          <Switch>
-            {this.Routes.map((route, i) => (
-              <Route
-                key={i}
-                exact={route.exact}
-                path={route.path}
-                render={props =>
-                  this.isAllowed(props, route.component, route.title)
-                }
-              />
-            ))}
-            <Route />
-          </Switch>
-        </main>
+        {this.Routes.map((route, i) => (
+          <Route
+            key={i}
+            exact={route.exact}
+            path={route.path}
+            render={props =>
+              this.isAllowed(props, route.component, route.title)
+            }
+          />
+        ))}
       </div>
     );
   }

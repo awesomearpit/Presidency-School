@@ -6,7 +6,7 @@ import Landing from "../assets/images/landing.jpg";
 import Register from "./HomePage/Register";
 import { signIn, activityPost } from "../utils/API";
 import cookie from "react-cookies";
-import { ACCESS_KEY, SECRET_KEY } from "../utils/Constants";
+import { ACCESS_KEY, SECRET_KEY, PRIVATE_AUTH_KEY } from "../utils/Constants";
 import { validateEmail, required } from "../utils/Validations";
 
 class Homepage extends Component {
@@ -36,6 +36,15 @@ class Homepage extends Component {
 
     this.setState({ errors });
   };
+
+  componentDidMount() {
+    console.log("appp");
+    if (!PRIVATE_AUTH_KEY) {
+      this.props.history.push("/");
+    } else {
+      this.props.history.push("/dashboard");
+    }
+  }
 
   handleChange = e => {
     const { name, value } = e.target;

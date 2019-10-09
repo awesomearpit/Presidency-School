@@ -46,7 +46,7 @@ class Header extends Component {
       <>
         <nav class="navbar fixed-top header">
           <div className="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href={"/dashboard"}>
               <div className="row">
                 <div className="col-md-6">
                   <img src={Logo} />
