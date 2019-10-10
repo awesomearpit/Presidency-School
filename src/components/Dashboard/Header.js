@@ -44,7 +44,13 @@ class Header extends Component {
   render() {
     return (
       <>
-        <nav className="navbar fixed-top header">
+        <nav
+          className="navbar fixed-top header"
+          style={{
+            padding: "10px 0px 10px 5px",
+            boxShadow: "0px 3px 6px #00000029",
+          }}
+        >
           <div className="container no-padding">
             <a className="navbar-brand" href={"/dashboard"}>
               <div className="row">
@@ -56,7 +62,7 @@ class Header extends Component {
                 </div>
               </div>
             </a>
-            <button
+            {/* <button
               className="navbar-toggler"
               type="button"
               data-toggle="collapse"
@@ -66,7 +72,7 @@ class Header extends Component {
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon"></span>
-            </button>
+            </button> */}
             <div className="header-dropdown">
               <Dropdown>
                 <Dropdown.Toggle variant="link" id="dropdown-basic">

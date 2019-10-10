@@ -6,12 +6,14 @@ import { post } from "../utils/API";
 import { SECRET_KEY, ACCESS_KEY } from "../utils/Constants";
 import SuccessMessage from "./SuccessMessage";
 import { validateEmail } from "../utils/Validations";
+import Loader from "react-loader-spinner";
 
 class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
+      isForgotLoading: false,
       tempPassword: null,
       errorMessage: null,
       errors: {
@@ -37,6 +39,7 @@ class ForgotPassword extends Component {
   };
 
   forgotPassword = async () => {
+    this.setState({ isForgotLoading: true });
     this.validateAllInputs();
     if (this.emailValidity()) {
       const forgotPassData = {
@@ -48,9 +51,15 @@ class ForgotPassword extends Component {
           `/api/Authentication/ForgotPassword?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
           forgotPassData
         );
-        this.setState({ tempPassword: data.TemporaryPassword });
+        this.setState({
+          tempPassword: data.TemporaryPassword,
+          isForgotLoading: false,
+        });
       } catch (e) {
-        this.setState({ errorMessage: e.response.data.ExceptionMessage });
+        this.setState({
+          errorMessage: e.response.data.ExceptionMessage,
+          isForgotLoading: false,
+        });
       }
     } else {
       console.log("Enter valid email address");
@@ -104,7 +113,19 @@ class ForgotPassword extends Component {
                     className="btn forgot-btn"
                     onClick={this.forgotPassword}
                   >
-                    Send Password Reset Link
+                    {this.state.isForgotLoading ? (
+                      <div className="d-inline-block">
+                        <Loader
+                          type="Oval"
+                          color="#FFF"
+                          height={20}
+                          width={30}
+                        />
+                      </div>
+                    ) : null}
+                    <div className="d-inline-block">
+                      Send Password Reset Link
+                    </div>
                   </button>
                 </div>
               </div>

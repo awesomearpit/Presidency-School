@@ -11,7 +11,7 @@ import {
 import { register, otp } from "../../utils/API";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_green.css";
-
+import Loader from "react-loader-spinner";
 import OtpModal from "./OtpModal";
 
 class Register extends Component {
@@ -48,6 +48,7 @@ class Register extends Component {
       mobile: "",
       password: "",
       confirmPassword: "",
+      isRegisterLoading: false,
       errors: {
         nameError: null,
         gradeError: null,
@@ -146,6 +147,7 @@ class Register extends Component {
   };
 
   signUp = async () => {
+    this.setState({ isRegisterLoading: true });
     this.validateAllInputs();
     if (this.validityCheck()) {
       const otpData = {
@@ -163,9 +165,11 @@ class Register extends Component {
           emptyField: "",
           formOtpCode: data.FormOTPResponseModel.Code,
           fieldContent: data.FormOTPResponseModel.FieldContent,
+          isRegisterLoading: false,
         });
       } catch (e) {
         // console.log("Signup Error", e.response.data);
+        this.setState({ isRegisterLoading: false });
       }
     } else {
       console.log("Enter valid Details");
@@ -336,7 +340,12 @@ class Register extends Component {
               onClick={this.signUp}
               // disabled={!isEnable}
             >
-              Register
+              {this.state.isRegisterLoading ? (
+                <div className="d-inline-block">
+                  <Loader type="Oval" color="#FFF" height={20} width={30} />
+                </div>
+              ) : null}
+              <div className="d-inline-block">Register</div>
             </button>
           </div>
           {this.state.show ? (

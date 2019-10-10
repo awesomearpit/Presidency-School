@@ -47,7 +47,7 @@ class ApplicationForm extends Component {
 
   onLSQFormSubmissionSuccess = e => {
     console.log("on success", e);
-    // this.props.history.push("/enquirySuccess");
+    this.props.history.push("/enquirySuccess");
   };
 
   onLSQFormLoadError = e => {

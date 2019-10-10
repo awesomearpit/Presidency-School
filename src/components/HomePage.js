@@ -8,6 +8,7 @@ import { signIn, activityPost } from "../utils/API";
 import cookie from "react-cookies";
 import { ACCESS_KEY, SECRET_KEY, PRIVATE_AUTH_KEY } from "../utils/Constants";
 import { validateEmail, required } from "../utils/Validations";
+import Loader from "react-loader-spinner";
 
 class Homepage extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Homepage extends Component {
       email: "",
       password: "",
       errorMessage: null,
+      isLoginLoading: false,
       errors: {
         emailError: null,
         passwordError: null,
@@ -52,7 +54,7 @@ class Homepage extends Component {
   };
 
   login = async () => {
-    this.setState({ errorMessage: null });
+    this.setState({ errorMessage: null, isLoginLoading: true });
     this.validateAllInputs();
     if (this.isPresentAllInputs()) {
       const loginData = {
@@ -65,6 +67,7 @@ class Homepage extends Component {
         var LEAD_ID = data.LeadId;
         cookie.save("AuthKey", data.AuthKey, { path: "/" });
         cookie.save("LeadId", data.LeadId, { path: "/" });
+        this.setState({ isLoginLoading: false });
         try {
           const { data } = await activityPost(
             `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`
@@ -81,7 +84,10 @@ class Homepage extends Component {
         }
       } catch (e) {
         console.log("Error login", e.response.data.ExceptionMessage);
-        this.setState({ errorMessage: e.response.data.ExceptionMessage });
+        this.setState({
+          errorMessage: e.response.data.ExceptionMessage,
+          isLoginLoading: false,
+        });
       }
     } else {
       console.log("Enter valid email address and password");
@@ -184,7 +190,17 @@ class Homepage extends Component {
                     className="btn btn-primary login-button"
                     onClick={this.login}
                   >
-                    Login
+                    {this.state.isLoginLoading ? (
+                      <div className="d-inline-block">
+                        <Loader
+                          type="Oval"
+                          color="#FFF"
+                          height={20}
+                          width={30}
+                        />
+                      </div>
+                    ) : null}
+                    <div className="d-inline-block">Login</div>
                   </button>
                 </div>
               </div>

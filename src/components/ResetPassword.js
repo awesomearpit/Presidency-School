@@ -6,6 +6,7 @@ import SuccessMessage from "./SuccessMessage";
 import { post } from "../utils/API";
 import { SECRET_KEY, ACCESS_KEY } from "../utils/Constants";
 import { checkPassword, validatePassword } from "../utils/Validations";
+import Loader from "react-loader-spinner";
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class ResetPassword extends Component {
       errorMessage: null,
       leadId: "",
       successMessage: null,
+      isResetLoading: false,
       errors: {
         passwordError: null,
         confirmPasswordError: null,
@@ -46,6 +48,7 @@ class ResetPassword extends Component {
   };
 
   resetPassword = async () => {
+    this.setState({ isResetLoading: true });
     this.validateAllInputs();
     if (this.passwordValidity()) {
       const resetPassData = {
@@ -60,9 +63,13 @@ class ResetPassword extends Component {
           resetPassData
         );
         console.log("Reset password", data);
-        this.setState({ successMessage: data.IsSuccessful });
+        this.setState({
+          successMessage: data.IsSuccessful,
+          isResetLoading: false,
+        });
       } catch (e) {
         console.log(e.message);
+        this.setState({ isResetLoading: false });
       }
     } else {
       console.log("Enter valid password");
@@ -129,7 +136,17 @@ class ResetPassword extends Component {
                     className="btn forgot-btn"
                     onClick={this.resetPassword}
                   >
-                    Update Password
+                    {this.state.isResetLoading ? (
+                      <div className="d-inline-block">
+                        <Loader
+                          type="Oval"
+                          color="#FFF"
+                          height={20}
+                          width={30}
+                        />
+                      </div>
+                    ) : null}
+                    <div className="d-inline-block">Update Password</div>
                   </button>
                 </div>
               </div>

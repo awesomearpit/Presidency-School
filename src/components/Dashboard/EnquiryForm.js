@@ -20,8 +20,12 @@ class EnquiryForm extends Component {
   }
 
   loadOverrideCSS = () => {
+    var activityStyle = this.state.activityId ? "display:none" : "";
     this.lsqFormContainer.querySelector(".lsq-form-action-btn").textContent =
       "Submit Enquiry Form";
+    this.lsqFormContainer.querySelector(
+      ".lsq-form-action-btn"
+    ).style = activityStyle;
 
     // this.lsqFormContainer.querySelector(".lsq-form-action-btn").click(event => {
     //   console.log("event", event);
@@ -64,6 +68,7 @@ class EnquiryForm extends Component {
 
   componentDidMount() {
     let { activityId } = this.props.match.params;
+    this.setState({ activityId: activityId });
     var id = activityId ? activityId : "";
 
     console.log("id", id);
