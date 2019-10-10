@@ -4,9 +4,9 @@ import Logo from "../assets/images/logo.png";
 const Header = props => {
   return (
     <>
-      <nav class="navbar fixed-top header">
+      <nav className="navbar fixed-top header">
         <div className="container">
-          <a class="navbar-brand" href="/">
+          <a className="navbar-brand" href="/">
             <div className="row">
               <div className="col-md-6">
                 <img src={Logo} />
@@ -15,7 +15,7 @@ const Header = props => {
             </div>
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -23,7 +23,7 @@ const Header = props => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
         </div>
       </nav>

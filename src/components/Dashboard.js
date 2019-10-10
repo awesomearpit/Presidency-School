@@ -5,6 +5,7 @@ import "../assets/css/forgotPassword.scss";
 import Header from "./Dashboard/Header";
 import { logout, activityPost, activityPostEvent } from "../utils/API";
 import { ACCESS_KEY, SECRET_KEY, LEAD_ID } from "../utils/Constants";
+import { nonDigitRemove } from "../utils/functions";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -93,9 +94,10 @@ class Dashboard extends Component {
                               <div className="submitted-box">Submitted</div>
                             </div>
                           </div>
-                          <div className="col-md-4 d-inline-block">
+                          <div className="col-md-4 d-inline-block no-padding">
                             <div className="col-md-12 application-number">
-                              PS-24459595966
+                              PS-
+                              {nonDigitRemove(activity.RelatedProspectId)}
                             </div>
                             <div className="col-md-12 no-padding">
                               <span className="last-updated">
@@ -126,9 +128,9 @@ class Dashboard extends Component {
                               </div>
                             </div>
                           </div>
-                          <div className="col-md-4 d-inline-block">
+                          <div className="col-md-4 d-inline-block no-padding">
                             <div className="col-md-12 application-number">
-                              PS-24459595966
+                              PS-{nonDigitRemove(activity.RelatedProspectId)}
                             </div>
                             <div className="col-md-12 no-padding">
                               <span className="last-updated">
@@ -162,9 +164,9 @@ class Dashboard extends Component {
                               </div>
                             </div>
                           </div>
-                          <div className="col-md-4 d-inline-block">
+                          <div className="col-md-4 d-inline-block no-padding">
                             <div className="col-md-12 application-number">
-                              PS-24459595966
+                              PS-{nonDigitRemove(activity.RelatedProspectId)}
                             </div>
                             <div className="col-md-12 no-padding">
                               <span className="last-updated">
@@ -214,9 +216,12 @@ class Dashboard extends Component {
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="col-md-4 d-inline-block">
+                                  <div className="col-md-4 d-inline-block no-padding">
                                     <div className="col-md-12 application-number">
-                                      PS-24459595966
+                                      PS-
+                                      {nonDigitRemove(
+                                        applicationActivity.RelatedProspectId
+                                      )}
                                     </div>
                                     <div className="col-md-12 no-padding">
                                       <span className="last-updated">
@@ -262,9 +267,12 @@ class Dashboard extends Component {
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="col-md-4 d-inline-block">
+                                  <div className="col-md-4 d-inline-block no-padding">
                                     <div className="col-md-12 application-number">
-                                      PS-24459595966
+                                      PS-
+                                      {nonDigitRemove(
+                                        applicationActivity.RelatedProspectId
+                                      )}
                                     </div>
                                     <div className="col-md-12 no-padding">
                                       <span className="last-updated">
@@ -310,9 +318,12 @@ class Dashboard extends Component {
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="col-md-4 d-inline-block">
+                                  <div className="col-md-4 d-inline-block no-padding">
                                     <div className="col-md-12 application-number">
-                                      PS-24459595966
+                                      PS-
+                                      {nonDigitRemove(
+                                        applicationActivity.RelatedProspectId
+                                      )}
                                     </div>
                                     <div className="col-md-12 no-padding">
                                       <span className="last-updated">

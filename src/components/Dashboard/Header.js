@@ -44,18 +44,20 @@ class Header extends Component {
   render() {
     return (
       <>
-        <nav class="navbar fixed-top header">
-          <div className="container">
-            <a class="navbar-brand" href={"/dashboard"}>
+        <nav className="navbar fixed-top header">
+          <div className="container no-padding">
+            <a className="navbar-brand" href={"/dashboard"}>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-6 col-sm-6 col-6">
                   <img src={Logo} />
                 </div>
-                <div className="col-md-6 header-text">RT Nagar, Bangalore</div>
+                <div className="col-md-6 col-sm-5 col-5 header-text">
+                  RT Nagar, Bangalore
+                </div>
               </div>
             </a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
@@ -63,12 +65,15 @@ class Header extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
             <div className="header-dropdown">
               <Dropdown>
                 <Dropdown.Toggle variant="link" id="dropdown-basic">
-                  {this.state.displayName}
+                  <span className="web-display">{this.state.displayName}</span>
+                  <span className="mobile-display">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </span>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
