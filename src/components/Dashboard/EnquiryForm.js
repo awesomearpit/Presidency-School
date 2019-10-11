@@ -9,6 +9,7 @@ import {
   LEAD_ID,
 } from "../../utils/Constants";
 import { logout } from "../../utils/API";
+import "../../assets/css/loader.scss";
 
 class EnquiryForm extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class EnquiryForm extends Component {
     this.state = {
       userName: "",
       activityId: "",
+      isLoginLoading: true
     };
   }
 
@@ -51,6 +53,7 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(
       ".modal-header"
     ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School RT Nagar, ${this.state.userName},<br /><br /><span>Please fill in the enquiry form below to get started</span></div>`;
+    this.setState({ isLoginLoading: false });
   };
 
   onLSQFormSubmissionSuccessAtEachStep = e => {
@@ -109,48 +112,54 @@ class EnquiryForm extends Component {
   getUserName = name => {
     this.setState({ userName: name });
   };
+  
 
   render() {
     console.log("Enquiry Form");
     return (
       <>
-        <Header logout={this.logout} getUserName={this.getUserName} />
+        {this.state.isLoginLoading ? (
+          <div class="loading">Loading&#8230;</div>
+        ) : null}
+        <>
+          <Header logout={this.logout} getUserName={this.getUserName} />
 
-        <div className="enquiry-form">
-          <div className="enquiryForm-box">
-            <div
-              id="lsq-form-modal"
-              data-form-id="2197ea44-ddd0-11e9-aebf-02b00a4d022c"
-              class="modal-v4 fullscreen external lsq-external-form-container"
-              ref={elem => (this.lsqFormContainer = elem)}
-            >
-              <div class="lsq-form-container-wrapper"></div>
+          <div className="enquiry-form">
+            <div className="enquiryForm-box">
+              <div
+                id="lsq-form-modal"
+                data-form-id="2197ea44-ddd0-11e9-aebf-02b00a4d022c"
+                class="modal-v4 fullscreen external lsq-external-form-container"
+                ref={elem => (this.lsqFormContainer = elem)}
+              >
+                <div class="lsq-form-container-wrapper"></div>
 
-              <div class="lsq-form-hidden-fields">
-                <input
-                  id="lsq-authKey"
-                  name="lsq-authKey"
-                  type="hidden"
-                  value="cFh1eUlYeHJMWFNFbmYxbkxFWElKNktlbVQrMEx2ZkdtS08wMXpmeGJXZGdORnkzcHFkMDdTcmdnTHhJajcvMDRqcm5oSGNiellJSllBZmErZlk5OExDRFpyVFJRSFZyMXcxNXJSdEtiWXJTcGlPeXczeVpPRFpENWF4MzNYeTM4U3o1bHFlSy9HL24rNW9Bb1p3RXZ1Q203YlJZdk83RE05cDRqUXFzbEJJQ2dONTAwSzErajBCNXI2VW5IYm9NYmNiNFhFU05GOVRxRU9HREFiQTJaQT09"
-                />
+                <div class="lsq-form-hidden-fields">
+                  <input
+                    id="lsq-authKey"
+                    name="lsq-authKey"
+                    type="hidden"
+                    value="cFh1eUlYeHJMWFNFbmYxbkxFWElKNktlbVQrMEx2ZkdtS08wMXpmeGJXZGdORnkzcHFkMDdTcmdnTHhJajcvMDRqcm5oSGNiellJSllBZmErZlk5OExDRFpyVFJRSFZyMXcxNXJSdEtiWXJTcGlPeXczeVpPRFpENWF4MzNYeTM4U3o1bHFlSy9HL24rNW9Bb1p3RXZ1Q203YlJZdk83RE05cDRqUXFzbEJJQ2dONTAwSzErajBCNXI2VW5IYm9NYmNiNFhFU05GOVRxRU9HREFiQTJaQT09"
+                  />
 
-                <input
-                  id="lsq-api-service-url"
-                  name="lsq-api-service-url"
-                  type="hidden"
-                  value="https://portalapi-in21.leadsquared.com/api/Form"
-                />
+                  <input
+                    id="lsq-api-service-url"
+                    name="lsq-api-service-url"
+                    type="hidden"
+                    value="https://portalapi-in21.leadsquared.com/api/Form"
+                  />
 
-                <input
-                  id="lsq-app-url"
-                  name="lsq-app-url"
-                  type="hidden"
-                  value="https://in21.leadsquared.com"
-                />
+                  <input
+                    id="lsq-app-url"
+                    name="lsq-app-url"
+                    type="hidden"
+                    value="https://in21.leadsquared.com"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       </>
     );
   }
