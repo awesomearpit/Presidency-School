@@ -39,9 +39,9 @@ class ForgotPassword extends Component {
   };
 
   forgotPassword = async () => {
-    this.setState({ isForgotLoading: true });
     this.validateAllInputs();
     if (this.emailValidity()) {
+      this.setState({ isForgotLoading: true });
       const forgotPassData = {
         EmailAddress: this.state.email,
       };

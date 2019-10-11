@@ -54,9 +54,10 @@ class Homepage extends Component {
   };
 
   login = async () => {
-    this.setState({ errorMessage: null, isLoginLoading: true });
+    this.setState({ errorMessage: null });
     this.validateAllInputs();
     if (this.isPresentAllInputs()) {
+      this.setState({ isLoginLoading: true });
       const loginData = {
         EmailAddress: this.state.email,
         Password: this.state.password,
@@ -65,8 +66,8 @@ class Homepage extends Component {
       try {
         const { data } = await signIn(loginData);
         var LEAD_ID = data.LeadId;
-        cookie.save("AuthKey", data.AuthKey, { path: "/" });
-        cookie.save("LeadId", data.LeadId, { path: "/" });
+        cookie.save("AuthKey", data.AuthKey, { path: "/", maxAge: 14400 });
+        cookie.save("LeadId", data.LeadId, { path: "/", maxAge: 14400 });
         this.setState({ isLoginLoading: false });
         try {
           const { data } = await activityPost(

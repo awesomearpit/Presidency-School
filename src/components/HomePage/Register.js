@@ -147,9 +147,9 @@ class Register extends Component {
   };
 
   signUp = async () => {
-    this.setState({ isRegisterLoading: true });
     this.validateAllInputs();
     if (this.validityCheck()) {
+      this.setState({ isLoginLoading: true });
       const otpData = {
         FormId: "00ac15b8-e361-11e9-aebf-02b00a4d022c",
         SchemaName: "Mobile",

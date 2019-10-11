@@ -89,10 +89,13 @@ class Header extends Component {
                   <Dropdown.Item onClick={this.showPasswordModal}>
                     Change password
                   </Dropdown.Item>
-                  <ChangePasswordModal
-                    show={this.state.show}
-                    onHide={this.closePasswordModal}
-                  />
+                  { this.state.show ? 
+                    <ChangePasswordModal
+                      show={this.state.show}
+                      onHide={this.closePasswordModal}
+                    />
+                    : null
+                  }
                   <Dropdown.Item
                     className="dropdown-logout"
                     onClick={this.props.logout}
