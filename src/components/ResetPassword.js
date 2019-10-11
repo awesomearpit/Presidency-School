@@ -48,9 +48,9 @@ class ResetPassword extends Component {
   };
 
   resetPassword = async () => {
-    this.setState({ isResetLoading: true });
     this.validateAllInputs();
     if (this.passwordValidity()) {
+      this.setState({ isResetLoading: true });
       const resetPassData = {
         Password: this.state.password,
         LeadId: this.state.leadId,

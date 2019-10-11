@@ -54,9 +54,10 @@ class Homepage extends Component {
   };
 
   login = async () => {
-    this.setState({ errorMessage: null, isLoginLoading: true });
+    this.setState({ errorMessage: null });
     this.validateAllInputs();
     if (this.isPresentAllInputs()) {
+      this.setState({ isLoginLoading: true });
       const loginData = {
         EmailAddress: this.state.email,
         Password: this.state.password,
