@@ -66,8 +66,8 @@ class Homepage extends Component {
       try {
         const { data } = await signIn(loginData);
         var LEAD_ID = data.LeadId;
-        cookie.save("AuthKey", data.AuthKey, { path: "/" });
-        cookie.save("LeadId", data.LeadId, { path: "/" });
+        cookie.save("AuthKey", data.AuthKey, { path: "/", maxAge: 14400 });
+        cookie.save("LeadId", data.LeadId, { path: "/", maxAge: 14400 });
         this.setState({ isLoginLoading: false });
         try {
           const { data } = await activityPost(
