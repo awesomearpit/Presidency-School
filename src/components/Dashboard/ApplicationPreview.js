@@ -85,14 +85,19 @@ class ApplicationPreview extends Component {
                   <div className="col-md-12 office-use">Ofﬁce Use Only</div>
                   <div className="col-md-12 no-padding">
                     <div className="receipt-text">Receipt No.</div>
-                    <div className="receipt-text">Receipt No.</div>
-                    <div className="receipt-text">Receipt No.</div>
-                    <div className="receipt-text">Receipt No.</div>
+                    <div className="col-md-3 d-inline-block receipt-text"></div>
                     <div className="receipt-text">Date</div>
-                    <div className="receipt-text">Date</div>
+                    <div className="receipt-text col-md-3 d-inline-block"></div>
                   </div>
                 </div>
-                <div className="col-md-2"></div>
+                <div className="col-md-2">
+                  <img
+                    src={leadsInfo.PhotoUrl}
+                    className="img-responsive"
+                    height="100%"
+                    width="100%"
+                  />
+                </div>
               </div>
               <div className="row body-view no-margin">
                 <div className="col-md-12 office-use">Student Information</div>

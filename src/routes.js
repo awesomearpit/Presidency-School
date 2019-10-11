@@ -27,7 +27,7 @@ class Routes extends Component {
         title: "forgotPassword",
       },
       {
-        path: "/:leadId/:tempPassword",
+        path: "/ResetPassword/:leadId/:tempPassword",
         exact: true,
         component: ResetPassword,
         title: "resetPassword",
