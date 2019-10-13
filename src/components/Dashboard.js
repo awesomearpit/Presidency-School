@@ -213,7 +213,14 @@ class Dashboard extends Component {
                           {this.state.applicationActivities.map(
                             (applicationActivity, index) => {
                               if (
-                                !applicationActivity.ActivityFields.mx_Custom_10
+                                !(
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_10 ||
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_11 ||
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_12
+                                )
                               ) {
                                 return (
                                   <div
@@ -310,8 +317,9 @@ class Dashboard extends Component {
                                 );
                               } else if (
                                 JSON.parse(
-                                  applicationActivity.ActivityFields.mx_Custom_9
-                                ).Status === "Rejected"
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_10
+                                ).Status === "Rejected - Call for Assessment"
                               ) {
                                 return (
                                   <div
@@ -323,14 +331,178 @@ class Dashboard extends Component {
                                         Application
                                       </div>
                                       <div className="col-md-12 no-padding">
-                                        <div className="pending-box">
+                                        <div className="reject-box">
                                           {
                                             JSON.parse(
                                               applicationActivity.ActivityFields
-                                                .mx_Custom_9
-                                            ).Status
+                                                .mx_Custom_10
+                                            ).Status.split("-")[0]
                                           }
                                         </div>
+                                      </div>
+                                    </div>
+                                    <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-12 application-number">
+                                        PS-
+                                        {nonDigitRemove(
+                                          applicationActivity.RelatedProspectId
+                                        )}
+                                      </div>
+                                      <div className="col-md-12 no-padding">
+                                        <span className="last-updated">
+                                          Last Updated On :
+                                        </span>
+                                        <span className="date-update">
+                                          {applicationActivity.ModifiedOn}
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className="col-md-4 btn-block">
+                                      <Link
+                                        className="btn btn-view"
+                                        to={`/applicationPreview`}
+                                      >
+                                        View Application
+                                      </Link>
+                                    </div>
+                                  </div>
+                                );
+                              } else if (
+                                JSON.parse(
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_11
+                                ).Status !== null
+                              ) {
+                                return (
+                                  <div
+                                    className="col-md-12 body-box"
+                                    key={index + "a"}
+                                  >
+                                    <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-12 enquiry-text">
+                                        Application
+                                      </div>
+                                      <div className="col-md-12 no-padding">
+                                        {JSON.parse(
+                                          applicationActivity.ActivityFields
+                                            .mx_Custom_11
+                                        ).Status.includes("Approved") ? (
+                                          <div className="approved-box">
+                                            {
+                                              JSON.parse(
+                                                applicationActivity
+                                                  .ActivityFields.mx_Custom_11
+                                              ).Status
+                                            }
+                                          </div>
+                                        ) : (
+                                          <>
+                                            {JSON.parse(
+                                              applicationActivity.ActivityFields
+                                                .mx_Custom_11
+                                            ).Status.includes("Reject")}
+                                            ?
+                                            <div className="reject-box">
+                                              {
+                                                JSON.parse(
+                                                  applicationActivity
+                                                    .ActivityFields.mx_Custom_11
+                                                ).Status
+                                              }
+                                            </div>
+                                            :
+                                            <div className="submitted-box">
+                                              {
+                                                JSON.parse(
+                                                  applicationActivity
+                                                    .ActivityFields.mx_Custom_11
+                                                ).Status
+                                              }
+                                            </div>
+                                          </>
+                                        )}
+                                      </div>
+                                    </div>
+                                    <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-12 application-number">
+                                        PS-
+                                        {nonDigitRemove(
+                                          applicationActivity.RelatedProspectId
+                                        )}
+                                      </div>
+                                      <div className="col-md-12 no-padding">
+                                        <span className="last-updated">
+                                          Last Updated On :
+                                        </span>
+                                        <span className="date-update">
+                                          {applicationActivity.ModifiedOn}
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className="col-md-4 btn-block">
+                                      <Link
+                                        className="btn btn-view"
+                                        to={`/applicationPreview`}
+                                      >
+                                        View Application
+                                      </Link>
+                                    </div>
+                                  </div>
+                                );
+                              } else if (
+                                JSON.parse(
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_12
+                                ).Status !== null
+                              ) {
+                                return (
+                                  <div
+                                    className="col-md-12 body-box"
+                                    key={index + "a"}
+                                  >
+                                    <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-12 enquiry-text">
+                                        Application
+                                      </div>
+                                      <div className="col-md-12 no-padding">
+                                        {JSON.parse(
+                                          applicationActivity.ActivityFields
+                                            .mx_Custom_12
+                                        ).Status.includes("Approved") ? (
+                                          <div className="approved-box">
+                                            {
+                                              JSON.parse(
+                                                applicationActivity
+                                                  .ActivityFields.mx_Custom_12
+                                              ).Status
+                                            }
+                                          </div>
+                                        ) : (
+                                          <>
+                                            {JSON.parse(
+                                              applicationActivity.ActivityFields
+                                                .mx_Custom_12
+                                            ).Status.includes("Reject")}
+                                            ?
+                                            <div className="reject-box">
+                                              {
+                                                JSON.parse(
+                                                  applicationActivity
+                                                    .ActivityFields.mx_Custom_12
+                                                ).Status
+                                              }
+                                            </div>
+                                            :
+                                            <div className="submitted-box">
+                                              {
+                                                JSON.parse(
+                                                  applicationActivity
+                                                    .ActivityFields.mx_Custom_12
+                                                ).Status
+                                              }
+                                            </div>
+                                          </>
+                                        )}
                                       </div>
                                     </div>
                                     <div className="col-md-4 d-inline-block no-padding">

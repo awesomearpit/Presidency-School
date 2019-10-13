@@ -15,11 +15,14 @@ class ApplicationForm extends Component {
     super(props);
     this.state = {
       userName: "",
-      isLoginLoading: true
+      isLoginLoading: true,
     };
   }
 
   loadOverrideCSS = () => {
+    this.lsqFormContainer.querySelector(
+      ".lsq-form-action-back"
+    ).innerHTML = `<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a style=color:white href="/dashboard">Back</a>`;
     this.lsqFormContainer.querySelector(".lsq-form-header").style =
       "display:none";
     this.lsqFormContainer.querySelector(".lsq-form-custom-tab-wrapper").style =
