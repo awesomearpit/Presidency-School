@@ -1,31 +1,31 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { get } from "../../utils/API";
 import { ACCESS_KEY, SECRET_KEY, LEAD_ID } from "../../utils/Constants";
-import Pdf from "react-to-pdf";
 import "../../assets/css/preview.scss";
+import { PDFExport } from '@progress/kendo-react-pdf';
 import moment from "moment";
 
 class ApplicationPreview extends Component {
+  
   constructor(props) {
     super(props);
-    this.ref = React.createRef();
-    this.options = {
-      orientation: "landscape",
-      format: [1024, 1000],
-    };
     this.state = {
       leadsInfo: {},
-      displayName: "",
-    };
+      displayName: ""
+    }
+    this.downloadPDF = this.downloadPDF.bind(this);
   }
 
+  downloadPDF() {
+    this.pdfExportComponent.save();
+  }
+  
   async componentDidMount() {
     try {
       const { data } = await get(
         `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`
       );
-
       this.setState({
         leadsInfo: data[0],
         displayName: data[0].FirstName,
@@ -39,21 +39,19 @@ class ApplicationPreview extends Component {
 
   render() {
     const { leadsInfo } = this.state;
-    return (
-      <>
-        <Pdf
-          targetRef={this.ref}
-          filename="application.pdf"
-          options={this.options}
-        >
-          {({ toPdf }) => (
-            <button className="btn btn-primary" onClick={toPdf}>
-              Download Application Form
-            </button>
-          )}
-        </Pdf>
-        <div ref={this.ref}>
-          <div className="preview">
+    return (<>
+      <div className="app-form-preview-header">
+        <a href="javascript:void(0);" class="app-form-preview-download" onClick={this.downloadPDF}><i class="fa fa-download" aria-hidden="true"></i>Download PDF</a>
+      </div>
+      <div class="page-header-border-bottom"></div>
+      <PDFExport
+          forcePageBreak=".page-break"
+          ref={(component) => this.pdfExportComponent = component}
+          paperSize="A4"
+          scale={0.5}
+          margin="2cm"
+          fileName={`LSQUniversityApplicationForm`}>
+          { leadsInfo ? (<div className="preview">
             <div className="application-preview">
               <div className="col-md-12 application-heading">
                 APPLICATION FOR ADMISSION
@@ -549,11 +547,9 @@ class ApplicationPreview extends Component {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </>
-    );
+          </div>) : null}
+      </PDFExport>
+    </>)
   }
 }
-
 export default withRouter(ApplicationPreview);
