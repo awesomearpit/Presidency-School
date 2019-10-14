@@ -9,15 +9,20 @@ import cookie from "react-cookies";
 import { ACCESS_KEY, SECRET_KEY, PRIVATE_AUTH_KEY } from "../utils/Constants";
 import { validateEmail, required } from "../utils/Validations";
 import Loader from "react-loader-spinner";
+import BranchModal from "./HomePage/BranchModal";
 
 class Homepage extends Component {
   constructor(props) {
     super(props);
+    this.branch = ["PSBN", "PSBS", "PSBE", "PSMNG", "PSNLO", "PSRTN", "SPES"];
     this.state = {
       email: "",
       password: "",
       errorMessage: null,
       isLoginLoading: false,
+      show: false,
+      setShow: false,
+      branchName: "",
       errors: {
         emailError: null,
         passwordError: null,
@@ -39,11 +44,20 @@ class Homepage extends Component {
     this.setState({ errors });
   };
 
-  componentDidMount() {
-    console.log("appp");
-    if (!PRIVATE_AUTH_KEY) {
-      this.props.history.push("/");
+  componentWillMount() {
+    const branch = this.props.location.search.split("=")[1];
+    if (!branch) {
+      this.setState({
+        setShow: true,
+        show: true,
+      });
     } else {
+      this.setState({ branchName: branch });
+    }
+  }
+
+  componentDidMount() {
+    if (PRIVATE_AUTH_KEY) {
       this.props.history.push("/dashboard");
     }
   }
@@ -104,11 +118,42 @@ class Homepage extends Component {
     );
   };
 
+  handleBranchChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  showBranchModal = () => {
+    this.setState({
+      setShow: true,
+      show: true,
+    });
+  };
+
+  closeBranchModal = () => {
+    this.setState({
+      show: false,
+    });
+  };
+
+  changeModal = (show, value) => {
+    this.setState({ show: show, branchName: value });
+  };
+
   render() {
-    const { email, password, errorMessage, errors } = this.state;
+    const { email, password, errorMessage, errors, branchName } = this.state;
     const branch = this.props.location.search.split("=")[1];
     return (
       <>
+        <BranchModal
+          show={this.state.show}
+          showBranchModal={this.showBranchModal}
+          setShow={this.state.setShow}
+          branch={this.branch}
+          changeModal={this.changeModal}
+        />
         <div className="homepage container-fluid">
           <div className="main">
             <div className="header row">
@@ -122,7 +167,17 @@ class Homepage extends Component {
                   />
                 </div>
                 <div className="col-md-12 text-center logo-text">
-                  RT Nagar, Bangalore
+                  <select
+                    name="branchName"
+                    value={branchName}
+                    onChange={this.handleBranchChange}
+                  >
+                    {this.branch.map((branch, index) => (
+                      <option value={branch} key={index}>
+                        {branch}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               {/* Login Component Start */}
@@ -213,7 +268,7 @@ class Homepage extends Component {
                 <img src={Landing} className="img-responsive" />
               </div>
               {/* Signup Component Start  */}
-              <Register branch={branch} />
+              <Register branch={branchName} />
               {/* Signup Component End  */}
             </div>
             {/* Body box End */}

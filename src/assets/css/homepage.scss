@@ -24,6 +24,14 @@
                     font-family: "Roboto";
                     font-weight: bold;
                     padding-top:15px !important;
+                    select{
+                        border:0 !important;
+                        background-color: transparent !important;
+                        font-size:18px !important;
+                        color: $color-yellow2 !important;
+                        font-family: "Roboto" !important;
+                        font-weight: bold !important;
+                    }
                 }
             }
             .login-box{
@@ -109,6 +117,22 @@
                         padding-left:0px !important;
                         font-family: "Roboto" !important;
                     }
+                    .form-control-placeholder {
+                        position: absolute;
+                        top: 10px;
+                        padding: 0px 0 0 0px;
+                        transition: all 200ms;
+                        opacity: 0.5;
+                        span{
+                            color:$color-error;
+                        }
+                      }
+                      .form-control:focus + .form-control-placeholder,
+                        .form-control:valid + .form-control-placeholder {
+                        font-size: 75%;
+                        transform: translate3d(0, -100%, 0);
+                        opacity: 1;
+                        }
                     .error-warning{
                         color: $color-error;
                         font-size: 12px;
@@ -147,6 +171,18 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.branch-modal{
+    .modal-dialog{
+        max-width:490px !important;
+        margin-top:200px !important;
+        .modal-content{
+            border-radius:0 !important;
+            border: 0 !important;
+            padding:30px !important;
         }
     }
 }

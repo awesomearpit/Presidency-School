@@ -220,12 +220,15 @@ class Register extends Component {
           <div className="col-md-12 input-box">
             <input
               type="text"
-              placeholder="Full Name"
               className="form-control"
               name="name"
               value={name}
               onChange={this.handleChange}
+              required
             />
+            <label class="form-control-placeholder" for="name">
+              Full Name<span> *</span>
+            </label>
             {errors.nameError ? (
               <span className="error-warning">{errors.nameError}</span>
             ) : null}
@@ -283,12 +286,15 @@ class Register extends Component {
           <div className="col-md-12 input-box">
             <input
               type="email"
-              placeholder="Email Id"
               className="form-control"
               name="email"
               value={email}
               onChange={this.handleChange}
+              required
             />
+            <label class="form-control-placeholder" for="email">
+              Email Id<span> *</span>
+            </label>
             {errors.emailError ? (
               <span className="error-warning">{errors.emailError}</span>
             ) : null}
@@ -296,12 +302,15 @@ class Register extends Component {
           <div className="col-md-12 input-box">
             <input
               type="tel"
-              placeholder="Phone Number"
               className="form-control"
               name="mobile"
               value={mobile}
               onChange={this.handleChange}
+              required
             />
+            <label class="form-control-placeholder" for="mobile">
+              Phone Number<span> *</span>
+            </label>
             {errors.mobileError ? (
               <span className="error-warning">{errors.mobileError}</span>
             ) : null}
@@ -309,12 +318,15 @@ class Register extends Component {
           <div className="col-md-12 input-box">
             <input
               type="password"
-              placeholder="Password"
               className="form-control"
               name="password"
               value={password}
               onChange={this.handleChange}
+              required
             />
+            <label class="form-control-placeholder" for="password">
+              Password<span> *</span>
+            </label>
             {errors.passwordError ? (
               <span className="error-warning">{errors.passwordError}</span>
             ) : null}
@@ -322,12 +334,15 @@ class Register extends Component {
           <div className="col-md-12 input-box">
             <input
               type="password"
-              placeholder="Retype Password"
               className="form-control"
               name="confirmPassword"
               value={confirmPassword}
               onChange={this.handleChange}
+              required
             />
+            <label class="form-control-placeholder" for="confirmPassword">
+              Retype Password<span> *</span>
+            </label>
             {errors.confirmPasswordError ? (
               <span className="error-warning">
                 {errors.confirmPasswordError}
