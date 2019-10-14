@@ -167,6 +167,15 @@
         .lsq-external-form-container .tab-content{
             overflow:visible !important;
         }
+
+        // .lsq-external-form-container.modal-v4.fullscreen.external .tab-content.mx-custom>.active{
+        //     max-height: none !important;
+        //     }
+
+        .lsq-external-form-container.modal-v4.fullscreen.external .tab-content.mx-custom>.active {
+            min-height: none !important;
+            max-height: none !important;
+        }
         
         .tab-content.mx-custom > .active{
             max-height: none !important;
@@ -348,9 +357,18 @@
             overflow:visible !important;
         }
         
-        .tab-content.mx-custom > .active{
-            max-height: none !important;
+        .lsq-external-form-container .tab-content.mx-custom > .active{
+            max-height: unset !important;
             overflow-y:visible !important;
+        }
+
+        // .lsq-external-form-container.modal-v4.fullscreen.external .tab-content.mx-custom>.active{
+        //     max-height: none !important;
+        //     }
+
+        .lsq-external-form-container.modal-v4.fullscreen.external .tab-content.mx-custom>.active {
+            min-height: none !important;
+            max-height: none !important;
         }
 
         .fullscreen.modal-v4 .modal-footer{
