@@ -24,6 +24,16 @@
                     font-family: "Roboto";
                     font-weight: bold;
                     padding-top:15px !important;
+                    &:after{
+                        content: '\f078';
+                        font: normal normal normal 17px/1 FontAwesome;
+                        top: 6px;
+                        height: 34px;
+                        padding: 13px 0px 0px 0px;
+                        margin-left:-3%;
+                        position: absolute;
+                        pointer-events: none;
+                    }
                     select{
                         border:0 !important;
                         background-color: transparent !important;
@@ -31,6 +41,11 @@
                         color: $color-yellow2 !important;
                         font-family: "Roboto" !important;
                         font-weight: bold !important;
+                        -webkit-appearance: none !important;
+                        -moz-appearance: none !important;
+                        appearance: none !important;
+                        width:180px !important;
+                        
                     }
                 }
             }
