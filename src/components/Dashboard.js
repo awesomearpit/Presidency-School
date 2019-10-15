@@ -98,7 +98,7 @@ class Dashboard extends Component {
                         if (!activity.ActivityFields["Status"]) {
                           return (
                             <div className="col-md-12 body-box" key={index}>
-                              <div className="col-md-4 d-inline-block no-padding">
+                              <div className="col-md-4 d-inline-block no-padding box-display">
                                 <div className="col-md-12 enquiry-text">
                                   Enquiry
                                 </div>
@@ -106,7 +106,7 @@ class Dashboard extends Component {
                                   <div className="submitted-box">Submitted</div>
                                 </div>
                               </div>
-                              <div className="col-md-4 d-inline-block no-padding">
+                              <div className="col-md-4 d-inline-block no-padding box-display">
                                 <div className="col-md-12 application-number">
                                   PS-
                                   {nonDigitRemove(activity.RelatedProspectId)}
@@ -120,7 +120,7 @@ class Dashboard extends Component {
                                   </span>
                                 </div>
                               </div>
-                              <div className="col-md-4 btn-block">
+                              <div className="col-md-4 btn-block box-display">
                                 <Link
                                   className="btn btn-view"
                                   to={`/enquiryForm/${activity.Id}`}
@@ -135,7 +135,7 @@ class Dashboard extends Component {
                         ) {
                           return (
                             <div className="col-md-12 body-box" key={index}>
-                              <div className="col-md-4 d-inline-block no-padding">
+                              <div className="col-md-4 d-inline-block no-padding box-display">
                                 <div className="col-md-12 enquiry-text">
                                   Enquiry
                                 </div>
@@ -145,7 +145,7 @@ class Dashboard extends Component {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-md-4 d-inline-block no-padding">
+                              <div className="col-md-4 d-inline-block no-padding box-display">
                                 <div className="col-md-12 application-number">
                                   PS-
                                   {nonDigitRemove(activity.RelatedProspectId)}
@@ -159,7 +159,7 @@ class Dashboard extends Component {
                                   </span>
                                 </div>
                               </div>
-                              <div className="col-md-4 btn-block">
+                              <div className="col-md-4 btn-block box-display">
                                 <Link
                                   className="btn btn-start"
                                   to={`/applicationForm`}
@@ -174,7 +174,7 @@ class Dashboard extends Component {
                         ) {
                           return (
                             <div className="col-md-12 body-box" key={index}>
-                              <div className="col-md-4 d-inline-block no-padding">
+                              <div className="col-md-4 d-inline-block no-padding box-display">
                                 <div className="col-md-12 enquiry-text">
                                   Enquiry
                                 </div>
@@ -184,7 +184,7 @@ class Dashboard extends Component {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-md-4 d-inline-block no-padding">
+                              <div className="col-md-4 d-inline-block no-padding box-display">
                                 <div className="col-md-12 application-number">
                                   PS-
                                   {nonDigitRemove(activity.RelatedProspectId)}
@@ -198,7 +198,7 @@ class Dashboard extends Component {
                                   </span>
                                 </div>
                               </div>
-                              <div className="col-md-4 btn-block">
+                              <div className="col-md-4 btn-block box-display">
                                 <Link
                                   className="btn btn-view"
                                   to={`/enquiryForm`}
@@ -232,7 +232,7 @@ class Dashboard extends Component {
                                       className="col-md-12 body-box"
                                       key={index + "a"}
                                     >
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 enquiry-text">
                                           Application
                                         </div>
@@ -242,7 +242,7 @@ class Dashboard extends Component {
                                           </div>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 application-number">
                                           PS-
                                           {nonDigitRemove(
@@ -258,7 +258,7 @@ class Dashboard extends Component {
                                           </span>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 btn-block">
+                                      <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
                                           to={`/applicationPreview`}
@@ -279,7 +279,7 @@ class Dashboard extends Component {
                                       className="col-md-12 body-box"
                                       key={index + "a"}
                                     >
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 enquiry-text">
                                           Application
                                         </div>
@@ -294,7 +294,7 @@ class Dashboard extends Component {
                                           </div>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 application-number">
                                           PS-
                                           {nonDigitRemove(
@@ -310,7 +310,7 @@ class Dashboard extends Component {
                                           </span>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 btn-block">
+                                      <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
                                           to={`/applicationPreview`}
@@ -331,7 +331,7 @@ class Dashboard extends Component {
                                       className="col-md-12 body-box"
                                       key={index + "a"}
                                     >
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 enquiry-text">
                                           Application
                                         </div>
@@ -346,7 +346,7 @@ class Dashboard extends Component {
                                           </div>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 application-number">
                                           PS-
                                           {nonDigitRemove(
@@ -362,7 +362,7 @@ class Dashboard extends Component {
                                           </span>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 btn-block">
+                                      <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
                                           to={`/applicationPreview`}
@@ -383,7 +383,7 @@ class Dashboard extends Component {
                                       className="col-md-12 body-box"
                                       key={index + "a"}
                                     >
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 enquiry-text">
                                           Application
                                         </div>
@@ -430,7 +430,7 @@ class Dashboard extends Component {
                                           )}
                                         </div>
                                       </div>
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 application-number">
                                           PS-
                                           {nonDigitRemove(
@@ -446,7 +446,7 @@ class Dashboard extends Component {
                                           </span>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 btn-block">
+                                      <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
                                           to={`/applicationPreview`}
@@ -467,7 +467,7 @@ class Dashboard extends Component {
                                       className="col-md-12 body-box"
                                       key={index + "a"}
                                     >
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 enquiry-text">
                                           Application
                                         </div>
@@ -514,7 +514,7 @@ class Dashboard extends Component {
                                           )}
                                         </div>
                                       </div>
-                                      <div className="col-md-4 d-inline-block no-padding">
+                                      <div className="col-md-4 d-inline-block no-padding box-display">
                                         <div className="col-md-12 application-number">
                                           PS-
                                           {nonDigitRemove(
@@ -530,7 +530,7 @@ class Dashboard extends Component {
                                           </span>
                                         </div>
                                       </div>
-                                      <div className="col-md-4 btn-block">
+                                      <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
                                           to={`/applicationPreview`}

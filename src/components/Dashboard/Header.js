@@ -59,7 +59,10 @@ class Header extends Component {
           <div className="container no-padding">
             <a className="navbar-brand" href={"/dashboard"}>
               <div className="row">
-                <div className="col-md-6 col-sm-6 col-6">
+                <div
+                  className="col-md-6 col-sm-6 col-6"
+                  style={{ paddingRight: "120px" }}
+                >
                   <img src={Logo} />
                 </div>
                 <div className="col-md-6 col-sm-5 col-5 header-text">

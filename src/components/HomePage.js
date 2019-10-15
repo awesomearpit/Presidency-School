@@ -185,6 +185,7 @@ class Homepage extends Component {
                     value={branchName}
                     onChange={this.handleBranchChange}
                   >
+                    <option></option>
                     {this.branch.map((branch, index) => (
                       <option value={branch.value} key={index}>
                         {branch.label}

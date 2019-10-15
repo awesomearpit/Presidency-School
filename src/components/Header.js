@@ -9,10 +9,10 @@ const Header = props => {
         <div className="container">
           <a className="navbar-brand" href="/">
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-6" style={{ paddingRight: "60px" }}>
                 <img src={Logo} />
               </div>
-              <div className="col-md-8 header-text">{getBranchName()}</div>
+              <div className="col-md-6 header-text">{getBranchName()}</div>
             </div>
           </a>
           <button
