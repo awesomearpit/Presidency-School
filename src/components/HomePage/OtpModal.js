@@ -14,6 +14,7 @@ class OtpModal extends Component {
       errorMessage: null,
       isResendOtp: false,
       time: "",
+      successMessage: "",
     };
   }
 
@@ -78,9 +79,11 @@ class OtpModal extends Component {
             try {
               const { data } = await register(signupData);
               console.log("data", data);
-              this.props.successMessage(data.Message);
+              this.props.successMessage(null);
+              this.setState({ successMessage: data.Message });
             } catch (e) {
               console.log("error signup", e);
+              this.props.handleClose();
               this.props.errorMessage(e.response.data.ExceptionMessage);
             }
           }
@@ -119,41 +122,60 @@ class OtpModal extends Component {
             </button>
           </div>
           <div className="row otp-box">
-            <div className="col-md-12 otp-heading">Verify OTP</div>
-            <div className="col-md-12 otp-text">
-              A 6 digit OTP has been sent to +91-{this.props.fieldContent}
-            </div>
-            <div className="col-md-12 otp-layout">
-              <OtpInput
-                onChange={otp => this.setState({ otp })}
-                numInputs={6}
-                inputStyle="form-control otp-input"
-                value={this.state.otp}
-                isInputNum={false}
-                hasErrored={this.checkStatus}
-                shouldAutoFocus={true}
-                autoFocus
-              />
-            </div>
-            <div className="col-md-12 otp-incorrect">
-              {this.incorrectMessage()}
-            </div>
-            <div className="col-md-12 otp-resend">
-              {this.state.isResendOtp ? (
-                <button className="btn btn-link" onClick={this.props.signup}>
-                  Resend OTP
-                </button>
-              ) : (
-                <Timer initialTime={120000} direction="backward">
-                  {() => (
-                    <>
-                      <Timer.Minutes />:
-                      <Timer.Seconds />
-                    </>
+            {this.state.successMessage === "Registration Successful" ? (
+              <>
+                <div className="successOtp">
+                  <div className="row no-margin">
+                    <div className="col-md-12 check-box">
+                      <i className="fa fa-check-circle" aria-hidden="true"></i>
+                    </div>
+                    <div className="col-md-12 text">
+                      {this.state.successMessage}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="col-md-12 otp-heading">Verify OTP</div>
+                <div className="col-md-12 otp-text">
+                  A 6 digit OTP has been sent to +91-{this.props.fieldContent}
+                </div>
+                <div className="col-md-12 otp-layout">
+                  <OtpInput
+                    onChange={otp => this.setState({ otp })}
+                    numInputs={6}
+                    inputStyle="form-control otp-input"
+                    value={this.state.otp}
+                    isInputNum={false}
+                    hasErrored={this.checkStatus}
+                    shouldAutoFocus={true}
+                  />
+                </div>
+                <div className="col-md-12 otp-incorrect">
+                  {this.incorrectMessage()}
+                </div>
+                <div className="col-md-12 otp-resend">
+                  {this.state.isResendOtp ? (
+                    <button
+                      className="btn btn-link"
+                      onClick={this.props.signup}
+                    >
+                      Resend OTP
+                    </button>
+                  ) : (
+                    <Timer initialTime={120000} direction="backward">
+                      {() => (
+                        <>
+                          <Timer.Minutes />:
+                          <Timer.Seconds />
+                        </>
+                      )}
+                    </Timer>
                   )}
-                </Timer>
-              )}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </Modal>
       </>

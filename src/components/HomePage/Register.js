@@ -144,10 +144,21 @@ class Register extends Component {
   };
 
   successMessage = value => {
-    this.setState({ successMessage: value });
+    this.setState({
+      name: value,
+      grade: value,
+      dob: value,
+      email: value,
+      mobile: value,
+      password: value,
+      confirmPassword: value,
+    });
   };
 
   errorMessage = value => {
+    if (value === "A Lead with same Mobile Number already exists.") {
+      value = "Account already exists for the phone number";
+    }
     this.setState({ errorMessage: value });
   };
 
@@ -201,17 +212,7 @@ class Register extends Component {
       <>
         <div className="col-md-5 signup-container">
           <div className="col-md-12 signup-heading">REGISTER TO APPLY</div>
-          {successMessage === "Registration Successful" ? (
-            <div
-              style={{
-                color: "green",
-                fontWeight: "bold",
-                textAlign: "center",
-              }}
-            >
-              {successMessage}
-            </div>
-          ) : (
+          {errorMessage ? (
             <div
               style={{
                 color: "#FD1F1F",
@@ -221,7 +222,7 @@ class Register extends Component {
             >
               {errorMessage}
             </div>
-          )}
+          ) : null}
           <div className="col-md-12 input-box">
             <input
               type="text"

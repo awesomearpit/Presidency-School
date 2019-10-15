@@ -399,7 +399,32 @@
                     }
                 }
             }
+
         }
+    }
+}
+
+.successOtp{
+    width:93% !important;
+    margin:auto !important;
+    background-color: $color-white;
+    position: relative;
+    padding: 65px 66px 65px 66px;
+    .check-box{
+        padding:0 !important;
+        text-align: center !important;
+        i{
+            color: $color-success !important;
+            font-size: 70px !important;
+        }
+    }
+    .text{
+        text-align: center;
+        font-size: 18px !important;
+        font-family: "Roboto" !important;
+        color:$color-text1 !important;
+        font-weight: 900 !important;
+        padding: 40px 0px 0px 0px !important;
     }
 }
 
