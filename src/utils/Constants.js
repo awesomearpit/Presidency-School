@@ -10,9 +10,7 @@ export const ENQUIRY_FORM_ID = "2197ea44-ddd0-11e9-aebf-02b00a4d022c";
 export const APPLICATION_FORM_ID = "3c6c587e-df79-11e9-aebf-02b00a4d022c";
 export const getBranchName = () =>{
   let branchName = ""
-  console.log(localStorage.getItem("branchName"))
   if(localStorage.getItem("branchName")){
-    console.log("sdfsdfsfd")
     branchName = JSON.parse(localStorage.getItem("branchName")).label
   }
   return branchName
