@@ -365,11 +365,19 @@
                     .otp-input{
                         width:100% !important;
                         border-radius:0 !important;
-                        border:0 !important;
-                        border-bottom: 1px solid $color-border !important;
+                        // border:0 !important;
+                        border-width: 0px 0px 1px 0px !important;
+                        border-bottom: 1px solid $color-border;
                         margin-right: 15px !important;
                         color: $color-text3 !important;
                         font-size: 15px !important;
+                        box-sizing:border-box !important;
+                        -webkit-box-sizing:border-box !important;
+                        &:focus{
+                            // outline-offset: -2px !important;
+                            // outline : -webkit-focus-ring-color auto 1px !important;
+                            border-bottom: 2px solid rgba(0, 150, 255, 1) !important;
+                        }
                     }
                     .otp-error{
                         border-bottom: 1px solid $color-error !important;

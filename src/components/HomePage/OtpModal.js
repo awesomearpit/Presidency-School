@@ -38,7 +38,7 @@ class OtpModal extends Component {
           const { data } = await otpVerify(otpVerifyData);
           this.setState({ status: data.Status });
           if (data.Status === "Success") {
-            this.props.handleClose();
+            // this.props.handleClose();
             const signupData = {
               LeadFields: [
                 {
@@ -131,6 +131,8 @@ class OtpModal extends Component {
                 value={this.state.otp}
                 isInputNum={false}
                 hasErrored={this.checkStatus}
+                shouldAutoFocus={true}
+                autoFocus
               />
             </div>
             <div className="col-md-12 otp-incorrect">

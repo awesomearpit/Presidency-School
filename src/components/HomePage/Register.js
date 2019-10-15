@@ -116,7 +116,12 @@ class Register extends Component {
       email &&
       password &&
       confirmPassword &&
-      password === confirmPassword
+      password === confirmPassword &&
+      password.match(/^(?=.*\d).{8,}$/) &&
+      email.match(
+        /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+      ) &&
+      mobile.length === 10
     );
   };
 
