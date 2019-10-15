@@ -33,8 +33,8 @@ class BranchModal extends Component {
               >
                 <option>Please Select Branch</option>
                 {this.props.branch.map((branch, index) => (
-                  <option value={branch} key={index}>
-                    {branch}
+                  <option value={branch.value} key={index}>
+                    {branch.label}
                   </option>
                 ))}
               </select>

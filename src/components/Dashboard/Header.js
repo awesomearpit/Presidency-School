@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import Logo from "../../assets/images/logo.png";
 import { Dropdown } from "react-bootstrap";
 import { get } from "../../utils/API";
-import { ACCESS_KEY, SECRET_KEY, LEAD_ID } from "../../utils/Constants";
+import {
+  ACCESS_KEY,
+  SECRET_KEY,
+  LEAD_ID,
+  BRANCH_NAME,
+} from "../../utils/Constants";
 import ChangePasswordModal from "./ChangePasswordModal";
 
 class Header extends Component {
@@ -58,7 +63,7 @@ class Header extends Component {
                   <img src={Logo} />
                 </div>
                 <div className="col-md-6 col-sm-5 col-5 header-text">
-                  RT Nagar, Bangalore
+                  {BRANCH_NAME}
                 </div>
               </div>
             </a>
@@ -89,13 +94,12 @@ class Header extends Component {
                   <Dropdown.Item onClick={this.showPasswordModal}>
                     Change password
                   </Dropdown.Item>
-                  { this.state.show ? 
+                  {this.state.show ? (
                     <ChangePasswordModal
                       show={this.state.show}
                       onHide={this.closePasswordModal}
                     />
-                    : null
-                  }
+                  ) : null}
                   <Dropdown.Item
                     className="dropdown-logout"
                     onClick={this.props.logout}

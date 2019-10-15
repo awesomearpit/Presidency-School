@@ -232,7 +232,7 @@ class Register extends Component {
               onChange={this.handleChange}
               required
             />
-            <label class="form-control-placeholder" for="name">
+            <label className="form-control-placeholder" htmlFor="name">
               Full Name<span> *</span>
             </label>
             {errors.nameError ? (
@@ -298,7 +298,7 @@ class Register extends Component {
               onChange={this.handleChange}
               required
             />
-            <label class="form-control-placeholder" for="email">
+            <label className="form-control-placeholder" htmlFor="email">
               Email Id<span> *</span>
             </label>
             {errors.emailError ? (
@@ -314,7 +314,7 @@ class Register extends Component {
               onChange={this.handleChange}
               required
             />
-            <label class="form-control-placeholder" for="mobile">
+            <label className="form-control-placeholder" htmlFor="mobile">
               Phone Number<span> *</span>
             </label>
             {errors.mobileError ? (
@@ -330,7 +330,7 @@ class Register extends Component {
               onChange={this.handleChange}
               required
             />
-            <label class="form-control-placeholder" for="password">
+            <label className="form-control-placeholder" htmlFor="password">
               Password<span> *</span>
             </label>
             {errors.passwordError ? (
@@ -346,7 +346,10 @@ class Register extends Component {
               onChange={this.handleChange}
               required
             />
-            <label class="form-control-placeholder" for="confirmPassword">
+            <label
+              className="form-control-placeholder"
+              htmlFor="confirmPassword"
+            >
               Retype Password<span> *</span>
             </label>
             {errors.confirmPasswordError ? (

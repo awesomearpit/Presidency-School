@@ -14,7 +14,15 @@ import BranchModal from "./HomePage/BranchModal";
 class Homepage extends Component {
   constructor(props) {
     super(props);
-    this.branch = ["PSBN", "PSBS", "PSBE", "PSMNG", "PSNLO", "PSRTN", "SPES"];
+    this.branch = [
+      { value: "PSBN", label: "Bangalore North" },
+      { value: "PSBS", label: "Bangalore South" },
+      { value: "PSBE", label: "Bangalore East" },
+      { value: "PSMNG", label: "Mangalore" },
+      { value: "PSNLO", label: "Nandini Layout" },
+      { value: "PSRTN", label: "R.T Nagar" },
+      { value: "SPES", label: "ST Paul / Jaynagar" },
+    ];
     this.state = {
       email: "",
       password: "",
@@ -145,6 +153,11 @@ class Homepage extends Component {
   render() {
     const { email, password, errorMessage, errors, branchName } = this.state;
     const branch = this.props.location.search.split("=")[1];
+    const branchLabel = this.branch.filter(
+      branch => branch.value === this.state.branchName
+    )[0];
+    console.log("branchLabel", branchLabel);
+    localStorage.setItem("branchName", JSON.stringify(branchLabel));
     return (
       <>
         <BranchModal
@@ -173,8 +186,8 @@ class Homepage extends Component {
                     onChange={this.handleBranchChange}
                   >
                     {this.branch.map((branch, index) => (
-                      <option value={branch} key={index}>
-                        {branch}
+                      <option value={branch.value} key={index}>
+                        {branch.label}
                       </option>
                     ))}
                   </select>
