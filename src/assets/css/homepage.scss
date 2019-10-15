@@ -324,8 +324,185 @@
     }
 }
 
-@media (min-width: 620px) {
+@media (min-width: 768px) and (max-width: 991.98px){
+    .homepage{
+        background-color: $color-button;
+        width:100%;
+        height:100%;
+        padding:30px 0px 30px 0px !important;
+        .main{
+            width:80%;
+            margin:auto;
+            .header{
+                margin:0px 0px 30px 0px !important;
+                .logo-box{
+                    background-color: $color-white;
+                    padding:24px 0px 24px 0px !important;
+                    max-width: 100% !important;
+                    flex: 0 0 100% !important;
+                    .logo-box-img{
+                        width:221px !important;
+                        height: 64px !important;
+                    }
+                    .logo-text{
+                        text-align: center;
+                        font-size:18px;
+                        color: $color-yellow2 !important;
+                        font-family: "Roboto";
+                        font-weight: bold;
+                        padding-top:15px !important;
+                        select{
+                            border:0 !important;
+                            background-color: transparent !important;
+                            font-size:18px !important;
+                            color: $color-yellow2 !important;
+                            font-family: "Roboto" !important;
+                            font-weight: bold !important;
+                        }
+                    }
+                }
+                .login-box{
+                    background-color: $color-yellow1;
+                    padding:32px 40px 32px 40px !important;
+                    max-width: 100% !important;
+                    flex: 0 0 100% !important;
+                    .login-heading{
+                        font-size:15px;
+                        color: $color-heading !important;
+                        font-family: "Roboto";
+                        font-weight: bold;
+                        padding:0 !important;
+                    }
+                    .login-input-box{
+                        padding: 20px 0px 0px 0px !important;
+                        margin:0 !important;
+                        .input-div{
+                            flex: 0 0 38%;
+                            max-width: 40%;
+                            position: relative;
+                            width: 100%;
+                            input{
+                                background-color: transparent !important;
+                                border-radius:0px !important;
+                                border-width: 0px 0px 1px 0px !important;
+                                border-color: #212b3663 !important;
+                                padding-right: 0px !important;
+                                padding-left: 0px !important;
+                                height: 36px !important;
+                            }
+                        }
     
+                        a{
+                            font-size:13px;
+                            color: $color-button !important;
+                            font-family: "Roboto";
+                        }
+                    }
+                    .login-button{
+                        width:18% !important;
+                        height: 36px !important;
+                        background-color: $color-button !important;
+                        font-size:15px !important;
+                        font-family: "Roboto" !important;
+                        border-radius:0px !important;
+                        border:0 !important;
+                        margin-left:30px !important;
+                        &:hover{
+                            background-color: $color-hover !important;
+                        }
+                    }
+                }
+            }
+            .body-box{
+                margin:0 !important;
+                .image-container{
+                    background-color: $color-grey1;
+                    padding:20px !important;
+                    img{
+                        width:100% !important;
+                        height: 100% !important;
+                    }
+                }
+                .signup-container{
+                    background-color: $color-white;
+                    padding:40px 60px 40px 60px !important;
+                    .signup-heading{
+                        font-size:22px;
+                        color: $color-heading !important;
+                        font-family: "Roboto";
+                        text-align: center;
+                        font-weight: bold;
+                    }
+                    .input-box{
+                        margin-top:35px;
+                        padding:0 !important;
+                        height:27px !important;
+                        input{
+                            border-radius: 0 !important;
+                            border:0 !important;
+                            border-bottom: 1px solid $color-border !important;
+                            background-color: transparent !important;
+                            font-size: 15px !important;
+                            padding-left:0px !important;
+                            font-family: "Roboto" !important;
+                        }
+                        .form-control-placeholder {
+                            position: absolute;
+                            top: 10px;
+                            padding: 0px 0 0 0px;
+                            transition: all 200ms;
+                            opacity: 0.5;
+                            span{
+                                color:$color-error;
+                            }
+                          }
+                          .form-control:focus + .form-control-placeholder,
+                            .form-control:valid + .form-control-placeholder {
+                            font-size: 75%;
+                            transform: translate3d(0, -100%, 0);
+                            opacity: 1;
+                            }
+                        .error-warning{
+                            color: $color-error;
+                            font-size: 12px;
+                            font-family: "Roboto"
+                        }
+                        select{
+                            border-radius: 0 !important;
+                            border:0 !important;
+                            border-bottom: 1px solid $color-border !important;
+                            background-color: transparent !important;
+                            font-size: 15px !important;
+                            padding-left:0px !important;
+                            font-family: "Roboto" !important;
+                            option{
+                                padding:0px !important
+                            }
+                        }
+                        
+                    }
+                    .button-box{
+                        margin-top:80px;
+                        padding: 0px !important;
+                        .signup-button{
+                            width:100%;
+                            height: 40px;
+                            background-color: $color-button !important;
+                            border-radius: 0px !important;
+                            border:0 !important;
+                            color: $color-white !important;
+                            font-family: "Roboto" !important;
+                            font-size: 15px !important;
+                            font-weight: bold ;
+                            &:hover{
+                                background-color: $color-hover !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
