@@ -57,7 +57,7 @@ class Homepage extends Component {
   }
 
   componentDidMount() {
-    if (PRIVATE_AUTH_KEY) {
+    if (cookie.load("LeadId")) {
       this.props.history.push("/dashboard");
     }
   }

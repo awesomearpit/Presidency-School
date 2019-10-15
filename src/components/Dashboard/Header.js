@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Logo from "../../assets/images/logo.png";
 import { Dropdown } from "react-bootstrap";
-import { logout, get } from "../../utils/API";
+import { get } from "../../utils/API";
 import { ACCESS_KEY, SECRET_KEY, LEAD_ID } from "../../utils/Constants";
 import ChangePasswordModal from "./ChangePasswordModal";
 
