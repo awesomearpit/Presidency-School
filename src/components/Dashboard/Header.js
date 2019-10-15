@@ -6,7 +6,7 @@ import {
   ACCESS_KEY,
   SECRET_KEY,
   LEAD_ID,
-  BRANCH_NAME,
+  getBranchName,
 } from "../../utils/Constants";
 import ChangePasswordModal from "./ChangePasswordModal";
 
@@ -63,7 +63,7 @@ class Header extends Component {
                   <img src={Logo} />
                 </div>
                 <div className="col-md-6 col-sm-5 col-5 header-text">
-                  {BRANCH_NAME}
+                  {getBranchName()}
                 </div>
               </div>
             </a>

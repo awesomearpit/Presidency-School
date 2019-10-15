@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../assets/images/logo.png";
-import { BRANCH_NAME } from "../utils/Constants";
+import { getBranchName } from "../utils/Constants";
 
 const Header = props => {
   return (
@@ -12,7 +12,7 @@ const Header = props => {
               <div className="col-md-4">
                 <img src={Logo} />
               </div>
-              <div className="col-md-8 header-text">{BRANCH_NAME}</div>
+              <div className="col-md-8 header-text">{getBranchName()}</div>
             </div>
           </a>
           <button
