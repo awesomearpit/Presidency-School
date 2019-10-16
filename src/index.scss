@@ -56,3 +56,17 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0; 
 }
+
+.ui-state-hover{
+  outline:0px !important;
+    -webkit-appearance:none !important;
+    box-shadow: none !important;
+}
+
+.ui-selectmenu-menu-dropdown {
+  background-color: white !important;
+}
+
+a.dropdown-toggle::after {
+  display: none !important;
+}

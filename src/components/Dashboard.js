@@ -72,7 +72,17 @@ class Dashboard extends Component {
         ) : null}
         <>
           <Header logout={this.logout} getUserName={this.getUserName} />
-          <div style={{ backgroundColor: "#EBEEF1" }}>
+          <div
+            style={{
+              backgroundColor: "#EBEEF1",
+              width: "100%",
+              top: "0",
+              left: "0",
+              right: "0",
+              bottom: "0",
+              position: "absolute",
+            }}
+          >
             <div className="dashboard">
               <div className="dashboard-header-box">
                 <div className="header-box-container">

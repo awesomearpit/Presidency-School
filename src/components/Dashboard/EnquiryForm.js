@@ -17,7 +17,7 @@ class EnquiryForm extends Component {
     this.state = {
       userName: "",
       activityId: "",
-      isLoginLoading: true
+      isLoginLoading: true,
     };
   }
 
@@ -52,7 +52,9 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".popup-header").style.display = "none";
     this.lsqFormContainer.querySelector(
       ".modal-header"
-    ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School RT Nagar, ${this.state.userName},<br /><br /><span>Please fill in the enquiry form below to get started</span></div>`;
+    ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School RT Nagar, ${
+      this.state.userName.split(" ")[0]
+    },<br /><br /><span>Please fill in the enquiry form below to get started</span></div>`;
     this.setState({ isLoginLoading: false });
   };
 
@@ -112,7 +114,6 @@ class EnquiryForm extends Component {
   getUserName = name => {
     this.setState({ userName: name });
   };
-  
 
   render() {
     console.log("Enquiry Form");
