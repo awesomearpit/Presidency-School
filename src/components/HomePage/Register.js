@@ -162,7 +162,8 @@ class Register extends Component {
     this.setState({ errorMessage: value });
   };
 
-  signUp = async () => {
+  signUp = async e => {
+    e.preventDefault();
     this.validateAllInputs();
     if (this.validityCheck()) {
       this.setState({ isLoginLoading: true });
@@ -223,42 +224,43 @@ class Register extends Component {
               {errorMessage}
             </div>
           ) : null}
-          <div className="col-md-12 input-box">
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              value={name}
-              onChange={this.handleChange}
-              required
-            />
-            <label className="form-control-placeholder" htmlFor="name">
-              Full Name<span> *</span>
-            </label>
-            {errors.nameError ? (
-              <span className="error-warning">{errors.nameError}</span>
-            ) : null}
-          </div>
-          <div className="col-md-12 input-box">
-            <select
-              value={grade}
-              onChange={this.handleChange}
-              name="grade"
-              className="form-control"
-            >
-              <option value="">Grade Applied For</option>
-              {this.grades.map((grade, index) => (
-                <option value={grade} key={index}>
-                  {grade}
-                </option>
-              ))}
-            </select>
-            {errors.gradeError ? (
-              <span className="error-warning">{errors.gradeError}</span>
-            ) : null}
-          </div>
-          <div className="col-md-12 input-box">
-            {/* <input
+          <form onSubmit={this.signUp}>
+            <div className="col-md-12 input-box">
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                value={name}
+                onChange={this.handleChange}
+                required
+              />
+              <label className="form-control-placeholder" htmlFor="name">
+                Full Name<span> *</span>
+              </label>
+              {errors.nameError ? (
+                <span className="error-warning">{errors.nameError}</span>
+              ) : null}
+            </div>
+            <div className="col-md-12 input-box">
+              <select
+                value={grade}
+                onChange={this.handleChange}
+                name="grade"
+                className="form-control"
+              >
+                <option value="">Grade Applied For</option>
+                {this.grades.map((grade, index) => (
+                  <option value={grade} key={index}>
+                    {grade}
+                  </option>
+                ))}
+              </select>
+              {errors.gradeError ? (
+                <span className="error-warning">{errors.gradeError}</span>
+              ) : null}
+            </div>
+            <div className="col-md-12 input-box">
+              {/* <input
               type="text"
               placeholder="Date Of Birth"
               className="form-control"
@@ -271,107 +273,108 @@ class Register extends Component {
               value={dob}
               onChange={this.handleChange}
             /> */}
-            <Flatpickr
-              className="form-control"
-              placeholder="Select DOB"
-              value={dob}
-              data-input
-              onChange={date => {
-                this.setState({ dob: date[0] });
-              }}
-              options={{
-                maxDate: new Date(),
-                dateFormat: "d/m/Y",
-              }}
-              data-input
-            />
-            {errors.dobError ? (
-              <span className="error-warning">{errors.dobError}</span>
-            ) : null}
-          </div>
-          <div className="col-md-12 input-box">
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-              required
-            />
-            <label className="form-control-placeholder" htmlFor="email">
-              Email Id<span> *</span>
-            </label>
-            {errors.emailError ? (
-              <span className="error-warning">{errors.emailError}</span>
-            ) : null}
-          </div>
-          <div className="col-md-12 input-box">
-            <input
-              type="tel"
-              className="form-control"
-              name="mobile"
-              value={mobile}
-              onChange={this.handleChange}
-              required
-            />
-            <label className="form-control-placeholder" htmlFor="mobile">
-              Phone Number<span> *</span>
-            </label>
-            {errors.mobileError ? (
-              <span className="error-warning">{errors.mobileError}</span>
-            ) : null}
-          </div>
-          <div className="col-md-12 input-box">
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-              required
-            />
-            <label className="form-control-placeholder" htmlFor="password">
-              Password<span> *</span>
-            </label>
-            {errors.passwordError ? (
-              <span className="error-warning">{errors.passwordError}</span>
-            ) : null}
-          </div>
-          <div className="col-md-12 input-box">
-            <input
-              type="password"
-              className="form-control"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={this.handleChange}
-              required
-            />
-            <label
-              className="form-control-placeholder"
-              htmlFor="confirmPassword"
-            >
-              Retype Password<span> *</span>
-            </label>
-            {errors.confirmPasswordError ? (
-              <span className="error-warning">
-                {errors.confirmPasswordError}
-              </span>
-            ) : null}
-          </div>
-          <div className="col-md-12 button-box">
-            <button
-              className="btn signup-button"
-              onClick={this.signUp}
-              // disabled={!isEnable}
-            >
-              {this.state.isRegisterLoading ? (
-                <div className="d-inline-block">
-                  <Loader type="Oval" color="#FFF" height={20} width={30} />
-                </div>
+              <Flatpickr
+                className="form-control"
+                placeholder="Select DOB"
+                value={dob}
+                data-input
+                onChange={date => {
+                  this.setState({ dob: date[0] });
+                }}
+                options={{
+                  maxDate: new Date(),
+                  dateFormat: "d/m/Y",
+                }}
+                data-input
+              />
+              {errors.dobError ? (
+                <span className="error-warning">{errors.dobError}</span>
               ) : null}
-              <div className="d-inline-block">Register</div>
-            </button>
-          </div>
+            </div>
+            <div className="col-md-12 input-box">
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                value={email}
+                onChange={this.handleChange}
+                required
+              />
+              <label className="form-control-placeholder" htmlFor="email">
+                Email Id<span> *</span>
+              </label>
+              {errors.emailError ? (
+                <span className="error-warning">{errors.emailError}</span>
+              ) : null}
+            </div>
+            <div className="col-md-12 input-box">
+              <input
+                type="number"
+                className="form-control"
+                name="mobile"
+                value={mobile}
+                onChange={this.handleChange}
+                required
+              />
+              <label className="form-control-placeholder" htmlFor="mobile">
+                Phone Number<span> *</span>
+              </label>
+              {errors.mobileError ? (
+                <span className="error-warning">{errors.mobileError}</span>
+              ) : null}
+            </div>
+            <div className="col-md-12 input-box">
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                value={password}
+                onChange={this.handleChange}
+                required
+              />
+              <label className="form-control-placeholder" htmlFor="password">
+                Password<span> *</span>
+              </label>
+              {errors.passwordError ? (
+                <span className="error-warning">{errors.passwordError}</span>
+              ) : null}
+            </div>
+            <div className="col-md-12 input-box">
+              <input
+                type="password"
+                className="form-control"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={this.handleChange}
+                required
+              />
+              <label
+                className="form-control-placeholder"
+                htmlFor="confirmPassword"
+              >
+                Retype Password<span> *</span>
+              </label>
+              {errors.confirmPasswordError ? (
+                <span className="error-warning">
+                  {errors.confirmPasswordError}
+                </span>
+              ) : null}
+            </div>
+            <div className="col-md-12 button-box">
+              <button
+                className="btn signup-button"
+                type="submit"
+                // disabled={!isEnable}
+              >
+                {this.state.isRegisterLoading ? (
+                  <div className="d-inline-block">
+                    <Loader type="Oval" color="#FFF" height={20} width={30} />
+                  </div>
+                ) : null}
+                <div className="d-inline-block">Register</div>
+              </button>
+            </div>
+          </form>
           {this.state.show ? (
             <OtpModal
               handleShow={this.showOTPModal}

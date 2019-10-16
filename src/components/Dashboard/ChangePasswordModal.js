@@ -37,7 +37,8 @@ class ChangePasswordModal extends Component {
       newPassword &&
       currentPassword &&
       confirmPassword &&
-      newPassword === confirmPassword
+      newPassword === confirmPassword &&
+      newPassword.match(/^(?=.*\d).{8,}$/)
     );
   };
 

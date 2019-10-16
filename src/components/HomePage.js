@@ -75,7 +75,8 @@ class Homepage extends Component {
     this.setState({ [name]: value });
   };
 
-  login = async () => {
+  login = async e => {
+    e.preventDefault();
     this.setState({ errorMessage: null });
     this.validateAllInputs();
     if (this.isPresentAllInputs()) {
@@ -199,80 +200,82 @@ class Homepage extends Component {
                 <div className="col-md-12 login-heading">
                   LOGIN TO YOUR ACCOUNT
                 </div>
-                <div className="row login-input-box">
-                  <div className="input-div" style={{ paddingRight: "15px" }}>
-                    <input
-                      type="text"
-                      placeholder="Email Id"
-                      className="form-control"
-                      name="email"
-                      value={email}
-                      onChange={this.handleChange}
-                    />
-                    {errors.emailError ? (
-                      <div
-                        style={{
-                          color: "#FD1F1F",
-                          fontSize: "12px",
-                        }}
-                      >
-                        {errors.emailError}
-                      </div>
-                    ) : null}
-                    <div className="col-md-12 no-padding">
-                      {errorMessage ? (
-                        <span
+                <form onSubmit={this.login}>
+                  <div className="row login-input-box">
+                    <div className="input-div" style={{ paddingRight: "15px" }}>
+                      <input
+                        type="text"
+                        placeholder="Email Id"
+                        className="form-control"
+                        name="email"
+                        value={email}
+                        onChange={this.handleChange}
+                      />
+                      {errors.emailError ? (
+                        <div
                           style={{
                             color: "#FD1F1F",
                             fontSize: "12px",
-                            fontWeight: "bold",
                           }}
                         >
-                          {errorMessage}
-                        </span>
+                          {errors.emailError}
+                        </div>
                       ) : null}
-                    </div>
-                  </div>
-                  <div className="input-div" style={{ paddingLeft: "15px" }}>
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="form-control"
-                      name="password"
-                      value={password}
-                      onChange={this.handleChange}
-                    />
-                    {errors.passwordError ? (
-                      <div
-                        style={{
-                          color: "#FD1F1F",
-                          fontSize: "12px",
-                        }}
-                      >
-                        {errors.passwordError}
+                      <div className="col-md-12 no-padding">
+                        {errorMessage ? (
+                          <span
+                            style={{
+                              color: "#FD1F1F",
+                              fontSize: "12px",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {errorMessage}
+                          </span>
+                        ) : null}
                       </div>
-                    ) : null}
-                    <div className="col-md-12 no-padding">
-                      <Link to={"/forgotPassword"}>Forgot Password?</Link>
                     </div>
-                  </div>
-                  <button
-                    className="btn btn-primary login-button"
-                    onClick={this.login}
-                  >
-                    {this.state.isLoginLoading ? (
-                      <div className="d-inline-block">
-                        <Loader
-                          type="Oval"
-                          color="#FFF"
-                          height={20}
-                          width={30}
-                        />
+                    <div className="input-div" style={{ paddingLeft: "15px" }}>
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        className="form-control"
+                        name="password"
+                        value={password}
+                        onChange={this.handleChange}
+                      />
+                      {errors.passwordError ? (
+                        <div
+                          style={{
+                            color: "#FD1F1F",
+                            fontSize: "12px",
+                          }}
+                        >
+                          {errors.passwordError}
+                        </div>
+                      ) : null}
+                      <div className="col-md-12 no-padding">
+                        <Link to={"/forgotPassword"}>Forgot Password?</Link>
                       </div>
-                    ) : null}
-                    <div className="d-inline-block">Login</div>
-                  </button>
-                </div>
+                    </div>
+                    <button
+                      className="btn btn-primary login-button"
+                      type="submit"
+                    >
+                      {this.state.isLoginLoading ? (
+                        <div className="d-inline-block">
+                          <Loader
+                            type="Oval"
+                            color="#FFF"
+                            height={20}
+                            width={30}
+                          />
+                        </div>
+                      ) : null}
+                      <div className="d-inline-block">Login</div>
+                    </button>
+                  </div>
+                </form>
               </div>
               {/* Login Component End */}
             </div>
