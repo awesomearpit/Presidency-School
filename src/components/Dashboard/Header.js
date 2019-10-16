@@ -61,7 +61,7 @@ class Header extends Component {
               <div className="row">
                 <div
                   className="col-md-6 col-sm-6 col-6"
-                  style={{ paddingRight: "120px" }}
+                  style={{ paddingRight: "70px" }}
                 >
                   <img src={Logo} />
                 </div>
