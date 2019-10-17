@@ -9,6 +9,7 @@ import EnquiryForm from "./components/Dashboard/EnquiryForm";
 import EnquirySuccess from "./components/Dashboard/EnquirySuccess";
 import ApplicationForm from "./components/Dashboard/ApplicationForm";
 import ApplicationPreview from "./components/Dashboard/ApplicationPreview";
+import ApplicationSuccess from "./components/Dashboard/ApplicationSuccess";
 
 class Routes extends Component {
   constructor(props) {
@@ -51,13 +52,19 @@ class Routes extends Component {
         title: "enquirySuccess",
       },
       {
-        path: "/applicationForm",
+        path: "/applicationSuccess",
+        exact: true,
+        component: ApplicationSuccess,
+        title: "applictionSuccess",
+      },
+      {
+        path: "/applicationForm/:activityId?",
         exact: true,
         component: ApplicationForm,
         title: "applicationForm",
       },
       {
-        path: "/applicationPreview",
+        path: "/applicationPreview/:activityId?",
         exact: true,
         component: ApplicationPreview,
         title: "applicationPreview",

@@ -17,6 +17,7 @@ class ApplicationForm extends Component {
     this.state = {
       userName: "",
       isLoginLoading: true,
+      activityId: "",
     };
   }
 
@@ -200,7 +201,7 @@ class ApplicationForm extends Component {
 
   onLSQFormSubmissionSuccess = e => {
     console.log("on success", e);
-    this.props.history.push("/enquirySuccess");
+    this.props.history.push("/applicationSuccess");
   };
 
   onLSQFormLoadError = e => {
@@ -208,10 +209,15 @@ class ApplicationForm extends Component {
   };
 
   componentDidMount() {
+    let { activityId } = this.props.match.params;
+    this.setState({ activityId: activityId });
+    var id = activityId ? activityId : "";
+
     window.lsq_setupForm({
       id: `${APPLICATION_FORM_ID}`,
       authKeyProvider: `${PRIVATE_AUTH_KEY}`,
       leadId: `${LEAD_ID}`,
+      activityId: `${id}`,
     });
 
     this.lsqFormContainer.addEventListener(

@@ -55,7 +55,7 @@ export const validateEmail = sEmail => {
 export const validateMobile = mobile => {
   if (mobile) {
     if (mobile.length !== 10) {
-      return "Mobile no. Length is 10";
+      return "Mobile no. should be 10 digit";
     }
     return null;
   }

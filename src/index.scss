@@ -70,3 +70,16 @@ input[type=number]::-webkit-outer-spin-button {
 a.dropdown-toggle::after {
   display: none !important;
 }
+
+.lsq-form-field-label{
+  font-size:13px !important;
+}
+
+.lsq-form-section-container .lsq-form-section-body .lsq-form-field-ctrl-text{
+  font-size: 15px !important;
+  color: #212B36 !important;
+}
+
+.lsq-form-section-container .lsq-form-section-body .lsq-form-field-item .field-validation-valid{
+  height:30px !important;
+}
