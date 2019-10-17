@@ -10,6 +10,7 @@ import { ACCESS_KEY, SECRET_KEY, PRIVATE_AUTH_KEY } from "../utils/Constants";
 import { validateEmail, required } from "../utils/Validations";
 import Loader from "react-loader-spinner";
 import BranchModal from "./HomePage/BranchModal";
+import { BRANCHES, getBranchName } from "../utils/Constants";
 
 class Homepage extends Component {
   constructor(props) {
@@ -36,6 +37,10 @@ class Homepage extends Component {
         passwordError: null,
       },
     };
+    const branch = this.props.location.search.split("=")[1];
+    if(branch){
+      localStorage.setItem("branchName", branch);
+    }
   }
 
   validateAllInputs = () => {
@@ -53,14 +58,20 @@ class Homepage extends Component {
   };
 
   componentWillMount() {
-    const branch = this.props.location.search.split("=")[1];
-    if (!branch) {
+    if (!localStorage.getItem("branchName")) {
       this.setState({
         setShow: true,
         show: true,
       });
     } else {
-      this.setState({ branchName: branch });
+      if(getBranchName() == ""){
+        this.setState({
+          setShow: true,
+          show: true,
+        });
+      }else{
+        this.setState({ branchName: localStorage.getItem("branchName") });
+      }
     }
   }
 
@@ -132,6 +143,7 @@ class Homepage extends Component {
     this.setState({
       [name]: value,
     });
+    localStorage.setItem("branchName", value);
   };
 
   showBranchModal = () => {
@@ -149,23 +161,18 @@ class Homepage extends Component {
 
   changeModal = (show, value) => {
     this.setState({ show: show, branchName: value });
+    localStorage.setItem("branchName", value);
   };
 
   render() {
     const { email, password, errorMessage, errors, branchName } = this.state;
-    const branch = this.props.location.search.split("=")[1];
-    const branchLabel = this.branch.filter(
-      branch => branch.value === this.state.branchName
-    )[0];
-    console.log("branchLabel", branchLabel);
-    localStorage.setItem("branchName", JSON.stringify(branchLabel));
     return (
       <>
         <BranchModal
           show={this.state.show}
           showBranchModal={this.showBranchModal}
           setShow={this.state.setShow}
-          branch={this.branch}
+          branch={BRANCHES}
           changeModal={this.changeModal}
         />
         <div className="homepage container-fluid">
@@ -187,7 +194,7 @@ class Homepage extends Component {
                     onChange={this.handleBranchChange}
                   >
                     <option></option>
-                    {this.branch.map((branch, index) => (
+                    {BRANCHES.map((branch, index) => (
                       <option value={branch.value} key={index}>
                         {branch.label}
                       </option>
