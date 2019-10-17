@@ -115,7 +115,7 @@ class Dashboard extends Component {
                                   Enquiry
                                 </div>
                                 <div className="col-md-12 no-padding">
-                                  <div className="submitted-box">Submitted</div>
+                                  <div className="pending-box">Pending</div>
                                 </div>
                               </div>
                               <div className="col-md-4 d-inline-block no-padding box-display">
@@ -172,12 +172,21 @@ class Dashboard extends Component {
                                 </div>
                               </div>
                               <div className="col-md-4 btn-block box-display">
-                                <Link
-                                  className="btn btn-start"
-                                  to={`/applicationForm/${this.state.applicationActivityId}`}
-                                >
-                                  Start Application
-                                </Link>
+                                {this.state.application.RecordCount !== 0 ? (
+                                  <Link
+                                    className="btn btn-view"
+                                    to={`/applicationPreview/${this.state.applicationActivityId}`}
+                                  >
+                                    View Application
+                                  </Link>
+                                ) : (
+                                  <Link
+                                    className="btn btn-start"
+                                    to={`/applicationForm/${this.state.applicationActivityId}`}
+                                  >
+                                    Start Application
+                                  </Link>
+                                )}
                               </div>
                             </div>
                           );
@@ -212,10 +221,10 @@ class Dashboard extends Component {
                               </div>
                               <div className="col-md-4 btn-block box-display">
                                 <Link
-                                  className="btn btn-view"
+                                  className="btn btn-start"
                                   to={`/enquiryForm`}
                                 >
-                                  View Application
+                                  Start New Enquiry
                                 </Link>
                               </div>
                             </div>
@@ -376,10 +385,10 @@ class Dashboard extends Component {
                                       </div>
                                       <div className="col-md-4 btn-block box-display">
                                         <Link
-                                          className="btn btn-view"
-                                          to={`/applicationPreview/${applicationActivity.Id}`}
+                                          className="btn btn-start"
+                                          to={`/applicationForm`}
                                         >
-                                          View Application
+                                          Start New Application
                                         </Link>
                                       </div>
                                     </div>
@@ -459,12 +468,40 @@ class Dashboard extends Component {
                                         </div>
                                       </div>
                                       <div className="col-md-4 btn-block box-display">
-                                        <Link
-                                          className="btn btn-view"
-                                          to={`/applicationPreview/${applicationActivity.Id}`}
-                                        >
-                                          View Application
-                                        </Link>
+                                        {JSON.parse(
+                                          applicationActivity.ActivityFields
+                                            .mx_Custom_11
+                                        ).Status.includes("Approved") ? (
+                                          <Link
+                                            className="btn btn-view"
+                                            to={`/applicationPreview/${applicationActivity.Id}`}
+                                          >
+                                            View Application
+                                          </Link>
+                                        ) : (
+                                          <>
+                                            {JSON.parse(
+                                              applicationActivity.ActivityFields
+                                                .mx_Custom_11
+                                            ).Status.includes("Reject")}
+                                            ?
+                                            <div className="col-md-4 btn-block box-display">
+                                              <Link
+                                                className="btn btn-start"
+                                                to={`/applicationForm`}
+                                              >
+                                                Start New Application
+                                              </Link>
+                                            </div>
+                                            :
+                                            <Link
+                                              className="btn btn-view"
+                                              to={`/applicationPreview/${applicationActivity.Id}`}
+                                            >
+                                              View Application
+                                            </Link>
+                                          </>
+                                        )}
                                       </div>
                                     </div>
                                   );
@@ -543,12 +580,40 @@ class Dashboard extends Component {
                                         </div>
                                       </div>
                                       <div className="col-md-4 btn-block box-display">
-                                        <Link
-                                          className="btn btn-view"
-                                          to={`/applicationPreview/${applicationActivity.Id}`}
-                                        >
-                                          View Application
-                                        </Link>
+                                        {JSON.parse(
+                                          applicationActivity.ActivityFields
+                                            .mx_Custom_12
+                                        ).Status.includes("Approved") ? (
+                                          <Link
+                                            className="btn btn-view"
+                                            to={`/applicationPreview/${applicationActivity.Id}`}
+                                          >
+                                            View Application
+                                          </Link>
+                                        ) : (
+                                          <>
+                                            {JSON.parse(
+                                              applicationActivity.ActivityFields
+                                                .mx_Custom_12
+                                            ).Status.includes("Reject")}
+                                            ?
+                                            <div className="col-md-4 btn-block box-display">
+                                              <Link
+                                                className="btn btn-start"
+                                                to={`/applicationForm`}
+                                              >
+                                                Start New Application
+                                              </Link>
+                                            </div>
+                                            :
+                                            <Link
+                                              className="btn btn-view"
+                                              to={`/applicationPreview/${applicationActivity.Id}`}
+                                            >
+                                              View Application
+                                            </Link>
+                                          </>
+                                        )}
                                       </div>
                                     </div>
                                   );
