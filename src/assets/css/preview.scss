@@ -2,10 +2,11 @@
 
 
 .preview{
-    width:80%;
+    width:90%;
     margin:auto;
     .application-preview{
         padding: 30px 15px 30px 30px; 
+        border: 1px solid black;
         .application-heading{
             text-align: center;
             font-size:18px;
@@ -123,4 +124,30 @@
             }
         }
     }
+}
+
+.checkBox{
+    width: 20px !important;
+    height: 14px !important;
+    border: 1px solid #161717;
+    opacity: 1 !important;
+    display: inline-block;
+    padding-bottom: 17px;
+    text-align: center;
+}
+
+.radioBox{
+    width:13px !important;
+    height: 13px !important;
+    border: 1px solid #161717;
+    opacity :1 ;
+    display:inline-block;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.borderBox{
+    width:70%;
+    border-bottom: 1px solid #161717;
+    display:inline-block;
 }

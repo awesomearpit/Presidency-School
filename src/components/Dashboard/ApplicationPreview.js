@@ -73,6 +73,9 @@ class ApplicationPreview extends Component {
 
   render() {
     const { leadsInfo, photoUrl } = this.state;
+    const date = moment(leadsInfo.mx_Date_of_Birth)
+      .format("DD/MM/YYYY")
+      .split("");
     return (
       <>
         <Header logout={this.logout} getUserName={this.getUserName} />
@@ -95,8 +98,9 @@ class ApplicationPreview extends Component {
             ref={component => (this.pdfExportComponent = component)}
             paperSize="A4"
             scale={0.6}
-            margin="0.5cm"
+            margin="0.3cm"
             fileName={`LSQUniversityApplicationForm`}
+            crossorigin="anonymous"
           >
             {leadsInfo ? (
               <div className="preview">
@@ -161,178 +165,417 @@ class ApplicationPreview extends Component {
                         <div className="dob">Date of Birth</div>
                       </div>
                       <div className="d-inline-block dob">
-                        {moment(leadsInfo.mx_Date_of_Birth).format(
-                          "DD/MM/YYYY"
+                        {!leadsInfo.mx_Date_of_Birth ? (
+                          <>
+                            <div className="checkBox"></div>
+                            <div
+                              className="checkBox"
+                              style={{ marginRight: "10px" }}
+                            >
+                              {date[1]}
+                            </div>
+                            <div className="checkBox"></div>
+                            <div
+                              className="checkBox"
+                              style={{ marginRight: "10px" }}
+                            >
+                              {date[4]}
+                            </div>
+                            <div className="checkBox"></div>
+                            <div className="checkBox"></div>
+                            <div className="checkBox"></div>
+                            <div className="checkBox">+</div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="checkBox">{date[0]}</div>
+                            <div
+                              className="checkBox"
+                              style={{ marginRight: "10px" }}
+                            >
+                              {date[1]}
+                            </div>
+                            <div className="checkBox">{date[3]}</div>
+                            <div
+                              className="checkBox"
+                              style={{ marginRight: "10px" }}
+                            >
+                              {date[4]}
+                            </div>
+                            <div className="checkBox">{date[6]}</div>
+                            <div className="checkBox">{date[7]}</div>
+                            <div className="checkBox">{date[8]}</div>
+                            <div className="checkBox">{date[9]}</div>
+                          </>
                         )}
                       </div>
-                      <div className="gender d-inline-block pull-right">
-                        Gender: {leadsInfo.mx_Gender}
+                      <div
+                        className="gender d-inline-block pull-right"
+                        style={{ marginRight: "10px" }}
+                      >
+                        Gender:{" "}
+                        {leadsInfo.mx_Gender === "Male" ? (
+                          <>
+                            Male&nbsp;&nbsp;
+                            <i class="fas fa-circle"></i>
+                            &nbsp;&nbsp;Female&nbsp;&nbsp;
+                            <div className="radioBox"></div>
+                          </>
+                        ) : leadsInfo.mx_Gender === "Female" ? (
+                          <>
+                            Male&nbsp;&nbsp;<div className="radioBox"></div>
+                            &nbsp;&nbsp;Female&nbsp;&nbsp;
+                            <i class="fas fa-circle"></i>
+                          </>
+                        ) : (
+                          <>
+                            Male&nbsp;&nbsp;<div className="radioBox"></div>
+                            &nbsp;&nbsp;Female&nbsp;&nbsp;
+                            <div className="radioBox"></div>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="col-md-12 dob">In Words</div>
                     <div className="col-md-12 dob">
-                      Age as on 1st June : {leadsInfo.mx_Age_as_on_1_June_2019}
+                      Age as on 1st June :{" "}
+                      <div className="borderBox">
+                        {leadsInfo.mx_Age_as_on_1_June_2019}
+                      </div>
                     </div>
                     <div className="col-md-12 dob">
                       Place of Birth(City and country):{" "}
-                      {leadsInfo.mx_Place_of_Birth}
+                      <div className="borderBox">
+                        {leadsInfo.mx_Place_of_Birth}
+                      </div>
                     </div>
                     <div className="col-md-12 dob">
-                      Nationality : {leadsInfo.mx_Nationality}
-                    </div>
-                    <div className="col-md-12 no-padding">
-                      <div className="col-md-6 d-inline-block dob">
-                        Aadhar Card No.: {leadsInfo.mx_Aadhaar_Card_No}
-                      </div>
-                      <div className="col-md-6 d-inline-block dob">
-                        Blood Group : {leadsInfo.mx_Blood_Group}
+                      Nationality :
+                      <div className="borderBox">
+                        {" "}
+                        {leadsInfo.mx_Nationality}
                       </div>
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
-                        Religion : {leadsInfo.mx_Religion}
+                        Aadhar Card No.:{" "}
+                        <div className="borderBox">
+                          {leadsInfo.mx_Aadhaar_Card_No}
+                        </div>
                       </div>
                       <div className="col-md-6 d-inline-block dob">
-                        Caste : {leadsInfo.mx_Caste}
+                        Blood Group :{" "}
+                        <div className="borderBox">
+                          {leadsInfo.mx_Blood_Group}
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
-                        Mother Tounge : {leadsInfo.mx_Mother_Tongue}
+                        Religion :{" "}
+                        <div className="borderBox">{leadsInfo.mx_Religion}</div>
+                      </div>
+                      <div className="col-md-6 d-inline-block dob">
+                        Caste :
+                        <div className="borderBox"> {leadsInfo.mx_Caste}</div>
+                      </div>
+                    </div>
+                    <div className="col-md-12 no-padding">
+                      <div className="col-md-6 d-inline-block dob">
+                        Mother Tounge :{" "}
+                        <div className="borderBox">
+                          {leadsInfo.mx_Mother_Tongue}
+                        </div>
                       </div>
                       <div className="col-md-6 d-inline-block dob">
                         Whether School transport required :{" "}
-                        {leadsInfo.mx_Whether_School_transport_required}
+                        {leadsInfo.mx_Whether_School_transport_required ===
+                        "Yes" ? (
+                          <>
+                            Yes&nbsp;&nbsp;
+                            <i class="fas fa-circle"></i>
+                            &nbsp;&nbsp;No&nbsp;&nbsp;
+                            <div className="radioBox"></div>
+                          </>
+                        ) : leadsInfo.mx_Whether_School_transport_required ===
+                          "No" ? (
+                          <>
+                            Yes&nbsp;&nbsp;<div className="radioBox"></div>
+                            &nbsp;&nbsp;No&nbsp;&nbsp;
+                            <i class="fas fa-circle"></i>
+                          </>
+                        ) : (
+                          <>
+                            Yes&nbsp;&nbsp;<div className="radioBox"></div>
+                            &nbsp;&nbsp;No&nbsp;&nbsp;
+                            <div className="radioBox"></div>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="col-md-12 office-use">
-                      Family Details ( Please Tick the name of the person to be
-                      contacted in case of Emergency )
+                      Family Details ( Please Tick{" "}
+                      <i class="fa fa-check" aria-hidden="true"></i> the name of
+                      the person to be contacted in case of Emergency )
                     </div>
-                    <div
-                      className="col-md-5 family-box"
-                      style={{ marginRight: "15px" }}
-                    >
-                      <div className="col-md-12 family-text text-center">
-                        Father’s Full Name ( as per proof attached ) :{" "}
-                        {leadsInfo.mx_Father_Full_Name}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Educational Qualiﬁcation :{" "}
-                        {leadsInfo.mx_Father_Educational_Qualifications}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Employed / Self-Employed :{" "}
-                        {leadsInfo.mx_Father_Employed_or_Self_Employed}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Occupation : {leadsInfo.mx_Father_Occupation}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Designation : {leadsInfo.mx_Father_Designation}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Name Of the Organization :{" "}
-                        {leadsInfo.mx_Father_Organisation}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Phone Number office :{" "}
-                        {leadsInfo.mx_Father_Mobile_Number}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Annual Income : {leadsInfo.mx_Father_Annual_Income}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Mobile Number : {leadsInfo.mx_Father_Mobile_Number}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        E-mail : {leadsInfo.mx_Father_EMail_ID}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Aadhar Card No. : {leadsInfo.mx_Father_Aadhaar_Card_No}
+                    <div className="col-md-6" style={{ paddingLeft: "0px" }}>
+                      <div className="col-md-12 family-box">
+                        <div className="col-md-12 family-text text-center">
+                          Father’s Full Name ( as per proof attached ){" "}
+                          {/* {!leadsInfo.mx_Father_Full_Name ? (
+                          <span
+                            className="checkBox"
+                            style={{ marginLeft: "8px" }}
+                          ></span>
+                        ) : (
+                          <span
+                            className="checkBox"
+                            style={{ marginLeft: "8px" }}
+                          >
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                          </span>
+                        )} */}
+                          <span
+                            className="checkBox"
+                            style={{ marginLeft: "8px" }}
+                          ></span>
+                          <div style={{ fontWeight: "bold" }}>
+                            {leadsInfo.mx_Father_Full_Name}
+                          </div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Educational Qualiﬁcation :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Father_Educational_Qualifications}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Employed / Self-Employed :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Father_Employed_or_Self_Employed}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Occupation : <div className="borderBox">{leadsInfo.mx_Father_Occupation}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Designation : <div className="borderBox">{leadsInfo.mx_Father_Designation}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Name Of the Organization :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Father_Organisation}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Phone Number office :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Father_Mobile_Number}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Annual Income : <div className="borderBox">{leadsInfo.mx_Father_Annual_Income}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Mobile Number : <div className="borderBox">{leadsInfo.mx_Father_Mobile_Number}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          E-mail : <div className="borderBox">{leadsInfo.mx_Father_EMail_ID}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Aadhar Card No. :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Father_Aadhaar_Card_No}</div>
+                        </div>
                       </div>
                     </div>
-                    <div
-                      className="col-md-5 family-box"
-                      style={{ marginLeft: "15px" }}
-                    >
-                      <div className="col-md-12 family-text text-center">
-                        Mother's Full Name ( as per proof attached ) :{" "}
-                        {leadsInfo.mx_Mother_Name}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Educational Qualiﬁcation :{" "}
-                        {leadsInfo.mx_Mother_Educational_Qualifications}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Employed / Self-Employed :{" "}
-                        {leadsInfo.mx_Mother_Employed_or_Self_Employed}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Occupation : {leadsInfo.mx_Mother_Occupation}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Designation : {leadsInfo.mx_Mother_Designation}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Name Of the Organization :{" "}
-                        {leadsInfo.mx_Mother_Organisation}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Phone Number office :{" "}
-                        {leadsInfo.mx_Mother_Mobile_Number}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Annual Income : {leadsInfo.mx_Mother_Annual_Income}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Mobile Number : {leadsInfo.mx_Mother_Mobile_Number}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        E-mail : {leadsInfo.mx_Mother_Email_ID}
-                      </div>
-                      <div className="col-md-12 family-text">
-                        Aadhar Card No. : {leadsInfo.mx_Mother_Aadhaar_Card_No}
+                    <div className="col-md-6" style={{ paddingRight: "0px" }}>
+                      <div className="col-md-12 family-box">
+                        <div className="col-md-12 family-text text-center">
+                          Mother's Full Name ( as per proof attached ) :{" "}
+                          <span
+                            className="checkBox"
+                            style={{ marginLeft: "8px" }}
+                          ></span>
+                          <div style={{ fontWeight: "bold" }}>
+                            {leadsInfo.mx_Mother_Name}
+                          </div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Educational Qualiﬁcation :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Mother_Educational_Qualifications}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Employed / Self-Employed :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Mother_Employed_or_Self_Employed}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Occupation : <div className="borderBox">{leadsInfo.mx_Mother_Occupation}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Designation : <div className="borderBox">{leadsInfo.mx_Mother_Designation}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Name Of the Organization :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Mother_Organisation}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Phone Number office :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Mother_Mobile_Number}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Annual Income : <div className="borderBox">{leadsInfo.mx_Mother_Annual_Income}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Mobile Number : <div className="borderBox">{leadsInfo.mx_Mother_Mobile_Number}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          E-mail : <div className="borderBox">{leadsInfo.mx_Mother_Email_ID}</div>
+                        </div>
+                        <div className="col-md-12 family-text">
+                          Aadhar Card No. :{" "}
+                          <div className="borderBox">{leadsInfo.mx_Mother_Aadhaar_Card_No}</div>
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-12 dob">
                       Resedential Address :{" "}
-                      {leadsInfo.mx_Father_Residential_Address}
+                      <div className="borderBox">{leadsInfo.mx_Father_Residential_Address}</div>
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
-                        Pin Code : {leadsInfo.mx_Pincode}{" "}
+                        Pin Code : <div className="borderBox">{leadsInfo.mx_Pincode}{" "}</div>
                       </div>
                       <div className="col-md-6 d-inline-block dob">
-                        Phone number Residence : {leadsInfo.Phone}
+                        Phone number Residence :<div className="borderBox">{leadsInfo.Phone}</div>
                       </div>
                     </div>
                     <div className="col-md-12 office-use">Guardian Details</div>
                     <div className="col-md-12 dob">
                       Full Name Of Guardian :{" "}
-                      {leadsInfo.mx_Full_Name_of_the_Guardian}
+                      <div className="borderBox">{leadsInfo.mx_Full_Name_of_the_Guardian}</div>
                     </div>
                     <div className="col-md-12 dob">
                       Residential Address :{" "}
-                      {leadsInfo.mx_Guardian_Residential_Address}
+                      <div className="borderBox">{leadsInfo.mx_Guardian_Residential_Address}</div>
                     </div>
                     <div className="col-md-12 dob">
-                      Mobile : {leadsInfo.mx_Guardian_Mobile}{" "}
+                      Mobile : <div className="borderBox">{leadsInfo.mx_Guardian_Mobile}{" "}</div>
                     </div>
                     <div className="col-md-12 dob">
-                      E-mail : {leadsInfo.mx_Guardian_Email}{" "}
+                      E-mail : <div className="borderBox">{leadsInfo.mx_Guardian_Email}{" "}</div>
                     </div>
                     <div className="col-md-12 office-use">Other Details </div>
                     <div className="col-md-12 dob">
-                      Single Parent ( Please tick ✓ if applicable ) :{" "}
-                      {leadsInfo.mx_Single_Parent_Please_select_if_applicable}
+                      Single Parent ( Please tick{" "}
+                      <i class="fa fa-check" aria-hidden="true"></i> if
+                      applicable ) :{" "}
+                      {!leadsInfo.mx_Single_Parent_Please_select_if_applicable ? (
+                        <>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Father
+                            </span>
+                          </div>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Mother
+                            </span>
+                          </div>
+                        </>
+                      ) : leadsInfo.mx_Single_Parent_Please_select_if_applicable ===
+                        "Father" ? (
+                        <>
+                          <div>
+                            <div className="checkBox">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Father
+                            </span>
+                          </div>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Mother
+                            </span>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Father
+                            </span>
+                          </div>
+                          <div>
+                            <div className="checkBox">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Mother
+                            </span>
+                          </div>
+                        </>
+                      )}
                     </div>
                     <div className="col-md-12 dob">
                       In case Parents are separated, custody of the child is
-                      with ( Please tick ✓ if applicable ) :{" "}
+                      with ( Please tick{" "}
+                      <i class="fa fa-check" aria-hidden="true"></i> if
+                      applicable ) :{" "}
                       {
                         leadsInfo.mx_In_case_Parents_are_separated_Select_if_applicable
                       }
+                      {!leadsInfo.mx_In_case_Parents_are_separated_Select_if_applicable ? (
+                        <>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Father
+                            </span>
+                          </div>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Mother
+                            </span>
+                          </div>
+                        </>
+                      ) : leadsInfo.mx_In_case_Parents_are_separated_Select_if_applicable ===
+                        "Father" ? (
+                        <>
+                          <div>
+                            <div className="checkBox">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Father
+                            </span>
+                          </div>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Mother
+                            </span>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Father
+                            </span>
+                          </div>
+                          <div>
+                            <div className="checkBox">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Mother
+                            </span>
+                          </div>
+                        </>
+                      )}
                     </div>
                     <div className="col-md-12 dob">
                       Copy of Court Order / Death Certificate to be attached, if
@@ -343,18 +586,306 @@ class ApplicationPreview extends Component {
                     </div>
                     <div
                       className="col-md-12 family-box"
-                      style={{ padding: "15px" }}
+                      style={{ padding: "15px", border: "1px solid #161717" }}
                     >
                       <div className="col-md-12 family-text">
                         Kannada Language is compulsory from Grades I to IV
                       </div>
                       <div className="col-md-12 family-text">
                         Second Language ( Grades V to X ) :{" "}
-                        {leadsInfo.mx_Second_Language_Grades_V_to_X}
+                        {leadsInfo.mx_Second_Language_Grades_V_to_X ===
+                        "Kannada" ? (
+                          <>
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              {" "}
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : leadsInfo.mx_Second_Language_Grades_V_to_X ===
+                          "Hindi" ? (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              {" "}
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : leadsInfo.mx_Second_Language_Grades_V_to_X ===
+                          "Sanskrit" ? (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : leadsInfo.mx_Second_Language_Grades_V_to_X ===
+                          "French" ? (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        )}
                       </div>
                       <div className="col-md-12 family-text">
                         Third Language ( Grades V to VIII ) :{" "}
-                        {leadsInfo.mx_Third_Language__Grades_V_to_VIII}
+                        {leadsInfo.mx_Third_Language__Grades_V_to_VIII ===
+                        "Kannada" ? (
+                          <>
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              {" "}
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : leadsInfo.mx_Third_Language__Grades_V_to_VIII ===
+                          "Hindi" ? (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              {" "}
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : leadsInfo.mx_Third_Language__Grades_V_to_VIII ===
+                          "Sanskrit" ? (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : leadsInfo.mx_Third_Language__Grades_V_to_VIII ===
+                          "French" ? (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div
+                              className="checkBox"
+                              style={{ verticalAlign: "super" }}
+                            >
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Kannada
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Hindi
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>&nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              Sanskrit
+                            </span>
+                            &nbsp;&nbsp;
+                            <div className="checkBox"></div>
+                            &nbsp;&nbsp;
+                            <span style={{ verticalAlign: "super" }}>
+                              French
+                            </span>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div
@@ -369,41 +900,44 @@ class ApplicationPreview extends Component {
                     <div className="col-md-12 office-use">Academic Record</div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
-                        School last attended
+                        School last attended<div className="borderBox"></div>
                       </div>
                       <div className="col-md-6 d-inline-block dob">
                         Board of the School last attended :{" "}
-                        {leadsInfo.mx_Board_of_the_School_last_attended}
+                        <div className="borderBox">{leadsInfo.mx_Board_of_the_School_last_attended}</div>
                       </div>
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
-                        City : {leadsInfo.mx_City_Last_School_Attended}{" "}
+                        City : <div className="borderBox">{leadsInfo.mx_City_Last_School_Attended}{" "}</div>
                       </div>
-                      <div className="col-md-3 d-inline-block dob">State</div>
+                      <div className="col-md-3 d-inline-block dob">State<div className="borderBox"></div></div>
                       <div className="col-md-3 d-inline-block dob">
-                        Country : {leadsInfo.mx_Country_of_last_school_attended}
+                        Country : <div className="borderBox">{leadsInfo.mx_Country_of_last_school_attended}</div>
                       </div>
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
                         Grade previously studied in :{" "}
-                        {leadsInfo.mx_Grade_previously_studied_in}
+                        <div className="borderBox">{leadsInfo.mx_Grade_previously_studied_in}</div>
                       </div>
                       <div className="col-md-6 d-inline-block dob">
                         Number of years in the previous School :{" "}
-                        {leadsInfo.mx_Number_of_years_in_the_previous_School}
+                        <div className="borderBox">{leadsInfo.mx_Number_of_years_in_the_previous_School}</div>
                       </div>
                     </div>
                     <div className="col-md-12 dob">
                       Reasons for withdrawal :{" "}
-                      {leadsInfo.mx_Reasons_for_withdrawal}{" "}
+                      <div className="borderBox">{leadsInfo.mx_Reasons_for_withdrawal}{" "}</div>
                     </div>
                     <div className="col-md-12 office-use">
                       Details of previous schooling & photocopies of grades or
                       marks obtained in last exam to be attached.
                     </div>
-                    <div className="col-md-12 no-padding family-box">
+                    <div
+                      className="col-md-12 no-padding family-box"
+                      style={{ border: "1px solid #161717" }}
+                    >
                       <table class="table table-bordered">
                         <thead>
                           <tr>
@@ -441,23 +975,23 @@ class ApplicationPreview extends Component {
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
                         Languages formally studied - First :{" "}
-                        {leadsInfo.mx_Languages_formally_studied__First}
+                        <div className="borderBox">{leadsInfo.mx_Languages_formally_studied__First}</div>
                       </div>
                       <div className="col-md-3 d-inline-block dob">
                         Second :{" "}
-                        {leadsInfo.mx_Languages_formally_studied__Second}{" "}
+                        <div className="borderBox">{leadsInfo.mx_Languages_formally_studied__Second}{" "}</div>
                       </div>
                       <div className="col-md-3 d-inline-block dob">
-                        Third : {leadsInfo.mx_Languages_formally_studied_Third}{" "}
+                        Third : <div className="borderBox">{leadsInfo.mx_Languages_formally_studied_Third}{" "}</div>
                       </div>
                     </div>
                     <div className="col-md-12 dob">
                       Sports, Games and Activities involved in :{" "}
-                      {leadsInfo.mx_Sports_Games_and_Activities_involved_in}
+                      <div className="borderBox">{leadsInfo.mx_Sports_Games_and_Activities_involved_in}</div>
                     </div>
                     <div className="col-md-12 dob">
                       Recent Accomplishments :{" "}
-                      {leadsInfo.mx_Recent_Accomplishments}
+                      <div className="borderBox">{leadsInfo.mx_Recent_Accomplishments}</div>
                     </div>
                     <div className="col-md-12 dob">
                       Submitted Original Transfer Certificate ( Please tick ✓ )
@@ -471,25 +1005,28 @@ class ApplicationPreview extends Component {
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-4 ml-auto dob">
-                        T.C. No : {leadsInfo.mx_TC_No}{" "}
+                        T.C. No : <div className="borderBox">{leadsInfo.mx_TC_No}{" "}</div>
                       </div>
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-4 ml-auto dob">
-                        School DISE Code : {leadsInfo.mx_School_DISE_Code}{" "}
+                        School DISE Code :<div className="borderBox"> {leadsInfo.mx_School_DISE_Code}{" "}</div>
                       </div>
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-4 ml-auto dob">
                         Student Enrollment Number :{" "}
-                        {leadsInfo.mx_Student_Enrollment_Number}
+                        <div className="borderBox">{leadsInfo.mx_Student_Enrollment_Number}</div>
                       </div>
                     </div>
                     <div className="col-md-12 office-use">
                       Sibling Details{" "}
                       <span>( to be filled in if applicable )</span>
                     </div>
-                    <div className="col-md-12 no-padding family-box">
+                    <div
+                      className="col-md-12 no-padding family-box"
+                      style={{ border: "1px solid #161717" }}
+                    >
                       <table class="table table-bordered">
                         <thead>
                           <tr>
@@ -526,7 +1063,9 @@ class ApplicationPreview extends Component {
                       </table>
                     </div>
                     <div className="col-md-12 dob">
-                      In case parent is ( Please tick ✓ if applicable )
+                      In case parent is ( Please tick{" "}
+                      <i class="fa fa-check" aria-hidden="true"></i> if
+                      applicable )
                     </div>
                     <div className="col-md-12 dob">
                       School Alumni ( Presidency)
@@ -537,42 +1076,174 @@ class ApplicationPreview extends Component {
                     </div>
                     <div
                       className="col-md-12 family-box"
-                      style={{ padding: "15px" }}
+                      style={{ padding: "15px", border: "1px solid #161717" }}
                     >
                       <div className="col-md-6 d-inline-block">
                         <div className="col-md-12 no-padding family-text">
                           1. Six Passport size Photographs :{" "}
-                          {leadsInfo.mx_Six_Passport_size_Photographs}
+                          {leadsInfo.mx_Six_Passport_size_Photographs == 0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "30%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "30%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                         <div className="col-md-12 no-padding family-text">
                           2. Birth Certificate (photocopy) :{" "}
-                          {leadsInfo.mx_Birth_Certificate_Photocopy}
+                          {leadsInfo.mx_Birth_Certificate_Photocopy == 0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "32%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "32%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                         <div className="col-md-12 no-padding family-text">
                           3. Copy of Passport (Foreign Nationals) :{" "}
-                          {leadsInfo.mx_Copy_of_Passport_Foreign_Nationals}
+                          {leadsInfo.mx_Copy_of_Passport_Foreign_Nationals ==
+                          0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "23%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "23%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                         <div className="col-md-12 no-padding family-text">
                           4. Transfer Certificate - Original :{" "}
-                          {leadsInfo.mx_Submitted_Original_Transfer_Certificate}
+                          {leadsInfo.mx_Submitted_Original_Transfer_Certificate ==
+                          0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "31%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "31%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
                       <div className="col-md-6 d-inline-block">
                         <div className="col-md-12 no-padding family-text">
                           5. School Performance Report :{" "}
-                          {leadsInfo.mx_School_Performance_Report}
+                          {leadsInfo.mx_School_Performance_Report == 0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "30%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "30%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                         <div className="col-md-12 no-padding family-text">
                           6. Post card size family photograph :{" "}
-                          {leadsInfo.mx_Post_card_size_family_photograph}
+                          {leadsInfo.mx_Post_card_size_family_photograph ==
+                          0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "25%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "25%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                         <div className="col-md-12 no-padding family-text">
                           7. Copy of Caste Certificate ( if applicable ) :{" "}
-                          {leadsInfo.mx_Copy_of_Caste_Certificate_if_applicable}
+                          {leadsInfo.mx_Copy_of_Caste_Certificate_if_applicable ==
+                          0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "17%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "17%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                         <div className="col-md-12 no-padding family-text">
                           8. Copy of Aadhar Card :{" "}
-                          {leadsInfo.mx_Copy_of_Aadhar_Card}
+                          {leadsInfo.mx_Copy_of_Aadhar_Card == 0 ? (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "37%" }}
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                                style={{ marginLeft: "37%" }}
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -581,7 +1252,7 @@ class ApplicationPreview extends Component {
                     </div>
                     <div
                       className="col-md-12 family-box"
-                      style={{ padding: "15px" }}
+                      style={{ padding: "15px", border: "1px solid #161717" }}
                     >
                       <div className="col-md-12 family-text">
                         I/ We hereby certify that the above information provided

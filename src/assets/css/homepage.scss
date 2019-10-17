@@ -138,6 +138,7 @@
                         padding: 0px 0 0 0px;
                         transition: all 200ms;
                         opacity: 0.5;
+                        pointer-events: none;
                         span{
                             color:$color-error;
                         }
