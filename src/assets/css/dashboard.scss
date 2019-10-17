@@ -505,7 +505,7 @@
         .enquiryForm-box{
             width:98% !important;
             margin:auto !important;
-            padding-top:120px !important;
+            padding-top:88px !important;
             .lsq-external-form-container .tab-content{
                 overflow:visible !important;
             }
@@ -519,7 +519,7 @@
                 background-color: $color-grey1 !important;
                 border-radius: 0 !important;
                 border:0 !important;
-                padding: 20px 0px 20px 0px !important;
+                padding: 20px 10px 20px 10px !important;
                 .btn-primary{
                     width:100%;
                     margin-right: 0px !important;
@@ -527,6 +527,8 @@
                     background-color: $color-button !important;
                     font-family: "Roboto" !important;
                     font-weight: bold !important;
+                    height: 40px !important;
+                    font-size: 15px !important;
                     &:hover{
                         background-color: $color-hover !important;
                     }
@@ -541,15 +543,28 @@
                 font-size:15px !important;
                 font-family: "Roboto" !important;
                 color: $color-text2 !important;
+                opacity: 1 !important;
             }
     
             .ui-selectmenu-open{
                 background-color: $color-white !important;
             }
+
+            .mx-custom.tab-content.lsq-form-tabs-content{
+                padding-left: 0px !important
+            }
+
+            .tab-content.mx-custom > .active{
+                padding: 14px 0px 5px 16px !important;
+            }
+
+            .lsq-form-section-container .lsq-form-section-body .lsq-form-field-wrapper{
+                padding-left:0px !important;
+            }
     
             .enquiry-form-header{
-                padding:30px !important;
-                font-size: 14px !important;
+                padding:13px 0px 13px 16px !important;
+                font-size: 15px !important;
                 color: $color-text3 !important;
                 span{
                     font-weight: bold !important;
@@ -566,7 +581,7 @@
         .application-box{
             width:98% !important;
             margin:auto !important;
-            padding-top:120px !important;
+            padding-top:88px !important;
             .lsq-external-form-container .tab-content{
                 overflow:visible !important;
             }
@@ -640,13 +655,25 @@
             }
     
             .mx-custom-tabs .nav-tabs > li{
-                border-right: 2px solid $color-white !important;
+                border-right: 8px solid $color-white !important;
                 width:auto !important;
+            }
+
+            .tab-content.mx-custom > .active{
+                padding: 16px 0px 5px 10px;
             }
     
             .mx-custom-tabs .nav-tabs > li.active > a{
                 color: $color-yellow2 !important;
                 background-color:#FFF3E0 !important;
+            }
+            
+            .mx-custom.tab-content.lsq-form-tabs-content{
+                padding-left:0px !important;
+            }
+
+            .lsq-form-section-container .lsq-form-section-body .lsq-form-field-wrapper{
+                padding-left:0px !important;
             }
     
             .mx-custom-tabs .nav-tabs > li > a{
@@ -667,6 +694,7 @@
                 font-size:15px !important;
                 font-family: "Roboto" !important;
                 color: $color-text2 !important;
+                opacity:1 !important;
             }
     
             .modal-v4 .modal-footer .btn-primary.lsq-form-action-back{
@@ -699,7 +727,7 @@
         margin-top:64px !important;
         .dashboard-header-box{
             width:100% !important;
-            height:314px !important;
+            height:254px !important;
             background-color: $color-disable !important;
             .header-box-container{
                 width: 92% !important;
@@ -742,7 +770,7 @@
             width:92% !important;
             margin:auto !important;
             .dashboard-body-container{
-                margin:-100px 0px 0px 0px !important;
+                margin:-85px 0px 0px 0px !important;
                 .body-box{
                     box-shadow: 0px 1px 1px #00000014 !important;
                     height: 190px !important;
@@ -750,7 +778,7 @@
                     padding:20px !important;
                     margin-bottom: 12px !important;
                     .enquiry-text{
-                        font-size:16px !important;
+                        font-size:18px !important;
                         font-family: "Roboto" !important;
                         color: $color-text1 !important;
                         padding:0px 0px 10px 0px !important;
@@ -812,7 +840,7 @@
                         font-size:14px !important;
                         font-family: "Roboto" !important;
                         color: $color-text3 !important;
-                        padding: 0px 0px 10px 0px !important;
+                        padding: 0px 0px 16px 0px !important;
                         margin: -19% 0px 26px 0px !important;
                         text-align: right !important;
                     }
@@ -829,29 +857,29 @@
                     .btn-block{
                         text-align: right !important;
                         display: inline-block !important;
-                        padding: 15px 0px 0px 0px  !important;
+                        padding: 16px 0px 0px 0px  !important;
                         vertical-align: top !important;
                         .btn-view{
                             background-color: $color-white !important;
                             border:  1px solid $color-yellow2 !important;
                             border-radius: 0px !important;
-                            font-size:14px !important;
+                            font-size:16px !important;
                             font-family: "Roboto" !important;
                             color: $color-yellow2 !important;
                             font-weight: bold !important;
                             width: 100% !important;
-                            height: 32px !important;
+                            height: 40px !important;
                         }
                         .btn-start{
                             background-color: $color-yellow2 !important;
                             border:  1px solid $color-yellow2 !important;
                             border-radius: 0px !important;
-                            font-size:14px !important;
+                            font-size:16px !important;
                             font-family: "Roboto" !important;
                             color: $color-white !important;
                             font-weight: bold !important;
                             width: 100% !important;
-                            height: 32px !important;
+                            height: 40px !important;
                         }
                     }
                 }

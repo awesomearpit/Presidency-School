@@ -57,8 +57,12 @@ class Header extends Component {
           }}
         >
           <div className="container no-padding">
-            <a className="navbar-brand" href={"/dashboard"}>
-              <div className="row">
+            <a
+              className="navbar-brand"
+              href={"/dashboard"}
+              style={{ marginRight: "0px" }}
+            >
+              <div className="row" style={{ marginRight: "-70px" }}>
                 <div
                   className="col-md-6 col-sm-6 col-6"
                   style={{ paddingRight: "70px" }}

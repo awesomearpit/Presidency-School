@@ -15,6 +15,7 @@ class ApplicationPreview extends Component {
       leadsInfo: {},
       displayName: "",
       userName: "",
+      photoUrl: "",
     };
     this.downloadPDF = this.downloadPDF.bind(this);
   }
@@ -24,6 +25,10 @@ class ApplicationPreview extends Component {
   }
 
   async componentDidMount() {
+    let { activityId } = this.props.match.params;
+    this.setState({ activityId: activityId });
+    var id = activityId ? activityId : "";
+
     try {
       const { data } = await get(
         `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`
@@ -37,6 +42,24 @@ class ApplicationPreview extends Component {
     } catch (e) {
       console.log("error leads info", e);
     }
+
+    try {
+      const { data } = await get(
+        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`
+      );
+      this.setState({
+        photoUrl:
+          data.Fields[3].CustomObjectFormProperties.FieldProperties
+            .FormMetaData[1].FileURL,
+      });
+      console.log(
+        "Dtaa...",
+        data.Fields[3].CustomObjectFormProperties.FieldProperties
+          .FormMetaData[1].FileURL
+      );
+    } catch (e) {
+      console.log("error", e);
+    }
   }
 
   logout = async () => {
@@ -49,12 +72,15 @@ class ApplicationPreview extends Component {
   };
 
   render() {
-    const { leadsInfo } = this.state;
+    const { leadsInfo, photoUrl } = this.state;
     return (
       <>
         <Header logout={this.logout} getUserName={this.getUserName} />
         <div style={{ paddingTop: "100px" }}>
-          <div className="app-form-preview-header">
+          <div
+            className="app-form-preview-header"
+            style={{ textAlign: "right", paddingRight: "40px" }}
+          >
             <a
               href="javascript:void(0);"
               class="app-form-preview-download"
@@ -68,8 +94,8 @@ class ApplicationPreview extends Component {
             forcePageBreak=".page-break"
             ref={component => (this.pdfExportComponent = component)}
             paperSize="A4"
-            scale={0.5}
-            margin="2cm"
+            scale={0.6}
+            margin="0.5cm"
             fileName={`LSQUniversityApplicationForm`}
           >
             {leadsInfo ? (
@@ -112,7 +138,7 @@ class ApplicationPreview extends Component {
                     </div>
                     <div className="col-md-2">
                       <img
-                        src={leadsInfo.PhotoUrl}
+                        src={photoUrl}
                         className="img-responsive"
                         height="100%"
                         width="100%"

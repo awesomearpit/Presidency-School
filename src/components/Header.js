@@ -6,16 +6,21 @@ const Header = props => {
   return (
     <>
       <nav className="navbar fixed-top header">
-        <div className="container">
+        <div className="container no-padding">
           <a className="navbar-brand" href="/">
             <div className="row">
-              <div className="col-md-6" style={{ paddingRight: "60px" }}>
+              <div
+                className="col-md-6 col-sm-6 col-6"
+                style={{ paddingRight: "60px" }}
+              >
                 <img src={Logo} />
               </div>
-              <div className="col-md-6 header-text">{getBranchName()}</div>
+              <div className="col-md-6 col-sm-5 col-5 header-text">
+                {getBranchName()}
+              </div>
             </div>
           </a>
-          <button
+          {/* <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
@@ -25,7 +30,7 @@ const Header = props => {
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
-          </button>
+          </button> */}
         </div>
       </nav>
     </>

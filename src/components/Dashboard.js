@@ -17,6 +17,7 @@ class Dashboard extends Component {
       applicationActivities: [],
       application: {},
       isDashboardLoading: false,
+      applicationActivityId: null,
     };
   }
 
@@ -57,6 +58,7 @@ class Dashboard extends Component {
       this.setState({
         applicationActivities: data.ProspectActivities,
         application: data,
+        applicationActivityId: data.ProspectActivities[0].Id,
       });
       console.log("data", data);
     } catch (e) {
@@ -172,7 +174,7 @@ class Dashboard extends Component {
                               <div className="col-md-4 btn-block box-display">
                                 <Link
                                   className="btn btn-start"
-                                  to={`/applicationForm`}
+                                  to={`/applicationForm/${this.state.applicationActivityId}`}
                                 >
                                   Start Application
                                 </Link>
@@ -271,7 +273,7 @@ class Dashboard extends Component {
                                       <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
-                                          to={`/applicationPreview`}
+                                          to={`/applicationPreview/${applicationActivity.Id}`}
                                         >
                                           View Application
                                         </Link>
@@ -323,7 +325,7 @@ class Dashboard extends Component {
                                       <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
-                                          to={`/applicationPreview`}
+                                          to={`/applicationPreview/${applicationActivity.Id}`}
                                         >
                                           View Application
                                         </Link>
@@ -375,7 +377,7 @@ class Dashboard extends Component {
                                       <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
-                                          to={`/applicationPreview`}
+                                          to={`/applicationPreview/${applicationActivity.Id}`}
                                         >
                                           View Application
                                         </Link>
@@ -459,7 +461,7 @@ class Dashboard extends Component {
                                       <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
-                                          to={`/applicationPreview`}
+                                          to={`/applicationPreview/${applicationActivity.Id}`}
                                         >
                                           View Application
                                         </Link>
@@ -543,7 +545,7 @@ class Dashboard extends Component {
                                       <div className="col-md-4 btn-block box-display">
                                         <Link
                                           className="btn btn-view"
-                                          to={`/applicationPreview`}
+                                          to={`/applicationPreview/${applicationActivity.Id}`}
                                         >
                                           View Application
                                         </Link>

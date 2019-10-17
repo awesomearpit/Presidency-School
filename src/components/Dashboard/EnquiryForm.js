@@ -7,6 +7,7 @@ import {
   ENQUIRY_FORM_ID,
   PRIVATE_AUTH_KEY,
   LEAD_ID,
+  getBranchName,
 } from "../../utils/Constants";
 import { logout } from "../../utils/API";
 import "../../assets/css/loader.scss";
@@ -43,7 +44,6 @@ class EnquiryForm extends Component {
     //     parentClass + " a[data-old-value='Information']"
     //   )
     // );
-
     this.lsqFormContainer.querySelector(".lsq-form-action-back").style.display =
       "none";
     this.lsqFormContainer.querySelector(
@@ -52,7 +52,7 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".popup-header").style.display = "none";
     this.lsqFormContainer.querySelector(
       ".modal-header"
-    ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School RT Nagar, ${
+    ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School ${getBranchName()}, ${
       this.state.userName.split(" ")[0]
     },<br /><br /><span>Please fill in the enquiry form below to get started</span></div>`;
     this.setState({ isLoginLoading: false });
