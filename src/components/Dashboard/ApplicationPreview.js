@@ -324,6 +324,7 @@ class ApplicationPreview extends Component {
                           Father’s Full Name ( as per proof attached ){" "}
                           
                       
+
                          {!leadsInfo.mx_Father_Emergency_contact ? (
                           <span
                             className="checkBox"

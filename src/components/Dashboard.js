@@ -5,8 +5,9 @@ import "../assets/css/forgotPassword.scss";
 import Header from "./Dashboard/Header";
 import { logout, activityPost, activityPostEvent } from "../utils/API";
 import { ACCESS_KEY, SECRET_KEY, LEAD_ID } from "../utils/Constants";
-import { nonDigitRemove } from "../utils/functions";
+import { nonDigitRemove, momentFormat } from "../utils/functions";
 import "../assets/css/loader.scss";
+import moment from "moment";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -132,7 +133,7 @@ class Dashboard extends Component {
                                     Last Updated On :
                                   </span>
                                   <span className="date-update">
-                                    {activity.ModifiedOn}
+                                    {momentFormat(activity.ModifiedOn)}
                                   </span>
                                 </div>
                               </div>
@@ -171,7 +172,7 @@ class Dashboard extends Component {
                                     Last Updated On :
                                   </span>
                                   <span className="date-update">
-                                    {activity.ModifiedOn}
+                                    {momentFormat(activity.ModifiedOn)}
                                   </span>
                                 </div>
                               </div>
@@ -219,7 +220,7 @@ class Dashboard extends Component {
                                     Last Updated On :
                                   </span>
                                   <span className="date-update">
-                                    {activity.ModifiedOn}
+                                    {momentFormat(activity.ModifiedOn)}
                                   </span>
                                 </div>
                               </div>
@@ -279,7 +280,7 @@ class Dashboard extends Component {
                                             Last Updated On :
                                           </span>
                                           <span className="date-update">
-                                            {applicationActivity.ModifiedOn}
+                                            {momentFormat(applicationActivity.ModifiedOn)}
                                           </span>
                                         </div>
                                       </div>
@@ -333,7 +334,7 @@ class Dashboard extends Component {
                                             Last Updated On :
                                           </span>
                                           <span className="date-update">
-                                            {applicationActivity.ModifiedOn}
+                                            {momentFormat(applicationActivity.ModifiedOn)}
                                           </span>
                                         </div>
                                       </div>
@@ -387,7 +388,7 @@ class Dashboard extends Component {
                                             Last Updated On :
                                           </span>
                                           <span className="date-update">
-                                            {applicationActivity.ModifiedOn}
+                                            {momentFormat(applicationActivity.ModifiedOn)}
                                           </span>
                                         </div>
                                       </div>
@@ -473,7 +474,7 @@ class Dashboard extends Component {
                                             Last Updated On :
                                           </span>
                                           <span className="date-update">
-                                            {applicationActivity.ModifiedOn}
+                                            {momentFormat(applicationActivity.ModifiedOn)}
                                           </span>
                                         </div>
                                       </div>
@@ -587,7 +588,7 @@ class Dashboard extends Component {
                                             Last Updated On :
                                           </span>
                                           <span className="date-update">
-                                            {applicationActivity.ModifiedOn}
+                                            {momentFormat(applicationActivity.ModifiedOn)}
                                           </span>
                                         </div>
                                       </div>
