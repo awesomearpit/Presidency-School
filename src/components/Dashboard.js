@@ -433,11 +433,10 @@ class Dashboard extends Component {
                                               }
                                             </div>
                                           ) : (
-                                            <>
-                                              {JSON.parse(
+                                              JSON.parse(
                                                 applicationActivity
                                                   .ActivityFields.mx_Custom_11
-                                              ).Status.includes("Reject")}
+                                              ).Status.includes("Reject")
                                               ?
                                               <div className="reject-box">
                                                 {
@@ -450,15 +449,9 @@ class Dashboard extends Component {
                                               </div>
                                               :
                                               <div className="submitted-box">
-                                                {
-                                                  JSON.parse(
-                                                    applicationActivity
-                                                      .ActivityFields
-                                                      .mx_Custom_11
-                                                  ).Status.split("-")[0]
-                                                }
+                                               submitted
                                               </div>
-                                            </>
+
                                           )}
                                         </div>
                                       </div>
@@ -489,12 +482,10 @@ class Dashboard extends Component {
                                           >
                                             View Application
                                           </Link>
-                                        ) : (
-                                          <>
-                                            {JSON.parse(
+                                        ) :JSON.parse(
                                               applicationActivity.ActivityFields
                                                 .mx_Custom_11
-                                            ).Status.includes("Reject")}
+                                            ).Status.includes("Reject")
                                             ?
                                             <div className="col-md-4 btn-block box-display">
                                               <Link
@@ -511,8 +502,7 @@ class Dashboard extends Component {
                                             >
                                               View Application
                                             </Link>
-                                          </>
-                                        )}
+                                        }
                                       </div>
                                     </div>
                                   );
@@ -534,7 +524,7 @@ class Dashboard extends Component {
                                           Application
                                         </div>
                                         <div className="col-md-12 no-padding">
-                                          {JSON.parse(
+                                        {JSON.parse(
                                             applicationActivity.ActivityFields
                                               .mx_Custom_12
                                           ).Status.includes("Approved") ? (
@@ -547,11 +537,10 @@ class Dashboard extends Component {
                                               }
                                             </div>
                                           ) : (
-                                            <>
-                                              {JSON.parse(
+                                              JSON.parse(
                                                 applicationActivity
                                                   .ActivityFields.mx_Custom_12
-                                              ).Status.includes("Reject")}
+                                              ).Status.includes("Reject")
                                               ?
                                               <div className="reject-box">
                                                 {
@@ -564,15 +553,8 @@ class Dashboard extends Component {
                                               </div>
                                               :
                                               <div className="submitted-box">
-                                                {
-                                                  JSON.parse(
-                                                    applicationActivity
-                                                      .ActivityFields
-                                                      .mx_Custom_12
-                                                  ).Status
-                                                }
+                                               submitted
                                               </div>
-                                            </>
                                           )}
                                         </div>
                                       </div>
@@ -603,12 +585,10 @@ class Dashboard extends Component {
                                           >
                                             View Application
                                           </Link>
-                                        ) : (
-                                          <>
-                                            {JSON.parse(
+                                        ) : JSON.parse(
                                               applicationActivity.ActivityFields
                                                 .mx_Custom_12
-                                            ).Status.includes("Reject")}
+                                            ).Status.includes("Reject")
                                             ?
                                             <div className="col-md-4 btn-block box-display">
                                               <Link
@@ -625,8 +605,7 @@ class Dashboard extends Component {
                                             >
                                               View Application
                                             </Link>
-                                          </>
-                                        )}
+                                          }
                                       </div>
                                     </div>
                                   );
