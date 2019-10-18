@@ -100,7 +100,6 @@ class ApplicationPreview extends Component {
             scale={0.6}
             margin="0.3cm"
             fileName={`LSQUniversityApplicationForm`}
-            crossorigin="anonymous"
           >
             {leadsInfo ? (
               <div className="preview">
@@ -118,21 +117,21 @@ class ApplicationPreview extends Component {
                         Names and DOB entered in this form will be treated as
                         ﬁnal and no changes will be accepted in future.
                       </div>
-                      <div className="col-md-12 session-box">
-                        <div className="col-md-2 session-text">
+                      <div className="row session-box" style={{margin:"0px"}}>
+                        <div className="col session-text">
                           Grade Applied for
                         </div>
-                        <div className="col-md-1 session-div">
+                        <div className="col-2 session-div" style={{marginRight:"0px"}}>
                           {leadsInfo.mx_Grade_Applied_for}
                         </div>
-                        <div className="col-md-3 session-text">
+                        <div className="col session-text">
                           For Academic Session
                         </div>
-                        <div className="col-md-3 session-div">
+                        <div className="col session-div" style={{marginRight:"0px"}}>
                           {leadsInfo.mx_For_Academic_Session}
                         </div>
                       </div>
-                      <div className="col-md-12 office-use">Ofﬁce Use Only</div>
+                      <div className="col-md-12 office-use">Office Use Only</div>
                       <div className="col-md-12 no-padding">
                         <div className="receipt-text">Receipt No.</div>
                         <div className="col-md-3 d-inline-block receipt-text"></div>
@@ -146,6 +145,7 @@ class ApplicationPreview extends Component {
                         className="img-responsive"
                         height="100%"
                         width="100%"
+                        crossorigin="anonymous"
                       />
                     </div>
                   </div>
@@ -217,7 +217,7 @@ class ApplicationPreview extends Component {
                         {leadsInfo.mx_Gender === "Male" ? (
                           <>
                             Male&nbsp;&nbsp;
-                            <i class="fas fa-circle"></i>
+                            <i class="fa fa-check-circle"></i>
                             &nbsp;&nbsp;Female&nbsp;&nbsp;
                             <div className="radioBox"></div>
                           </>
@@ -225,7 +225,7 @@ class ApplicationPreview extends Component {
                           <>
                             Male&nbsp;&nbsp;<div className="radioBox"></div>
                             &nbsp;&nbsp;Female&nbsp;&nbsp;
-                            <i class="fas fa-circle"></i>
+                            <i class="fa fa-check-circle"></i>
                           </>
                         ) : (
                           <>
@@ -293,7 +293,7 @@ class ApplicationPreview extends Component {
                         "Yes" ? (
                           <>
                             Yes&nbsp;&nbsp;
-                            <i class="fas fa-circle"></i>
+                            <i class="fa fa-check-circle"></i>
                             &nbsp;&nbsp;No&nbsp;&nbsp;
                             <div className="radioBox"></div>
                           </>
@@ -302,7 +302,7 @@ class ApplicationPreview extends Component {
                           <>
                             Yes&nbsp;&nbsp;<div className="radioBox"></div>
                             &nbsp;&nbsp;No&nbsp;&nbsp;
-                            <i class="fas fa-circle"></i>
+                            <i class="fa fa-check-circle"></i>
                           </>
                         ) : (
                           <>
@@ -315,7 +315,7 @@ class ApplicationPreview extends Component {
                     </div>
                     <div className="col-md-12 office-use">
                       Family Details ( Please Tick{" "}
-                      <i class="fa fa-check" aria-hidden="true"></i> the name of
+                      <i class="fa fa-check" ></i> the name of
                       the person to be contacted in case of Emergency )
                     </div>
                     <div className="col-md-6" style={{ paddingLeft: "0px" }}>

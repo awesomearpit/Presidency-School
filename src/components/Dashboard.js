@@ -67,6 +67,10 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(
+      "Data",
+      this.state.applicationActivities.map(activity => activity)
+    );
     return (
       <>
         {this.state.isDashboardLoading ? (
@@ -290,6 +294,8 @@ class Dashboard extends Component {
                                     </div>
                                   );
                                 } else if (
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_10 &&
                                   JSON.parse(
                                     applicationActivity.ActivityFields
                                       .mx_Custom_10
@@ -342,6 +348,8 @@ class Dashboard extends Component {
                                     </div>
                                   );
                                 } else if (
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_10 &&
                                   JSON.parse(
                                     applicationActivity.ActivityFields
                                       .mx_Custom_10
@@ -394,6 +402,8 @@ class Dashboard extends Component {
                                     </div>
                                   );
                                 } else if (
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_11 &&
                                   JSON.parse(
                                     applicationActivity.ActivityFields
                                       .mx_Custom_11
@@ -418,7 +428,7 @@ class Dashboard extends Component {
                                                 JSON.parse(
                                                   applicationActivity
                                                     .ActivityFields.mx_Custom_11
-                                                ).Status
+                                                ).Status.split("-")[0]
                                               }
                                             </div>
                                           ) : (
@@ -434,7 +444,7 @@ class Dashboard extends Component {
                                                     applicationActivity
                                                       .ActivityFields
                                                       .mx_Custom_11
-                                                  ).Status
+                                                  ).Status.split("-")[0]
                                                 }
                                               </div>
                                               :
@@ -444,7 +454,7 @@ class Dashboard extends Component {
                                                     applicationActivity
                                                       .ActivityFields
                                                       .mx_Custom_11
-                                                  ).Status
+                                                  ).Status.split("-")[0]
                                                 }
                                               </div>
                                             </>
@@ -506,6 +516,8 @@ class Dashboard extends Component {
                                     </div>
                                   );
                                 } else if (
+                                  applicationActivity.ActivityFields
+                                    .mx_Custom_12 &&
                                   JSON.parse(
                                     applicationActivity.ActivityFields
                                       .mx_Custom_12
@@ -530,7 +542,7 @@ class Dashboard extends Component {
                                                 JSON.parse(
                                                   applicationActivity
                                                     .ActivityFields.mx_Custom_12
-                                                ).Status
+                                                ).Status.split("-")[0]
                                               }
                                             </div>
                                           ) : (
@@ -546,7 +558,7 @@ class Dashboard extends Component {
                                                     applicationActivity
                                                       .ActivityFields
                                                       .mx_Custom_12
-                                                  ).Status
+                                                  ).Status.split("-")[0]
                                                 }
                                               </div>
                                               :
