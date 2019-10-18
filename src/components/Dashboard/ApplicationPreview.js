@@ -322,23 +322,28 @@ class ApplicationPreview extends Component {
                       <div className="col-md-12 family-box">
                         <div className="col-md-12 family-text text-center">
                           Father’s Full Name ( as per proof attached ){" "}
-                          {/* {!leadsInfo.mx_Father_Full_Name ? (
+                          
+                      
+                         {!leadsInfo.mx_Father_Emergency_contact ? (
                           <span
                             className="checkBox"
                             style={{ marginLeft: "8px" }}
                           ></span>
                         ) : (
-                          <span
-                            className="checkBox"
-                            style={{ marginLeft: "8px" }}
-                          >
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                          </span>
-                        )} */}
-                          <span
-                            className="checkBox"
-                            style={{ marginLeft: "8px" }}
-                          ></span>
+                          leadsInfo.mx_Father_Emergency_contact === 0 ? (
+                            <span
+                              className="checkBox"
+                              style={{ marginLeft: "8px" }}
+                            ></span>
+                          ) : (
+                            <span
+                              className="checkBox"
+                              style={{ marginLeft: "8px" }}
+                            >
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </span>
+                          )
+                        )}
                           <div style={{ fontWeight: "bold" }}>
                             {leadsInfo.mx_Father_Full_Name}
                           </div>
@@ -384,10 +389,26 @@ class ApplicationPreview extends Component {
                       <div className="col-md-12 family-box">
                         <div className="col-md-12 family-text text-center">
                           Mother's Full Name ( as per proof attached ) :{" "}
+                          {!leadsInfo.mx_Mother_Emergency_Contact ? (
                           <span
                             className="checkBox"
                             style={{ marginLeft: "8px" }}
                           ></span>
+                        ) : (
+                          leadsInfo.mx_Mother_Emergency_Contact === 0 ? (
+                            <span
+                              className="checkBox"
+                              style={{ marginLeft: "8px" }}
+                            ></span>
+                          ) : (
+                            <span
+                              className="checkBox"
+                              style={{ marginLeft: "8px" }}
+                            >
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                            </span>
+                          )
+                        )}
                           <div style={{ fontWeight: "bold" }}>
                             {leadsInfo.mx_Mother_Name}
                           </div>

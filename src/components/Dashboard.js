@@ -36,7 +36,7 @@ class Dashboard extends Component {
       const { data } = await activityPost(
         `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`
       );
-      console.log("actvity fields", data);
+      console.log("actvity field", data);
       if (data.RecordCount === 0) {
         this.props.history.push("/enquiryForm");
       }
@@ -55,22 +55,22 @@ class Dashboard extends Component {
           Parameter: { ActivityEvent: 200 },
         }
       );
+      var applicationId = data.ProspectActivities[0]
+        ? data.ProspectActivities[0].Id
+        : "";
+
       this.setState({
         applicationActivities: data.ProspectActivities,
         application: data,
-        applicationActivityId: data.ProspectActivities[0].Id,
+        applicationActivityId: applicationId,
       });
-      console.log("data", data);
     } catch (e) {
       console.log("error", e);
     }
   }
 
   render() {
-    console.log(
-      "Data",
-      this.state.applicationActivities.map(activity => activity)
-    );
+    console.log("Data", this.state.application);
     return (
       <>
         {this.state.isDashboardLoading ? (

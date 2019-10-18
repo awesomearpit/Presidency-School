@@ -22,6 +22,8 @@ class ApplicationForm extends Component {
   }
 
   loadOverrideCSS = () => {
+    var activityStyle = this.state.activityId ? "display:none" : "";
+    this.lsqFormContainer.querySelector(".modal-footer").style = activityStyle;
     this.lsqFormContainer.querySelector(
       ".lsq-form-action-back"
     ).innerHTML = `<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a style=color:white href="/dashboard">Back</a>`;

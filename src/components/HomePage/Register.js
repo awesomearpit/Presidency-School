@@ -117,7 +117,9 @@ class Register extends Component {
       password &&
       confirmPassword &&
       password === confirmPassword &&
-      password.match(/^(?=.*\d).{8,}$/) &&
+      password.match(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+      ) &&
       email.match(
         /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
       ) &&

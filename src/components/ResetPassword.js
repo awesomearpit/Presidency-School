@@ -79,6 +79,9 @@ class ResetPassword extends Component {
   passwordValidity = () => {
     return (
       this.state.password &&
+      this.state.password.match(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+      ) &&
       this.state.confirmPassword &&
       this.state.password === this.state.confirmPassword
     );
