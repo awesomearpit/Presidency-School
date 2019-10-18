@@ -71,58 +71,58 @@ class Dashboard extends Component {
         applicationModified:  data.ProspectActivities[0].ModifiedOn,
         relatedProspectId: data.ProspectActivities[0].RelatedProspectId
       });
-    } catch (e) {
+    } catch (e) { 
       console.log("error", e);
     }
-  }
+  } 
 
   renderApplication = ()=>{
     if(!this.state.applicationActivities){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"pending-box"} status={"Pending"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"pending-box"} status={"Pending"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
         </>
       )
     } else if(this.state.applicationActivities === "Pending for Approval"){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"pending-box"} status={"Pending"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"pending-box"} status={"Pending"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
         </>
       )
     } else if(this.state.applicationActivities === "Approved - Call for Assessment"){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"approved-box"} status={"Approved"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"approved-box"} status={"Approved"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
         </>
       )
     }else if(this.state.applicationActivities === "Application Rejected"){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"reject-box"} status={"Rejected"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"reject-box"} status={"Rejected"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-start"} link={`/applicationForm`} btnText={"Start New Application"} />
         </>
       )
     }else if(this.state.applicationActivities === "Qualified for Assessment Test"){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"approved-box"} status={"Qualified"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"approved-box"} status={"Qualified"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
         </>
       )
     }else if(this.state.applicationActivities === "Not Qualified for Test"){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"reject-box"} status={"Not Qualified"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"reject-box"} status={"Not Qualified"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-start"} link={`/applicationForm`} btnText={"Start New Application"} />
         </>
       )
     }else if(this.state.applicationActivities === "Admission Granted"){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"approved-box"} status={"Granted"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"approved-box"} status={"Granted"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
         </>
       )
     }else if(this.state.applicationActivities === "Admission Rejected"){
       return(
         <>
-          <ApplicationBox name={"Application"} className={"reject-box"} status={"Rejected"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified} activityId={this.state.activityId} />
+          <ApplicationBox name={"Application"} className={"reject-box"} status={"Rejected"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-start"} link={`/applicationForm`} btnText={"Start New Application"} />
         </>
       )
     }

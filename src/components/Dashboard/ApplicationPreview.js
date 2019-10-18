@@ -35,7 +35,7 @@ class ApplicationPreview extends Component {
       );
       this.setState({
         leadsInfo: data[0],
-        displayName: data[0].FirstName,
+        displayName: data[0].firstName,
       });
 
       console.log("data leads", data);
@@ -49,13 +49,13 @@ class ApplicationPreview extends Component {
       );
       this.setState({
         photoUrl:
-          data.Fields[3].CustomObjectFormProperties.FieldProperties
-            .FormMetaData[1].FileURL,
+          data.fields[3].CustomObjectFormProperties.fieldProperties
+            .FormMetaData[1].fileURL,
       });
       console.log(
         "Dtaa...",
-        data.Fields[3].CustomObjectFormProperties.FieldProperties
-          .FormMetaData[1].FileURL
+        data.fields[3].CustomObjectFormProperties.fieldProperties
+          .FormMetaData[1].fileURL
       );
     } catch (e) {
       console.log("error", e);
@@ -110,8 +110,8 @@ class ApplicationPreview extends Component {
                   <div className="row no-margin top-view">
                     <div className="col-md-10 no-padding left-view">
                       <div className="col-md-12 text">
-                        General Instructions 1) Fill the form in BLOCK LETTERS
-                        Only 2) To be ﬁlled and signed only by Parents.
+                        General Instructions 1) fill the form in BLOCK LETTERS
+                        Only 2) To be filled and signed only by Parents.
                       </div>
                       <div className="col-md-12 text">
                         Names and DOB entered in this form will be treated as
@@ -155,10 +155,10 @@ class ApplicationPreview extends Component {
                     </div>
                     <div className="col-md-12 student-name">
                       Name of the Student
-                      <span>( As per Birth Certiﬁcate / Passport )</span>
+                      <span>( As per Birth Certificate / Passport )</span>
                     </div>
                     <div className="col-md-12 student-name">
-                      {this.state.leadsInfo.FirstName}
+                      {this.state.leadsInfo.firstName}
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-1 no-padding d-inline-block">
@@ -996,8 +996,8 @@ class ApplicationPreview extends Component {
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
-                        Languages formally studied - First :{" "}
-                        <div className="borderBox">{leadsInfo.mx_Languages_formally_studied__First}</div>
+                        Languages formally studied - first :{" "}
+                        <div className="borderBox">{leadsInfo.mx_Languages_formally_studied__first}</div>
                       </div>
                       <div className="col-md-3 d-inline-block dob">
                         Second :{" "}

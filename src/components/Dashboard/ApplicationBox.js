@@ -30,10 +30,10 @@ const ApplicationBox = (props) =>{
             </div>
             <div className="col-md-4 btn-block box-display">
               <Link
-                className="btn btn-view"
-                to={`/enquiryForm/${props.activityId}`}
+                className={props.btnClass}
+                to={props.link}
               >
-                View Application
+                {props.btnText}
               </Link>
             </div>
           </div>
