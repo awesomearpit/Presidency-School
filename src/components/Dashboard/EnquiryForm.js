@@ -27,8 +27,18 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".lsq-form-action-btn").textContent =
       "Submit Enquiry Form";
     this.lsqFormContainer.querySelector(
-      ".lsq-form-action-btn"
+      ".lsq-form-action-btn",
     ).style = activityStyle;
+
+    this.lsqFormContainer.querySelector(
+      ".lsq-external-form-container input[type=text]",
+    ).style = "color: #212b36 !important;font-size: 14px !important;  ";
+
+    this.lsqFormContainer.querySelector(".number-input").style =
+      "font-size: 14px !important; padding-bottom:3px !important";
+
+    this.lsqFormContainer.querySelector(".required").style =
+      "font-size: 14px !important;color: #212b36 !important;";
 
     // this.lsqFormContainer.querySelector(".lsq-form-action-btn").click(event => {
     //   console.log("event", event);
@@ -47,11 +57,11 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".lsq-form-action-back").style.display =
       "none";
     this.lsqFormContainer.querySelector(
-      ".lsq-form-custom-tab-center-panel-wrapper"
+      ".lsq-form-custom-tab-center-panel-wrapper",
     ).style.display = "none";
     this.lsqFormContainer.querySelector(".popup-header").style.display = "none";
     this.lsqFormContainer.querySelector(
-      ".modal-header"
+      ".modal-header",
     ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School ${getBranchName()}, ${
       this.state.userName.split(" ")[0]
     },<br /><br /><span>Please fill in the enquiry form below to get started</span></div>`;
@@ -87,22 +97,22 @@ class EnquiryForm extends Component {
 
     this.lsqFormContainer.addEventListener(
       "lsqformloadcomplete",
-      this.loadOverrideCSS
+      this.loadOverrideCSS,
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccessateachstep",
-      this.onLSQFormSubmissionSuccessAtEachStep
+      this.onLSQFormSubmissionSuccessAtEachStep,
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccess",
-      this.onLSQFormSubmissionSuccess
+      this.onLSQFormSubmissionSuccess,
     );
 
     this.lsqFormContainer.addEventListener(
       "LSQFormLoadError",
-      this.onLSQFormLoadError
+      this.onLSQFormLoadError,
     );
   }
 
@@ -131,8 +141,7 @@ class EnquiryForm extends Component {
                 id="lsq-form-modal"
                 data-form-id="2197ea44-ddd0-11e9-aebf-02b00a4d022c"
                 class="modal-v4 fullscreen external lsq-external-form-container"
-                ref={elem => (this.lsqFormContainer = elem)}
-              >
+                ref={elem => (this.lsqFormContainer = elem)}>
                 <div class="lsq-form-container-wrapper"></div>
 
                 <div class="lsq-form-hidden-fields">

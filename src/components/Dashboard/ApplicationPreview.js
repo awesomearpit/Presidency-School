@@ -7,6 +7,7 @@ import { PDFExport } from "@progress/kendo-react-pdf";
 import moment from "moment";
 import Header from "./Header";
 import { logout } from "../../utils/API";
+import '@progress/kendo-theme-bootstrap/dist/all.css'
 
 class ApplicationPreview extends Component {
   constructor(props) {
@@ -1097,180 +1098,154 @@ class ApplicationPreview extends Component {
                       Check list for parents
                     </div>
                     <div
-                      className="col-md-12 family-box"
-                      style={{ padding: "15px", border: "1px solid #161717" }}
+                      className="col-md-12 checklist-parents"
                     >
-                      <div className="col-md-6 d-inline-block">
-                        <div className="col-md-12 no-padding family-text">
-                          1. Six Passport size Photographs :{" "}
-                          {leadsInfo.mx_Six_Passport_size_Photographs == 0 ? (
+                      <table>
+                        <tr>
+                          <td>1. Six Passport size Photographs</td>
+                          <td> {leadsInfo.mx_Six_Passport_size_Photographs == 0 ? (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "30%" }}
                               ></div>
                             </>
                           ) : (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "30%" }}
                               >
                                 <i class="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}
-                        </div>
-                        <div className="col-md-12 no-padding family-text">
-                          2. Birth Certificate (photocopy) :{" "}
-                          {leadsInfo.mx_Birth_Certificate_Photocopy == 0 ? (
+                          </td>
+                          <td>5. School Performance Report</td>
+                          <td>  {leadsInfo.mx_School_Performance_Report == 0 ? (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "32%" }}
                               ></div>
                             </>
                           ) : (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "32%" }}
                               >
                                 <i class="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
-                          )}
-                        </div>
-                        <div className="col-md-12 no-padding family-text">
-                          3. Copy of Passport (Foreign Nationals) :{" "}
-                          {leadsInfo.mx_Copy_of_Passport_Foreign_Nationals ==
+                          )}</td>
+                        </tr> 
+                        <tr> 
+                          <td>2. Birth Certificate (photocopy)</td>
+                          <td>{leadsInfo.mx_Birth_Certificate_Photocopy == 0 ? (
+                            <>
+                              <div
+                                 className="checkBox"
+                              ></div>
+                            </>
+                          ) : (
+                            <>
+                              <div
+                                className="checkBox"
+                              >
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                            </>
+                          )}</td>
+                          <td>6. Post card size family photograph</td>
+                          <td>{leadsInfo.mx_Post_card_size_family_photograph ==
                           0 ? (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "23%" }}
                               ></div>
                             </>
                           ) : (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "23%" }}
                               >
                                 <i class="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
-                          )}
-                        </div>
-                        <div className="col-md-12 no-padding family-text">
-                          4. Transfer Certificate - Original :{" "}
-                          {leadsInfo.mx_Submitted_Original_Transfer_Certificate ==
+                          )}</td> 
+                        </tr>
+                        <tr>
+                          <td>3. Copy of Passport (Foreign Nationals)</td>
+                          <td>{leadsInfo.mx_Copy_of_Passport_Foreign_Nationals ==
                           0 ? (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "31%" }}
                               ></div>
                             </>
                           ) : (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "31%" }}
                               >
                                 <i class="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
-                          )}
-                        </div>
-                      </div>
-                      <div className="col-md-6 d-inline-block">
-                        <div className="col-md-12 no-padding family-text">
-                          5. School Performance Report :{" "}
-                          {leadsInfo.mx_School_Performance_Report == 0 ? (
-                            <>
-                              <div
-                                className="checkBox"
-                                style={{ marginLeft: "30%" }}
-                              ></div>
-                            </>
-                          ) : (
-                            <>
-                              <div
-                                className="checkBox"
-                                style={{ marginLeft: "30%" }}
-                              >
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                        <div className="col-md-12 no-padding family-text">
-                          6. Post card size family photograph :{" "}
-                          {leadsInfo.mx_Post_card_size_family_photograph ==
+                          )}</td>
+                          <td>7. Copy of Caste Certificate ( if applicable )</td>
+                          <td>{leadsInfo.mx_Copy_of_Caste_Certificate_if_applicable ==
                           0 ? (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "25%" }}
                               ></div>
                             </>
                           ) : (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "25%" }}
                               >
                                 <i class="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
-                          )}
-                        </div>
-                        <div className="col-md-12 no-padding family-text">
-                          7. Copy of Caste Certificate ( if applicable ) :{" "}
-                          {leadsInfo.mx_Copy_of_Caste_Certificate_if_applicable ==
+                          )}</td>
+                        </tr>
+                        <tr>
+                          <td>4. Transfer Certificate - Original</td>
+                          <td>{leadsInfo.mx_Submitted_Original_Transfer_Certificate ==
                           0 ? (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "17%" }}
                               ></div>
                             </>
                           ) : (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "17%" }}
                               >
                                 <i class="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
-                          )}
-                        </div>
-                        <div className="col-md-12 no-padding family-text">
-                          8. Copy of Aadhar Card :{" "}
-                          {leadsInfo.mx_Copy_of_Aadhar_Card == 0 ? (
+                          )}</td>
+                          <td>8. Copy of Aadhar Card</td>
+                          <td>{leadsInfo.mx_Copy_of_Aadhar_Card == 0 ? (
                             <>
                               <div
                                 className="checkBox"
-                                style={{ marginLeft: "37%" }}
                               ></div>
                             </>
                           ) : (
                             <>
-                              <div
-                                className="checkBox"
-                                style={{ marginLeft: "37%" }}
-                              >
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                              </div>
+                                <div
+                                  className="checkBox"
+                                >
+                                  <i class="fa fa-check" aria-hidden="true"></i>
+                                </div>
                             </>
-                          )}
-                        </div>
-                      </div>
+                          )}</td>
+                        </tr>
+                      </table>
                     </div>
                     <div className="col-md-12 office-use">
-                      Check list for parents
+                    Declaration
                     </div>
                     <div
                       className="col-md-12 family-box"
@@ -1316,6 +1291,6 @@ class ApplicationPreview extends Component {
         </div>
       </>
     );
-  }
+  }  
 }
 export default withRouter(ApplicationPreview);

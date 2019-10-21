@@ -131,23 +131,34 @@
                         font-size: 15px !important;
                         padding-left:0px !important;
                         font-family: "Roboto" !important;
+                        color: #637381;
+                        &::placeholder{
+                            font-size: 15px !important;
+                            font-family: "Roboto" !important;
+                            color: #637381;
+                            opacity: 0.5 !important;
+                        }
                     }
                     .form-control-placeholder {
                         position: absolute;
-                        top: 10px;
+                        top: 8.5px;
                         padding: 0px 0 0 0px;
                         transition: all 200ms;
                         opacity: 0.5;
                         pointer-events: none;
+                        font-size: 15px;
+                        color: #637381;
+                        font-family: "Roboto" !important;
                         span{
                             color:$color-error;
                         }
                       }
                       .form-control:focus + .form-control-placeholder,
                         .form-control:valid + .form-control-placeholder {
-                        font-size: 75%;
+                        font-size: 12px;
+                        color: #637381;
+                        font-family: "Roboto" !important;
                         transform: translate3d(0, -100%, 0);
-                        opacity: 1;
                         }
                     .error-warning{
                         color: $color-error;
@@ -162,8 +173,15 @@
                         font-size: 15px !important;
                         padding-left:0px !important;
                         font-family: "Roboto" !important;
+                        color:#637381a6 !important;
+                        width: 100% !important;
+                        padding-bottom:10px !important;
                         option{
-                            padding:0px !important
+                            padding:0px !important;
+                            color: #637381 !important;
+                            span{
+                                color:$color-error;
+                            }
                         }
                     }
                     

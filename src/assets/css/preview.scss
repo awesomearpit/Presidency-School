@@ -45,7 +45,7 @@
                     }
                 }
                 .office-use{
-                    font-size: 15px !important;
+                    font-size: 17px !important;
                     color: $color-heading2 !important;
                     font-family: "Roboto";
                     font-weight: bold;
@@ -62,7 +62,7 @@
         }
         .body-view{
             .office-use{
-                font-size: 15px !important;
+                font-size: 18px !important;
                 color: $color-heading2 !important;
                 font-family: "Roboto";
                 font-weight: bold;
@@ -150,4 +150,28 @@
     width:70%;
     border-bottom: 1px solid #161717;
     display:inline-block;
+}
+
+.checklist-parents{
+    padding:20px !important;
+    background-color: #F1F1F2 !important;
+    border: 1px solid #161717 !important;
+    td{
+        font-size: 12px !important;
+        color: #000002 !important;
+        font-family: "Roboto";
+        padding: 13px 10px 13px 10px !important;
+    }
+    td:nth-child(1){
+        width:50% !important;
+    }
+    td:nth-child(2){
+        width:10% !important;
+    }
+    td:nth-child(3){
+        width:50% !important;
+    }
+    td:nth-child(4){
+        width:10% !important;
+    }
 }

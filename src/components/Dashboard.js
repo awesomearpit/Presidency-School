@@ -20,8 +20,8 @@ class Dashboard extends Component {
       application: {},
       isDashboardLoading: false,
       applicationActivityId: null,
-      applicationModified:null,
-      relatedProspectId:null,
+      applicationModified: null,
+      relatedProspectId: null,
     };
   }
 
@@ -38,7 +38,7 @@ class Dashboard extends Component {
     this.setState({ isDashboardLoading: true });
     try {
       const { data } = await activityPost(
-        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`
+        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`,
       );
       console.log("actvity field", data);
       if (data.RecordCount === 0) {
@@ -57,76 +57,153 @@ class Dashboard extends Component {
         `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`,
         {
           Parameter: { ActivityEvent: 200 },
-        }
+        },
       );
       var applicationId = data.ProspectActivities[0]
         ? data.ProspectActivities[0].Id
         : "";
 
-        console.log("Data",data.ProspectActivities[0] );
+      console.log("Data", data.ProspectActivities[0]);
       this.setState({
-        applicationActivities: data.ProspectActivities[0].ActivityFields["Status"],
+        applicationActivities:
+          data.ProspectActivities[0].ActivityFields["Status"],
         application: data,
         applicationActivityId: applicationId,
-        applicationModified:  data.ProspectActivities[0].ModifiedOn,
-        relatedProspectId: data.ProspectActivities[0].RelatedProspectId
+        applicationModified: data.ProspectActivities[0].ModifiedOn,
+        relatedProspectId: data.ProspectActivities[0].RelatedProspectId,
       });
-    } catch (e) { 
+    } catch (e) {
       console.log("error", e);
     }
-  } 
-
-  renderApplication = ()=>{
-    if(!this.state.applicationActivities){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"pending-box"} status={"Pending"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
-        </>
-      )
-    } else if(this.state.applicationActivities === "Pending for Approval"){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"pending-box"} status={"Pending"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
-        </>
-      )
-    } else if(this.state.applicationActivities === "Approved - Call for Assessment"){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"approved-box"} status={"Approved"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
-        </>
-      )
-    }else if(this.state.applicationActivities === "Application Rejected"){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"reject-box"} status={"Rejected"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-start"} link={`/applicationForm`} btnText={"Start New Application"} />
-        </>
-      )
-    }else if(this.state.applicationActivities === "Qualified for Assessment Test"){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"approved-box"} status={"Qualified"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
-        </>
-      )
-    }else if(this.state.applicationActivities === "Not Qualified for Test"){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"reject-box"} status={"Not Qualified"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-start"} link={`/applicationForm`} btnText={"Start New Application"} />
-        </>
-      )
-    }else if(this.state.applicationActivities === "Admission Granted"){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"approved-box"} status={"Granted"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-view"} link={`/applicationPreview/${this.state.applicationActivityId}`} btnText={"View Application"} />
-        </>
-      )
-    }else if(this.state.applicationActivities === "Admission Rejected"){
-      return(
-        <>
-          <ApplicationBox name={"Application"} className={"reject-box"} status={"Rejected"} RelatedProspectId={this.state.relatedProspectId} ModifiedOn={this.state.applicationModified}  btnClass={"btn btn-start"} link={`/applicationForm`} btnText={"Start New Application"} />
-        </>
-      )
-    }
   }
+
+  renderApplication = () => {
+    if (!this.state.applicationActivities) {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"pending-box"}
+            status={"Pending"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
+          />
+        </>
+      );
+    } else if (this.state.applicationActivities === "Pending for Approval") {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"pending-box"}
+            status={"Pending"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
+          />
+        </>
+      );
+    } else if (
+      this.state.applicationActivities === "Approved - Call for Assessment"
+    ) {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"approved-box"}
+            status={"Approved"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
+          />
+        </>
+      );
+    } else if (this.state.applicationActivities === "Application Rejected") {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"reject-box"}
+            status={"Rejected"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-start"}
+            link={`/applicationForm`}
+            btnText={"Start New Application"}
+          />
+        </>
+      );
+    } else if (
+      this.state.applicationActivities === "Qualified for Assessment Test"
+    ) {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"approved-box"}
+            status={"Qualified"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
+          />
+        </>
+      );
+    } else if (this.state.applicationActivities === "Not Qualified for Test") {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"reject-box"}
+            status={"Not Qualified"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-start"}
+            link={`/applicationForm`}
+            btnText={"Start New Application"}
+          />
+        </>
+      );
+    } else if (this.state.applicationActivities === "Admission Granted") {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"approved-box"}
+            status={"Granted"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
+          />
+        </>
+      );
+    } else if (this.state.applicationActivities === "Admission Rejected") {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"reject-box"}
+            status={"Rejected"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-start"}
+            link={`/applicationForm`}
+            btnText={"Start New Application"}
+          />
+        </>
+      );
+    }
+  };
 
   render() {
     return (
@@ -296,10 +373,7 @@ class Dashboard extends Component {
                     }
                     <>
                       {this.state.application.RecordCount !== 0 ? (
-                        <>
-                          {  this.renderApplication()}
-                        </>
-                          
+                        <>{this.renderApplication()}</>
                       ) : null}
                     </>
                   </div>

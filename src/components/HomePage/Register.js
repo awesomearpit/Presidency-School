@@ -118,10 +118,10 @@ class Register extends Component {
       confirmPassword &&
       password === confirmPassword &&
       password.match(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       ) &&
       email.match(
-        /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+        /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
       ) &&
       mobile.length === 10
     );
@@ -248,7 +248,7 @@ class Register extends Component {
                 value={grade}
                 onChange={this.handleChange}
                 name="grade"
-                className="form-control"
+                className=""
               >
                 <option value="">Grade Applied For</option>
                 {this.grades.map((grade, index) => (
