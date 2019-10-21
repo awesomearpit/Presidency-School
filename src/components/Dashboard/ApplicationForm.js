@@ -39,10 +39,6 @@ class ApplicationForm extends Component {
     // this.lsqFormContainer.querySelector(".mx-custom").style =
     //   "color: #212b36 !important;font-size: 14px !important;  ";
 
-    console.log(
-      "mx-custom",
-      this.lsqFormContainer.querySelector(".lsq-form-field-ctrl-text"),
-    );
     this.lsqFormContainer.querySelector(".number-input").style =
       "font-size: 14px !important; padding-bottom:3px !important";
 

@@ -199,6 +199,22 @@
             }
         }
 
+        .lsq-form-section-container .lsq-form-section-body .lsq-form-field-ctrl-text{
+            font-size:14px !important;
+            font-family: "Roboto" !important;
+            color: #212B36 !important;
+        }
+
+        .lsq-external-form-container .ui-selectmenu-dropdown.ui-state-hover {
+            outline: none !important;
+            -webkit-appearance: none !important;
+            box-shadow: none !important;
+          }
+
+        .lsq-form-section-container .lsq-form-section-body .lsq-form-field-ctrl-text.number-input{
+            padding-bottom: 2px !important;
+        }
+
         .lsq-form-field-label{
             font-size:15px !important;
             font-family: "Roboto" !important;
@@ -372,6 +388,27 @@
             min-height: none !important;
             max-height: none !important;
             position: inherit !important;
+        }
+        .form-control{
+            font-size:14px !important;
+            font-family: "Roboto" !important;
+            color: #212B36 !important;
+        }
+
+        .lsq-form-section-container .lsq-form-section-body .lsq-form-field-ctrl-text{
+            font-size:14px !important;
+            font-family: "Roboto" !important;
+            color: #212B36 !important;
+        }
+
+        .lsq-external-form-container .ui-selectmenu-dropdown.ui-state-hover {
+            outline: none !important;
+            -webkit-appearance: none !important;
+            box-shadow: none !important;
+          }
+
+        .lsq-form-section-container .lsq-form-section-body .lsq-form-field-ctrl-text.number-input{
+            padding-bottom: 2px !important;
         }
 
         .fullscreen.modal-v4 .modal-footer{

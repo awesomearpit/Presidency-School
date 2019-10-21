@@ -23,6 +23,7 @@ class ApplicationPreview extends Component {
 
   downloadPDF() {
     this.pdfExportComponent.save();
+    // console.log("save",this.pdfExportComponent.save())
   }
 
   async componentDidMount() {
@@ -50,14 +51,9 @@ class ApplicationPreview extends Component {
       );
       this.setState({
         photoUrl:
-          data.fields[3].CustomObjectFormProperties.fieldProperties
-            .FormMetaData[1].fileURL,
-      });
-      console.log(
-        "Dtaa...",
-        data.fields[3].CustomObjectFormProperties.fieldProperties
-          .FormMetaData[1].fileURL
-      );
+          data.Fields[3].CustomObjectFormProperties.FieldProperties
+            .FormMetaData[1].FileURL, 
+      })
     } catch (e) {
       console.log("error", e);
     }

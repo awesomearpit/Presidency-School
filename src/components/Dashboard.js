@@ -59,18 +59,26 @@ class Dashboard extends Component {
           Parameter: { ActivityEvent: 200 },
         },
       );
+      var applicationStatus = data.ProspectActivities[0]
+        ? data.ProspectActivities[0].ActivityFields["Status"]
+        : "";
       var applicationId = data.ProspectActivities[0]
         ? data.ProspectActivities[0].Id
         : "";
+      var modifedOn = data.ProspectActivities[0]
+        ? data.ProspectActivities[0].ModifiedOn
+        : "";
+      var relatedProspect = data.ProspectActivities[0]
+        ? data.ProspectActivities[0].RelatedProspectId
+        : "";
 
-      console.log("Data", data.ProspectActivities[0]);
+      console.log("Data", data);
       this.setState({
-        applicationActivities:
-          data.ProspectActivities[0].ActivityFields["Status"],
+        applicationActivities: applicationStatus,
         application: data,
         applicationActivityId: applicationId,
-        applicationModified: data.ProspectActivities[0].ModifiedOn,
-        relatedProspectId: data.ProspectActivities[0].RelatedProspectId,
+        applicationModified: modifedOn,
+        relatedProspectId: relatedProspect,
       });
     } catch (e) {
       console.log("error", e);
@@ -222,8 +230,7 @@ class Dashboard extends Component {
               right: "0",
               bottom: "0",
               position: "absolute",
-            }}
-          >
+            }}>
             <div className="dashboard">
               <div className="dashboard-header-box">
                 <div className="header-box-container">
@@ -274,8 +281,7 @@ class Dashboard extends Component {
                               <div className="col-md-4 btn-block box-display">
                                 <Link
                                   className="btn btn-view"
-                                  to={`/enquiryForm/${activity.Id}`}
-                                >
+                                  to={`/enquiryForm/${activity.Id}`}>
                                   View Application
                                 </Link>
                               </div>
@@ -314,15 +320,13 @@ class Dashboard extends Component {
                                 {this.state.application.RecordCount !== 0 ? (
                                   <Link
                                     className="btn btn-view"
-                                    to={`/applicationPreview/${this.state.applicationActivityId}`}
-                                  >
+                                    to={`/applicationPreview/${this.state.applicationActivityId}`}>
                                     View Application
                                   </Link>
                                 ) : (
                                   <Link
                                     className="btn btn-start"
-                                    to={`/applicationForm/${this.state.applicationActivityId}`}
-                                  >
+                                    to={`/applicationForm/${this.state.applicationActivityId}`}>
                                     Start Application
                                   </Link>
                                 )}
@@ -361,8 +365,7 @@ class Dashboard extends Component {
                               <div className="col-md-4 btn-block box-display">
                                 <Link
                                   className="btn btn-start"
-                                  to={`/enquiryForm`}
-                                >
+                                  to={`/enquiryForm`}>
                                   Start New Enquiry
                                 </Link>
                               </div>
