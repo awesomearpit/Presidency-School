@@ -80,7 +80,9 @@ class OtpModal extends Component {
               const { data } = await register(signupData);
               console.log("data", data);
               this.props.successMessage(null);
-              this.setState({ successMessage: data.Message });
+              this.setState({
+                successMessage: data.Message,
+              });
             } catch (e) {
               console.log("error signup", e);
               this.props.handleClose();
@@ -114,8 +116,7 @@ class OtpModal extends Component {
         <Modal
           show={this.props.show}
           className="otp-modal"
-          onHide={this.props.handleShow}
-        >
+          onHide={this.props.handleShow}>
           <div className="col-md-12 text-right otp-close">
             <button className="btn btn-link" onClick={this.props.handleClose}>
               <i className="fa fa-times" aria-hidden="true"></i>
@@ -159,8 +160,7 @@ class OtpModal extends Component {
                   {this.state.isResendOtp ? (
                     <button
                       className="btn btn-link"
-                      onClick={this.props.signup}
-                    >
+                      onClick={this.props.signup}>
                       Resend OTP
                     </button>
                   ) : (

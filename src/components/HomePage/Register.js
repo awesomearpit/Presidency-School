@@ -66,6 +66,7 @@ class Register extends Component {
       formOtpCode: "",
       filedContent: "",
       emptyField: "",
+      count: 0,
     };
   }
 
@@ -168,27 +169,36 @@ class Register extends Component {
     e.preventDefault();
     this.validateAllInputs();
     if (this.validityCheck()) {
-      this.setState({ isLoginLoading: true });
-      const otpData = {
-        FormId: "00ac15b8-e361-11e9-aebf-02b00a4d022c",
-        SchemaName: "Mobile",
-        FieldDataType: "phone",
-        FieldContent: `${this.state.mobile}`,
-      };
-      try {
-        const { data } = await otp(otpData);
-        console.log("data signup", data);
+      if (this.state.count <= 3) {
+        this.setState({ isLoginLoading: true });
+        const otpData = {
+          FormId: "00ac15b8-e361-11e9-aebf-02b00a4d022c",
+          SchemaName: "Mobile",
+          FieldDataType: "phone",
+          FieldContent: `${this.state.mobile}`,
+        };
+        try {
+          const { data } = await otp(otpData);
+          console.log("data signup", data);
+          this.setState({
+            setShow: true,
+            show: true,
+            emptyField: "",
+            formOtpCode: data.FormOTPResponseModel.Code,
+            fieldContent: data.FormOTPResponseModel.FieldContent,
+            isRegisterLoading: false,
+            count: this.state.count + 1,
+          });
+        } catch (e) {
+          // console.log("Signup Error", e.response.data);
+          this.setState({ isRegisterLoading: false });
+        }
+      } else {
         this.setState({
-          setShow: true,
-          show: true,
-          emptyField: "",
-          formOtpCode: data.FormOTPResponseModel.Code,
-          fieldContent: data.FormOTPResponseModel.FieldContent,
-          isRegisterLoading: false,
+          errorMessage: "You Exceed Otp Limit",
+          setShow: false,
+          show: false,
         });
-      } catch (e) {
-        // console.log("Signup Error", e.response.data);
-        this.setState({ isRegisterLoading: false });
       }
     } else {
       console.log("Enter valid Details");
@@ -221,8 +231,7 @@ class Register extends Component {
                 color: "#FD1F1F",
                 fontWeight: "bold",
                 textAlign: "center",
-              }}
-            >
+              }}>
               {errorMessage}
             </div>
           ) : null}
@@ -248,8 +257,7 @@ class Register extends Component {
                 value={grade}
                 onChange={this.handleChange}
                 name="grade"
-                className=""
-              >
+                className="">
                 <option value="">Grade Applied For</option>
                 {this.grades.map((grade, index) => (
                   <option value={grade} key={index}>
@@ -352,8 +360,7 @@ class Register extends Component {
               />
               <label
                 className="form-control-placeholder"
-                htmlFor="confirmPassword"
-              >
+                htmlFor="confirmPassword">
                 Retype Password<span> *</span>
               </label>
               {errors.confirmPasswordError ? (

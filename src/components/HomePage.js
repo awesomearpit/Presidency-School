@@ -4,13 +4,14 @@ import "../assets/css/homepage.scss";
 import Logo from "../assets/images/logo.png";
 import Landing from "../assets/images/landing.jpg";
 import Register from "./HomePage/Register";
-import { signIn, activityPost } from "../utils/API";
+import { signIn, activityPost, get } from "../utils/API";
 import cookie from "react-cookies";
 import { ACCESS_KEY, SECRET_KEY, PRIVATE_AUTH_KEY } from "../utils/Constants";
 import { validateEmail, required } from "../utils/Validations";
 import Loader from "react-loader-spinner";
 import BranchModal from "./HomePage/BranchModal";
 import { BRANCHES, getBranchName } from "../utils/Constants";
+import axios from "axios";
 
 class Homepage extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Homepage extends Component {
       },
     };
     const branch = this.props.location.search.split("=")[1];
-    if(branch){
+    if (branch) {
       localStorage.setItem("branchName", branch);
     }
   }
@@ -57,21 +58,31 @@ class Homepage extends Component {
     this.setState({ errors });
   };
 
-  componentWillMount() {
+  async componentWillMount() {
     if (!localStorage.getItem("branchName")) {
       this.setState({
         setShow: true,
         show: true,
       });
     } else {
-      if(getBranchName() == ""){
+      if (getBranchName() == "") {
         this.setState({
           setShow: true,
           show: true,
         });
-      }else{
+      } else {
         this.setState({ branchName: localStorage.getItem("branchName") });
       }
+    }
+
+    try {
+      const { data } = await get(
+        `/api/Access/PublicToken?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
+      );
+      axios.defaults.headers.common["Authorization"] = data.PublicAuthKey;
+      cookie.save("PublicAuthKey", data.PublicAuthKey, { path: "/" });
+    } catch (e) {
+      console.log("data", e.message);
     }
   }
 
@@ -80,6 +91,10 @@ class Homepage extends Component {
       this.props.history.push("/dashboard");
     }
   }
+
+  // async componentWillMount() {
+
+  // }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -105,7 +120,7 @@ class Homepage extends Component {
         this.setState({ isLoginLoading: false });
         try {
           const { data } = await activityPost(
-            `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`
+            `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`,
           );
           if (data.RecordCount === 0) {
             this.props.history.push("/enquiryForm");
@@ -191,8 +206,7 @@ class Homepage extends Component {
                   <select
                     name="branchName"
                     value={branchName}
-                    onChange={this.handleBranchChange}
-                  >
+                    onChange={this.handleBranchChange}>
                     <option></option>
                     {BRANCHES.map((branch, index) => (
                       <option value={branch.value} key={index}>
@@ -223,8 +237,7 @@ class Homepage extends Component {
                           style={{
                             color: "#FD1F1F",
                             fontSize: "12px",
-                          }}
-                        >
+                          }}>
                           {errors.emailError}
                         </div>
                       ) : null}
@@ -235,8 +248,7 @@ class Homepage extends Component {
                               color: "#FD1F1F",
                               fontSize: "12px",
                               fontWeight: "bold",
-                            }}
-                          >
+                            }}>
                             {errorMessage}
                           </span>
                         ) : null}
@@ -256,8 +268,7 @@ class Homepage extends Component {
                           style={{
                             color: "#FD1F1F",
                             fontSize: "12px",
-                          }}
-                        >
+                          }}>
                           {errors.passwordError}
                         </div>
                       ) : null}
@@ -267,8 +278,7 @@ class Homepage extends Component {
                     </div>
                     <button
                       className="btn btn-primary login-button"
-                      type="submit"
-                    >
+                      type="submit">
                       {this.state.isLoginLoading ? (
                         <div className="d-inline-block">
                           <Loader
