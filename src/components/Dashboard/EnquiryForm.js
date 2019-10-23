@@ -8,6 +8,7 @@ import {
   PRIVATE_AUTH_KEY,
   LEAD_ID,
   getBranchName,
+  utilityFunction,
 } from "../../utils/Constants";
 import { logout } from "../../utils/API";
 import "../../assets/css/loader.scss";
@@ -90,7 +91,7 @@ class EnquiryForm extends Component {
 
     window.lsq_setupForm({
       id: `${ENQUIRY_FORM_ID}`,
-      authKeyProvider: `${PRIVATE_AUTH_KEY}`,
+      authKeyProvider: utilityFunction,
       leadId: `${LEAD_ID}`,
       activityId: `${id}`,
     });
@@ -119,6 +120,7 @@ class EnquiryForm extends Component {
   logout = async () => {
     logout();
     this.props.history.push("/");
+    window.location.reload();
   };
 
   getUserName = name => {

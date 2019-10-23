@@ -20,10 +20,20 @@ export const BRANCHES = [
 export const getBranchName = () => {
   let branchName = "";
   if (localStorage.getItem("branchName")) {
-    let branch = BRANCHES.find( branch => branch.value === localStorage.getItem("branchName"))
-    if(branch){
-      branchName = branch.label
+    let branch = BRANCHES.find(
+      branch => branch.value === localStorage.getItem("branchName"),
+    );
+    if (branch) {
+      branchName = branch.label;
     }
   }
   return branchName;
+};
+
+export const utilityFunction = () => {
+  if (PRIVATE_AUTH_KEY) {
+    return PRIVATE_AUTH_KEY;
+  } else {
+    return PUBLIC_AUTH_KEY;
+  }
 };

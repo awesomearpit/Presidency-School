@@ -7,6 +7,7 @@ import {
   PRIVATE_AUTH_KEY,
   LEAD_ID,
   APPLICATION_FORM_ID,
+  utilityFunction,
 } from "../../utils/Constants";
 import { logout } from "../../utils/API";
 import $ from "jquery";
@@ -230,7 +231,7 @@ class ApplicationForm extends Component {
 
     window.lsq_setupForm({
       id: `${APPLICATION_FORM_ID}`,
-      authKeyProvider: `${PRIVATE_AUTH_KEY}`,
+      authKeyProvider: utilityFunction,
       leadId: `${LEAD_ID}`,
       activityId: `${id}`,
     });
@@ -259,6 +260,7 @@ class ApplicationForm extends Component {
   logout = async () => {
     logout();
     this.props.history.push("/");
+    window.location.reload();
   };
 
   getUserName = name => {

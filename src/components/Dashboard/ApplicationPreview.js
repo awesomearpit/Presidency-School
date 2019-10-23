@@ -62,6 +62,7 @@ class ApplicationPreview extends Component {
   logout = async () => {
     logout();
     this.props.history.push("/");
+    window.location.reload();
   };
 
   getUserName = name => {
