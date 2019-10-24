@@ -234,7 +234,7 @@ class ApplicationPreview extends Component {
                         )}
                       </div>
                     </div>
-                    <div className="col-md-12 dob">In Words</div>
+                    <div className="col-md-12" style={{fontSize: "14px",color: "#231F20",fontFamily: "Roboto",padding: "15px 0px 0px 0px"}}>In Words</div>
                     <div className="col-md-12 dob">
                       Age as on 1st June :{" "}
                       <div className="borderBox">
@@ -1277,6 +1277,11 @@ class ApplicationPreview extends Component {
                         </div>
                         <div className="col-md-3 d-inline-block family-text">
                           Guardian's Signature
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <div className="col-md-3 d-inline-block" style={{fontSize: "12px",color: "#000002","fontFamily": "Roboto",padding: "0px 10px 13px 10px",fontWeight:"bold"}}>
+                          {moment().format("DD-MM-YYYY")}
                         </div>
                       </div>
                     </div>
