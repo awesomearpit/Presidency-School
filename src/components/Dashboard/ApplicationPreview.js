@@ -49,6 +49,7 @@ class ApplicationPreview extends Component {
       const { data } = await get(
         `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`
       );
+      console.log("data......", data)
       this.setState({
         photoUrl:
           data.Fields[3].CustomObjectFormProperties.FieldProperties
@@ -84,13 +85,13 @@ class ApplicationPreview extends Component {
           >
             <a
               href="javascript:void(0);"
-              class="app-form-preview-download"
+              className="app-form-preview-download"
               onClick={this.downloadPDF}
             >
-              <i class="fa fa-download" aria-hidden="true"></i>Download PDF
+              <i className="fa fa-download" aria-hidden="true"></i>Download PDF
             </a>
           </div>
-          <div class="page-header-border-bottom"></div>
+          <div className="page-header-border-bottom"></div>
           <PDFExport
             forcePageBreak=".page-break"
             ref={component => (this.pdfExportComponent = component)}
@@ -143,7 +144,7 @@ class ApplicationPreview extends Component {
                         className="img-responsive"
                         height="100%"
                         width="100%"
-                        crossorigin="anonymous"
+                        crossOrigin="anonymous"
                       />
                     </div>
                   </div>
@@ -156,7 +157,7 @@ class ApplicationPreview extends Component {
                       <span>( As per Birth Certificate / Passport )</span>
                     </div>
                     <div className="col-md-12 student-name">
-                      {this.state.leadsInfo.firstName}
+                      {this.state.leadsInfo.FirstName}
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-1 no-padding d-inline-block">
@@ -215,7 +216,7 @@ class ApplicationPreview extends Component {
                         {leadsInfo.mx_Gender === "Male" ? (
                           <>
                             Male&nbsp;&nbsp;
-                            <i class="fa fa-check-circle"></i>
+                            <i className="fa fa-check-circle"></i>
                             &nbsp;&nbsp;Female&nbsp;&nbsp;
                             <div className="radioBox"></div>
                           </>
@@ -223,7 +224,7 @@ class ApplicationPreview extends Component {
                           <>
                             Male&nbsp;&nbsp;<div className="radioBox"></div>
                             &nbsp;&nbsp;Female&nbsp;&nbsp;
-                            <i class="fa fa-check-circle"></i>
+                            <i className="fa fa-check-circle"></i>
                           </>
                         ) : (
                           <>
@@ -251,7 +252,7 @@ class ApplicationPreview extends Component {
                       Nationality :
                       <div className="borderBox">
                         {" "}
-                        {leadsInfo.mx_Nationality}
+                        {leadsInfo.mx_Nationality_Student}
                       </div>
                     </div>
                     <div className="col-md-12 no-padding">
@@ -291,7 +292,7 @@ class ApplicationPreview extends Component {
                         "Yes" ? (
                           <>
                             Yes&nbsp;&nbsp;
-                            <i class="fa fa-check-circle"></i>
+                            <i className="fa fa-check-circle"></i>
                             &nbsp;&nbsp;No&nbsp;&nbsp;
                             <div className="radioBox"></div>
                           </>
@@ -300,7 +301,7 @@ class ApplicationPreview extends Component {
                           <>
                             Yes&nbsp;&nbsp;<div className="radioBox"></div>
                             &nbsp;&nbsp;No&nbsp;&nbsp;
-                            <i class="fa fa-check-circle"></i>
+                            <i className="fa fa-check-circle"></i>
                           </>
                         ) : (
                           <>
@@ -313,7 +314,7 @@ class ApplicationPreview extends Component {
                     </div>
                     <div className="col-md-12 office-use">
                       Family Details ( Please Tick{" "}
-                      <i class="fa fa-check" ></i> the name of
+                      <i className="fa fa-check" ></i> the name of
                       the person to be contacted in case of Emergency )
                     </div>
                     <div className="col-md-6" style={{ paddingLeft: "0px" }}>
@@ -339,7 +340,7 @@ class ApplicationPreview extends Component {
                               className="checkBox"
                               style={{ marginLeft: "8px" }}
                             >
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </span>
                           )
                         )}
@@ -404,7 +405,7 @@ class ApplicationPreview extends Component {
                               className="checkBox"
                               style={{ marginLeft: "8px" }}
                             >
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </span>
                           )
                         )}
@@ -479,7 +480,7 @@ class ApplicationPreview extends Component {
                     <div className="col-md-12 office-use">Other Details </div>
                     <div className="col-md-12 dob">
                       Single Parent ( Please tick{" "}
-                      <i class="fa fa-check" aria-hidden="true"></i> if
+                      <i className="fa fa-check" aria-hidden="true"></i> if
                       applicable ) :{" "}
                       {!leadsInfo.mx_Single_Parent_Please_select_if_applicable ? (
                         <>
@@ -501,7 +502,7 @@ class ApplicationPreview extends Component {
                         <>
                           <div>
                             <div className="checkBox">
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -525,7 +526,7 @@ class ApplicationPreview extends Component {
                           </div>
                           <div>
                             <div className="checkBox">
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -538,7 +539,7 @@ class ApplicationPreview extends Component {
                     <div className="col-md-12 dob">
                       In case Parents are separated, custody of the child is
                       with ( Please tick{" "}
-                      <i class="fa fa-check" aria-hidden="true"></i> if
+                      <i className="fa fa-check" aria-hidden="true"></i> if
                       applicable ) :{" "}
                       {
                         leadsInfo.mx_In_case_Parents_are_separated_Select_if_applicable
@@ -563,7 +564,7 @@ class ApplicationPreview extends Component {
                         <>
                           <div>
                             <div className="checkBox">
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -587,7 +588,7 @@ class ApplicationPreview extends Component {
                           </div>
                           <div>
                             <div className="checkBox">
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -621,7 +622,7 @@ class ApplicationPreview extends Component {
                               style={{ verticalAlign: "super" }}
                             >
                               {" "}
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -656,7 +657,7 @@ class ApplicationPreview extends Component {
                               style={{ verticalAlign: "super" }}
                             >
                               {" "}
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -691,7 +692,7 @@ class ApplicationPreview extends Component {
                               className="checkBox"
                               style={{ verticalAlign: "super" }}
                             >
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -726,7 +727,7 @@ class ApplicationPreview extends Component {
                               className="checkBox"
                               style={{ verticalAlign: "super" }}
                             >
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -769,7 +770,7 @@ class ApplicationPreview extends Component {
                               style={{ verticalAlign: "super" }}
                             >
                               {" "}
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -804,7 +805,7 @@ class ApplicationPreview extends Component {
                               style={{ verticalAlign: "super" }}
                             >
                               {" "}
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -839,7 +840,7 @@ class ApplicationPreview extends Component {
                               className="checkBox"
                               style={{ verticalAlign: "super" }}
                             >
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -874,7 +875,7 @@ class ApplicationPreview extends Component {
                               className="checkBox"
                               style={{ verticalAlign: "super" }}
                             >
-                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <i className="fa fa-check" aria-hidden="true"></i>
                             </div>
                             &nbsp;&nbsp;
                             <span style={{ verticalAlign: "super" }}>
@@ -931,7 +932,7 @@ class ApplicationPreview extends Component {
                       <div className="col-md-6 d-inline-block dob">
                         City : <div className="borderBox">{leadsInfo.mx_City_Last_School_Attended}{" "}</div>
                       </div>
-                      <div className="col-md-3 d-inline-block dob">State<div className="borderBox"></div></div>
+                      <div className="col-md-3 d-inline-block dob">State<div className="borderBox">{leadsInfo.mx_State}</div></div>
                       <div className="col-md-3 d-inline-block dob">
                         Country : <div className="borderBox">{leadsInfo.mx_Country_of_last_school_attended}</div>
                       </div>
@@ -958,7 +959,7 @@ class ApplicationPreview extends Component {
                       className="col-md-12 no-padding family-box"
                       style={{ border: "1px solid #161717" }}
                     >
-                      <table class="table table-bordered">
+                      <table className="table table-bordered">
                         <thead>
                           <tr>
                             <th scope="col">Year From - to</th>
@@ -995,14 +996,14 @@ class ApplicationPreview extends Component {
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
                         Languages formally studied - first :{" "}
-                        <div className="borderBox">{leadsInfo.mx_Languages_formally_studied__first}</div>
+                        <div className="borderBox">{leadsInfo.mx_Languages_Formally_Studied_First}</div>
                       </div>
                       <div className="col-md-3 d-inline-block dob">
                         Second :{" "}
-                        <div className="borderBox">{leadsInfo.mx_Languages_formally_studied__Second}{" "}</div>
+                        <div className="borderBox">{leadsInfo.mx_Languages_Formally_Studies_Second}{" "}</div>
                       </div>
                       <div className="col-md-3 d-inline-block dob">
-                        Third : <div className="borderBox">{leadsInfo.mx_Languages_formally_studied_Third}{" "}</div>
+                        Third : <div className="borderBox">{leadsInfo.mx_Languages_Formally_Studies_Third}{" "}</div>
                       </div>
                     </div>
                     <div className="col-md-12 dob">
@@ -1047,7 +1048,7 @@ class ApplicationPreview extends Component {
                       className="col-md-12 no-padding family-box"
                       style={{ border: "1px solid #161717" }}
                     >
-                      <table class="table table-bordered">
+                      <table className="table table-bordered">
                         <thead>
                           <tr>
                             <th scope="col"></th>
@@ -1084,7 +1085,7 @@ class ApplicationPreview extends Component {
                     </div>
                     <div className="col-md-12 dob">
                       In case parent is ( Please tick{" "}
-                      <i class="fa fa-check" aria-hidden="true"></i> if
+                      <i className="fa fa-check" aria-hidden="true"></i> if
                       applicable )
                     </div>
                     <div className="col-md-12 dob">
@@ -1111,7 +1112,7 @@ class ApplicationPreview extends Component {
                               <div
                                 className="checkBox"
                               >
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i className="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}
@@ -1128,7 +1129,7 @@ class ApplicationPreview extends Component {
                               <div
                                 className="checkBox"
                               >
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i className="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}</td>
@@ -1146,7 +1147,7 @@ class ApplicationPreview extends Component {
                               <div
                                 className="checkBox"
                               >
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i className="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}</td>
@@ -1163,7 +1164,7 @@ class ApplicationPreview extends Component {
                               <div
                                 className="checkBox"
                               >
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i className="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}</td> 
@@ -1182,7 +1183,7 @@ class ApplicationPreview extends Component {
                               <div
                                 className="checkBox"
                               >
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i className="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}</td>
@@ -1199,7 +1200,7 @@ class ApplicationPreview extends Component {
                               <div
                                 className="checkBox"
                               >
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i className="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}</td>
@@ -1218,7 +1219,7 @@ class ApplicationPreview extends Component {
                               <div
                                 className="checkBox"
                               >
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i className="fa fa-check" aria-hidden="true"></i>
                               </div>
                             </>
                           )}</td>
@@ -1234,7 +1235,7 @@ class ApplicationPreview extends Component {
                                 <div
                                   className="checkBox"
                                 >
-                                  <i class="fa fa-check" aria-hidden="true"></i>
+                                  <i className="fa fa-check" aria-hidden="true"></i>
                                 </div>
                             </>
                           )}</td>

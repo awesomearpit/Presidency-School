@@ -37,7 +37,7 @@ class Header extends Component {
   async componentDidMount() {
     try {
       const { data } = await get(
-        `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`
+        `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`,
       );
       this.props.getUserName(data[0].FirstName);
       this.setState({ leadsInfo: data[0], displayName: data[0].FirstName });
@@ -54,19 +54,16 @@ class Header extends Component {
           style={{
             padding: "10px 0px 10px 5px",
             boxShadow: "0px 3px 6px #00000029",
-          }}
-        >
+          }}>
           <div className="container no-padding">
             <a
               className="navbar-brand"
               href={"/dashboard"}
-              style={{ marginRight: "0px" }}
-            >
+              style={{ marginRight: "0px" }}>
               <div className="row" style={{ marginRight: "-70px" }}>
                 <div
                   className="col-md-6 col-sm-6 col-6"
-                  style={{ paddingRight: "70px" }}
-                >
+                  style={{ paddingRight: "70px" }}>
                   <img src={Logo} />
                 </div>
                 <div className="col-md-6 col-sm-5 col-5 header-text">
@@ -90,7 +87,7 @@ class Header extends Component {
                 <Dropdown.Toggle variant="link" id="dropdown-basic">
                   <span className="web-display">{this.state.displayName}</span>
                   <span className="mobile-display">
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i className="fa fa-user" aria-hidden="true"></i>
                   </span>
                 </Dropdown.Toggle>
 
@@ -109,8 +106,7 @@ class Header extends Component {
                   ) : null}
                   <Dropdown.Item
                     className="dropdown-logout"
-                    onClick={this.props.logout}
-                  >
+                    onClick={this.props.logout}>
                     Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
