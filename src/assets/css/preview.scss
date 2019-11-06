@@ -1,177 +1,176 @@
 @import "./colors.scss";
 
-
-.preview{
-    width:90%;
-    margin:auto;
-    .application-preview{
-        padding: 30px 15px 30px 30px; 
-        border: 1px solid black;
-        .application-heading{
-            text-align: center;
-            font-size:18px;
+.preview {
+  width: 90%;
+  margin: auto;
+  .application-preview {
+    padding: 10px 15px 30px 30px;
+    border: 1px solid black;
+    .application-heading {
+      text-align: center;
+      font-size: 18px;
+      color: $color-heading2 !important;
+      font-family: "Roboto";
+      font-weight: bold;
+      padding: 0px 0px 14px 0px !important;
+    }
+    .top-view {
+      .left-view {
+        .text {
+          font-size: 14px !important;
+          color: $color-heading2 !important;
+          font-family: "Roboto";
+          padding: 0 !important;
+        }
+        .session-box {
+          padding: 16px 0px 16px 0px !important;
+          .session-text {
+            font-size: 15px !important;
             color: $color-heading2 !important;
             font-family: "Roboto";
             font-weight: bold;
-            padding: 0px 0px 14px 0px !important;
+            padding: 0px !important;
+            display: inline-block !important;
+            // vertical-align: text-top !important;
+          }
+          .session-div {
+            border: 0.5px solid #1617175c;
+            display: inline-block !important;
+            height: 19px !important;
+            margin: 0px 20px 0px 2px !important;
+            font-size: 15px !important;
+            color: $color-heading2 !important;
+            font-family: "Roboto";
+          }
         }
-        .top-view{
-            .left-view{
-                .text{
-                    font-size: 14px !important;
-                    color: $color-heading2 !important;
-                    font-family: "Roboto";
-                    padding: 0 !important;
-                }
-                .session-box{
-                    padding: 16px 0px 16px 0px !important;
-                    .session-text{
-                        font-size: 15px !important;
-                        color: $color-heading2 !important;
-                        font-family: "Roboto";
-                        font-weight: bold;
-                        padding: 0px  !important;
-                        display: inline-block !important;
-                        // vertical-align: text-top !important;
-                    }
-                    .session-div{
-                        border: 0.5px solid #1617175c;
-                        display: inline-block !important;
-                        height: 19px !important;
-                        margin: 0px 20px 0px 2px !important;
-                        font-size: 15px !important;
-                        color: $color-heading2 !important;
-                        font-family: "Roboto";
-                    }
-                }
-                .office-use{
-                    font-size: 17px !important;
-                    color: $color-heading2 !important;
-                    font-family: "Roboto";
-                    font-weight: bold;
-                    padding: 0px  !important;
-                }
-                .receipt-text{
-                    font-size: 12px !important;
-                    color: $color-heading2 !important;
-                    font-family: "Roboto";
-                    padding: 0px 5px 0px 0px  !important;
-                    display: inline-block !important;
-                }
-            }
+        .office-use {
+          font-size: 17px !important;
+          color: $color-heading2 !important;
+          font-family: "Roboto";
+          font-weight: bold;
+          padding: 0px !important;
         }
-        .body-view{
-            .office-use{
-                font-size: 18px !important;
-                color: $color-heading2 !important;
-                font-family: "Roboto";
-                font-weight: bold;
-                padding: 11px 0px 4px 0px  !important;
-                span{
-                    font-weight: normal !important;
-                }
-            }
-            .student-name{
-                font-size: 15px !important;
-                color: $color-heading2 !important;
-                font-family: "Roboto";
-                font-weight: bold;
-                padding: 0px 0px 5px 0px !important;
-                span{
-                    font-weight: normal !important;
-                }
-            }
-            .dob{
-                font-size: 14px !important;
-                color: $color-heading2 !important;
-                font-family: "Roboto";
-                padding: 15px 0px 15px 0px !important;
-            }   
-            .gender{
-                font-size: 15px !important;
-                color: $color-heading2 !important;
-                font-family: "Roboto";
-                font-weight: bold;
-                padding: 0px !important;
-            }   
-            .family-box{
-                background-color: #F1F1F2;
-                padding:0 !important;
-                .family-text{
-                    font-size: 12px !important;
-                    color: #000002 !important;
-                    font-family: "Roboto";
-                    padding: 13px 10px 13px 10px !important;
-                }
-                th{
-                    font-size: 12px !important;
-                    color: $color-heading2 !important;
-                    font-family: "Roboto";
-                    padding: 0px !important;
-                }
-                td{
-                    font-size: 12px !important;
-                    color: $color-heading2 !important;
-                    font-family: "Roboto";
-                    padding: 0px !important;
-                }
-            }
-            .normal-text{
-                font-size: 12px !important;
-                color: $color-heading2 !important;
-                font-family: "Roboto";
-                padding: 0px !important;
-            }
+        .receipt-text {
+          font-size: 12px !important;
+          color: $color-heading2 !important;
+          font-family: "Roboto";
+          padding: 0px 5px 0px 0px !important;
+          display: inline-block !important;
         }
+      }
     }
-}
-
-.checkBox{
-    width: 20px !important;
-    height: 14px !important;
-    border: 1px solid #161717;
-    opacity: 1 !important;
-    display: inline-block;
-    padding-bottom: 17px;
-    text-align: center;
-}
-
-.radioBox{
-    width:13px !important;
-    height: 13px !important;
-    border: 1px solid #161717;
-    opacity :1 ;
-    display:inline-block;
-    border-radius: 50%;
-    text-align: center;
-}
-
-.borderBox{
-    width:70%;
-    border-bottom: 1px solid #161717;
-    display:inline-block;
-}
-
-.checklist-parents{
-    padding:20px !important;
-    background-color: #F1F1F2 !important;
-    border: 1px solid #161717 !important;
-    td{
-        font-size: 12px !important;
-        color: #000002 !important;
+    .body-view {
+      .office-use {
+        font-size: 18px !important;
+        color: $color-heading2 !important;
         font-family: "Roboto";
-        padding: 13px 10px 13px 10px !important;
+        font-weight: bold;
+        padding: 11px 0px 4px 0px !important;
+        span {
+          font-weight: normal !important;
+        }
+      }
+      .student-name {
+        font-size: 15px !important;
+        color: $color-heading2 !important;
+        font-family: "Roboto";
+        font-weight: bold;
+        padding: 0px 0px 5px 0px !important;
+        span {
+          font-weight: normal !important;
+        }
+      }
+      .dob {
+        font-size: 14px !important;
+        color: $color-heading2 !important;
+        font-family: "Roboto";
+        padding: 15px 0px 15px 0px !important;
+      }
+      .gender {
+        font-size: 15px !important;
+        color: $color-heading2 !important;
+        font-family: "Roboto";
+        font-weight: bold;
+        padding: 0px !important;
+      }
+      .family-box {
+        background-color: #f1f1f2;
+        padding: 0 !important;
+        .family-text {
+          font-size: 12px !important;
+          color: #000002 !important;
+          font-family: "Roboto";
+          padding: 13px 10px 13px 10px !important;
+        }
+        th {
+          font-size: 12px !important;
+          color: $color-heading2 !important;
+          font-family: "Roboto";
+          padding: 0px !important;
+        }
+        td {
+          font-size: 12px !important;
+          color: $color-heading2 !important;
+          font-family: "Roboto";
+          padding: 0px !important;
+        }
+      }
+      .normal-text {
+        font-size: 12px !important;
+        color: $color-heading2 !important;
+        font-family: "Roboto";
+        padding: 0px !important;
+      }
     }
-    td:nth-child(1){
-        width:50% !important;
-    }
-    td:nth-child(2){
-        width:10% !important;
-    }
-    td:nth-child(3){
-        width:50% !important;
-    }
-    td:nth-child(4){
-        width:10% !important;
-    }
+  }
+}
+
+.checkBox {
+  width: 20px !important;
+  height: 14px !important;
+  border: 1px solid #161717;
+  opacity: 1 !important;
+  display: inline-block;
+  padding-bottom: 17px;
+  text-align: center;
+}
+
+.radioBox {
+  width: 13px !important;
+  height: 13px !important;
+  border: 1px solid #161717;
+  opacity: 1;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.borderBox {
+  width: 60%;
+  border-bottom: 1px solid #161717;
+  display: inline-block;
+}
+
+.checklist-parents {
+  padding: 20px !important;
+  background-color: #f1f1f2 !important;
+  border: 1px solid #161717 !important;
+  td {
+    font-size: 12px !important;
+    color: #000002 !important;
+    font-family: "Roboto";
+    padding: 13px 10px 13px 10px !important;
+  }
+  td:nth-child(1) {
+    width: 50% !important;
+  }
+  td:nth-child(2) {
+    width: 10% !important;
+  }
+  td:nth-child(3) {
+    width: 50% !important;
+  }
+  td:nth-child(4) {
+    width: 10% !important;
+  }
 }

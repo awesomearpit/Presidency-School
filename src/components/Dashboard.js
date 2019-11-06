@@ -218,7 +218,7 @@ class Dashboard extends Component {
     return (
       <>
         {this.state.isDashboardLoading ? (
-          <div class="loading">Loading&#8230;</div>
+          <div className="loading">Loading&#8230;</div>
         ) : null}
         <>
           <Header logout={this.logout} getUserName={this.getUserName} />
