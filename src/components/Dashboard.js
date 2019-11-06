@@ -102,13 +102,13 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (this.state.applicationActivities === "Pending for Approval") {
+    } else if (this.state.applicationActivities === "Submitted") {
       return (
         <>
           <ApplicationBox
             name={"Application"}
-            className={"pending-box"}
-            status={"Pending"}
+            className={"submitted-box"}
+            status={"Submitted"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-view"}
@@ -117,15 +117,13 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (
-      this.state.applicationActivities === "Approved - Call for Assessment"
-    ) {
+    } else if (this.state.applicationActivities === "Assessment Pending") {
       return (
         <>
           <ApplicationBox
             name={"Application"}
-            className={"approved-box"}
-            status={"Approved"}
+            className={"pending-box"}
+            status={"Assessment Pending"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-view"}
@@ -140,7 +138,7 @@ class Dashboard extends Component {
           <ApplicationBox
             name={"Application"}
             className={"reject-box"}
-            status={"Rejected"}
+            status={"Application Rejected"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-start"}
@@ -150,14 +148,14 @@ class Dashboard extends Component {
         </>
       );
     } else if (
-      this.state.applicationActivities === "Qualified for Assessment Test"
+      this.state.applicationActivities === "Awaiting Principal Approval"
     ) {
       return (
         <>
           <ApplicationBox
             name={"Application"}
             className={"approved-box"}
-            status={"Qualified"}
+            status={"Awaiting Principal Approval"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-view"}
@@ -172,7 +170,7 @@ class Dashboard extends Component {
           <ApplicationBox
             name={"Application"}
             className={"reject-box"}
-            status={"Not Qualified"}
+            status={"Not Qualified for Test"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-start"}
@@ -181,13 +179,15 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (this.state.applicationActivities === "Admission Granted") {
+    } else if (
+      this.state.applicationActivities === "Provisional Admission Granted"
+    ) {
       return (
         <>
           <ApplicationBox
             name={"Application"}
             className={"approved-box"}
-            status={"Granted"}
+            status={"Provisional Admission Granted"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-view"}
@@ -202,7 +202,7 @@ class Dashboard extends Component {
           <ApplicationBox
             name={"Application"}
             className={"reject-box"}
-            status={"Rejected"}
+            status={"Admission Rejected"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-start"}
