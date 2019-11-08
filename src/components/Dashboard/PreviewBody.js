@@ -206,7 +206,7 @@ class PdfBody extends Component {
                     <div className="col-md-12 dob">
                       Place of Birth(City and country):{" "}
                       <div className="borderBox">
-                        {leadsInfo.mx_Place_of_Birth}
+  {leadsInfo.mx_City}, {leadsInfo.mx_Country} 
                       </div>
                     </div>
                     <div className="col-md-12 dob">

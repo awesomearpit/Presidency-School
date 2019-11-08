@@ -23,6 +23,9 @@ class ApplicationForm extends Component {
   }
 
   loadOverrideCSS = () => {
+    this.lsqFormContainer.querySelector(
+      'input[data-schemaname="mx_Declaration_Date"]',
+    ).value = new Date();
     var activityStyle = this.state.activityId ? "display:none" : "";
     this.lsqFormContainer.querySelector(".modal-footer").style = activityStyle;
     this.lsqFormContainer.querySelector(

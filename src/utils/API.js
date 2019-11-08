@@ -6,6 +6,11 @@ export const headerConfig = {
   "Content-Type": "application/json",
 };
 
+export const headerFormData = {
+  "Content-Type": "multipart/form-data",
+  // "Content-Type": "'multipart/form-data'",
+};
+
 export const headerUpdatePassword = {
   "Content-Type": "application/json",
   Authorization: `${PRIVATE_AUTH_KEY}`,
@@ -19,7 +24,7 @@ export const register = async signupData => {
   return await axios.post(
     `/api/Authentication/Register?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
     signupData,
-    headerConfig
+    headerConfig,
   );
 };
 
@@ -34,7 +39,7 @@ export const otpVerify = async otpData => {
 export const signIn = async loginData => {
   return await axios.post(
     `/api/Authentication/Signin?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
-    loginData
+    loginData,
   );
 };
 
@@ -45,6 +50,15 @@ export const logout = async () => {
 
 export const post = async (basePath, data) => {
   return await axios.post(`${basePath}`, data, headerConfig);
+};
+
+export const formDataPost = async (basePath, data) => {
+  return await axios({
+    method: "post",
+    url: basePath,
+    data: data,
+    config: { headers: { "Content-Type": "multipart/form-data" } },
+  });
 };
 
 export const get = async basePath => {
@@ -63,6 +77,6 @@ export const updatePasword = async data => {
   return await axios.post(
     `https://portalapi-in21.leadsquared.com/api/Settings/ChangePassword?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
     data,
-    headerUpdatePassword
+    headerUpdatePassword,
   );
 };
