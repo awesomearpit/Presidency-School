@@ -4,11 +4,23 @@ import "../../assets/css/preview.scss";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import { drawDOM, exportPDF } from "@progress/kendo-drawing";
 import Header from "./Header";
-import { logout, formDataPost } from "../../utils/API";
+import {
+  logout,
+  formDataPost,
+  activityPostEvent,
+  activityUpdatePost,
+  get,
+} from "../../utils/API";
 import "@progress/kendo-theme-bootstrap/dist/all.css";
 import PreviewBody from "./PreviewBody";
-import { PRIVATE_AUTH_KEY } from "../../utils/Constants";
+import {
+  PRIVATE_AUTH_KEY,
+  ACCESS_KEY,
+  SECRET_KEY,
+  LEAD_ID,
+} from "../../utils/Constants";
 import atob from "atob";
+import axios from "axios";
 
 class ApplicationPreview extends Component {
   constructor(props) {
@@ -16,6 +28,13 @@ class ApplicationPreview extends Component {
     this.state = {
       userName: "",
       binaryData: null,
+      activityId: null,
+      newKey: null,
+      loadData: false,
+      leadsInfo: {},
+      displayName: "",
+      photoUrl: "",
+      dataFields: null,
     };
     this.downloadPDF = this.downloadPDF.bind(this);
   }
@@ -27,26 +46,47 @@ class ApplicationPreview extends Component {
 
   exportPDFWithMethod = () => {
     let gridElement = document.querySelector("#applicationPreview");
-    drawDOM(gridElement, { paperSize: "A3", margin: 100 })
+    drawDOM(gridElement, {
+      paperSize: "A4",
+      margin: "0.3cm",
+      scale: 0.6,
+      forcePageBreak: ".page-break",
+    })
       .then(group => {
         return exportPDF(group);
       })
       .then(dataUri => {
-        console.log(dataUri.split(";base64,")[1]);
+        // console.log(dataUri.split(";base64,")[1]);
         this.setState({ binaryData: dataUri.split(";base64,")[1] });
       });
+  };
+
+  testMethod = key => {
+    this.setState({ newKey: key });
   };
 
   async componentDidUpdate(prevProps, prevState) {
     if (prevState.binaryData !== this.state.binaryData) {
       var pdfData = atob(this.state.binaryData);
 
+      // var file = new File([pdfData], "arpit.pdf", { type: "application/pdf" });
       var dd = "data:application/pdf;base64," + this.state.binaryData;
+      var arr = dd.split(","),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+
       let formData = new FormData();
 
-      formData.set(
+      formData.append(
         "filedata",
-        new Blob([this.state.binaryData], { type: "application/pdf" }),
+        new Blob([u8arr], { type: mime }),
+        "application.pdf",
       );
       formData.set("AuthToken", PRIVATE_AUTH_KEY);
       formData.set("FileType", "CustomObjectDocument");
@@ -56,48 +96,88 @@ class ApplicationPreview extends Component {
       formData.set("StorageVersion", -1);
       formData.set("Id", 200);
       formData.set("Entity", 1);
+      try {
+        const { data } = await activityUpdatePost(
+          "https://portalapi.leadsquared.com/api/Form/UploadFile",
+          formData,
+        );
+        console.log("data", data.UploadCustomObjectFileResult);
+        this.setState({ newKey: data.UploadCustomObjectFileResult.newKey });
+      } catch (e) {
+        console.log("error", e);
+      }
 
-      console.log("Form Data", formData);
-
-      const uploadData = {
-        filedata: pdfData,
-        AuthToken: PRIVATE_AUTH_KEY,
-        FileType: "CustomObjectDocument",
-        Overwrite: false,
-        SchemaName: "mx_CustomObject_1",
-        EntitySchemaName: "mx_Custom_13",
-        StorageVersion: -1,
-        Id: 200,
-        Entity: 1,
+      const updateActivityData = {
+        ProspectActivityId: this.state.activityId,
+        RelatedProspectId: LEAD_ID,
+        ActivityEvent: 200,
+        Fields: [
+          {
+            SchemaName: "mx_Custom_13",
+            Value: "",
+            Fields: [
+              {
+                SchemaName: "mx_CustomObject_1",
+                Value: this.state.newKey,
+              },
+            ],
+          },
+        ],
       };
 
-      let request = new XMLHttpRequest();
-      request.open(
-        "POST",
-        "https://portalapi.leadsquared.com/api/Form/UploadFile",
-      );
-      request.setRequestHeader("Authorization", PRIVATE_AUTH_KEY);
-      request.send(formData);
+      console.log("updateActivityData", updateActivityData);
 
-      // try {
-      //   const { data } = await formDataPost(
-      //     "https://portalapi.leadsquared.com/api/Form/UploadFile",
-      //     formData,
-      //   );
-      //   console.log("form Upload Data", data);
-      // } catch (e) {
-      //   console.log("e", e);
-      // }
-      // fetch("https://portalapi.leadsquared.com/api/Form/UploadFile", {
-      //   body: uploadData,
-      //   method: "post",
-      //   config: { headers: { "Content-Type": "multipart/form-data" } },
-      // });
+      try {
+        const { data } = await activityUpdatePost(
+          `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/CustomActivity/Update?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
+          updateActivityData,
+        );
+
+        console.log("Data", data);
+      } catch (e) {
+        console.log("error", e);
+      }
     }
   }
 
-  componentDidMount() {
-    this.exportPDFWithMethod();
+  async componentDidMount() {
+    // let { activityId } = this.props.match.params;
+    // this.setState({ activityId: activityId });
+    let { activityId } = this.props.match.params;
+    this.setState({ activityId: activityId });
+    var id = activityId ? activityId : "";
+
+    try {
+      const { data } = await get(
+        `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`,
+      );
+      this.setState({
+        leadsInfo: data[0],
+        displayName: data[0].firstName,
+      });
+
+      console.log("data leads", data);
+    } catch (e) {
+      console.log("error leads info", e);
+    }
+
+    try {
+      const { data } = await get(
+        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`,
+      );
+      console.log("data......", data.Fields);
+      let dataFields = data.Fields;
+      this.setState({
+        dataFields: dataFields,
+        photoUrl:
+          dataFields[3].CustomObjectFormProperties.FieldProperties
+            .FormMetaData[1].FileURL,
+        loadData: true,
+      });
+      this.exportPDFWithMethod();
+    } catch (e) {
+      console.log("error", e);
+    }
   }
 
   logout = async () => {
@@ -110,7 +190,12 @@ class ApplicationPreview extends Component {
     this.setState({ userName: name });
   };
 
+  loadData = data => {
+    this.setState({ loadData: data });
+  };
+
   render() {
+    console.log("loadData", this.state.loadData);
     return (
       <>
         <Header logout={this.logout} getUserName={this.getUserName} />
@@ -126,11 +211,11 @@ class ApplicationPreview extends Component {
             </a>
           </div>
           <div className="page-header-border-bottom"></div>
-          <a
+          {/* <a
             href={`data:application/pdf;base64,${this.state.binaryData}`}
             download="file.pdf">
             Link download
-          </a>
+          </a> */}
           <PDFExport
             forcePageBreak=".page-break"
             ref={component => (this.pdfExportComponent = component)}
@@ -139,7 +224,13 @@ class ApplicationPreview extends Component {
             margin="0.3cm"
             fileName={`LSQUniversityApplicationForm`}>
             <div id="applicationPreview">
-              <PreviewBody display={"block"} />
+              <PreviewBody
+                display={"block"}
+                loadData={this.loadData}
+                leadsInfo={this.state.leadsInfo}
+                photoUrl={this.state.photoUrl}
+                dataFields={this.state.dataFields}
+              />
             </div>
           </PDFExport>
         </div>

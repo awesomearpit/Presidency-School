@@ -73,6 +73,10 @@ export const activityPostEvent = async (basePath, payload) => {
   return await axios.post(`${basePath}`, payload);
 };
 
+export const activityUpdatePost = async (basePath, payload) => {
+  return await axios.post(`${basePath}`, payload, headerConfig);
+};
+
 export const updatePasword = async data => {
   return await axios.post(
     `https://portalapi-in21.leadsquared.com/api/Settings/ChangePassword?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
