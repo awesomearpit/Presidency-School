@@ -9,7 +9,7 @@ import {
   formDataPost,
   activityPostEvent,
   activityUpdatePost,
-  get,
+  get
 } from "../../utils/API";
 import "@progress/kendo-theme-bootstrap/dist/all.css";
 import PreviewBody from "./PreviewBody";
@@ -17,7 +17,7 @@ import {
   PRIVATE_AUTH_KEY,
   ACCESS_KEY,
   SECRET_KEY,
-  LEAD_ID,
+  LEAD_ID
 } from "../../utils/Constants";
 import atob from "atob";
 import axios from "axios";
@@ -34,7 +34,7 @@ class ApplicationPreview extends Component {
       leadsInfo: {},
       displayName: "",
       photoUrl: "",
-      dataFields: null,
+      dataFields: null
     };
     this.downloadPDF = this.downloadPDF.bind(this);
   }
@@ -50,7 +50,7 @@ class ApplicationPreview extends Component {
       paperSize: "A4",
       margin: "0.3cm",
       scale: 0.6,
-      forcePageBreak: ".page-break",
+      forcePageBreak: ".page-break"
     })
       .then(group => {
         return exportPDF(group);
@@ -86,7 +86,7 @@ class ApplicationPreview extends Component {
       formData.append(
         "filedata",
         new Blob([u8arr], { type: mime }),
-        "application.pdf",
+        "application.pdf"
       );
       formData.set("AuthToken", PRIVATE_AUTH_KEY);
       formData.set("FileType", "CustomObjectDocument");
@@ -98,8 +98,8 @@ class ApplicationPreview extends Component {
       formData.set("Entity", 1);
       try {
         const { data } = await activityUpdatePost(
-          "https://portalapi.leadsquared.com/api/Form/UploadFile",
-          formData,
+          "https://portalapi-in21.leadsquared.com/api/Form/UploadFile",
+          formData
         );
         console.log("data", data.UploadCustomObjectFileResult);
         this.setState({ newKey: data.UploadCustomObjectFileResult.newKey });
@@ -118,11 +118,11 @@ class ApplicationPreview extends Component {
             Fields: [
               {
                 SchemaName: "mx_CustomObject_1",
-                Value: this.state.newKey,
-              },
-            ],
-          },
-        ],
+                Value: this.state.newKey
+              }
+            ]
+          }
+        ]
       };
 
       console.log("updateActivityData", updateActivityData);
@@ -130,7 +130,7 @@ class ApplicationPreview extends Component {
       try {
         const { data } = await activityUpdatePost(
           `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/CustomActivity/Update?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
-          updateActivityData,
+          updateActivityData
         );
 
         console.log("Data", data);
@@ -149,11 +149,11 @@ class ApplicationPreview extends Component {
 
     try {
       const { data } = await get(
-        `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`,
+        `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`
       );
       this.setState({
         leadsInfo: data[0],
-        displayName: data[0].firstName,
+        displayName: data[0].firstName
       });
 
       console.log("data leads", data);
@@ -163,7 +163,7 @@ class ApplicationPreview extends Component {
 
     try {
       const { data } = await get(
-        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`,
+        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`
       );
       console.log("data......", data.Fields);
       let dataFields = data.Fields;
@@ -172,7 +172,7 @@ class ApplicationPreview extends Component {
         photoUrl:
           dataFields[3].CustomObjectFormProperties.FieldProperties
             .FormMetaData[1].FileURL,
-        loadData: true,
+        loadData: true
       });
       this.exportPDFWithMethod();
     } catch (e) {
@@ -202,11 +202,13 @@ class ApplicationPreview extends Component {
         <div style={{ paddingTop: "100px" }}>
           <div
             className="app-form-preview-header"
-            style={{ textAlign: "right", paddingRight: "40px" }}>
+            style={{ textAlign: "right", paddingRight: "40px" }}
+          >
             <a
               href="javascript:void(0);"
               className="app-form-preview-download"
-              onClick={this.downloadPDF}>
+              onClick={this.downloadPDF}
+            >
               <i className="fa fa-download" aria-hidden="true"></i>Download PDF
             </a>
           </div>
@@ -222,7 +224,8 @@ class ApplicationPreview extends Component {
             paperSize="A4"
             scale={0.6}
             margin="0.3cm"
-            fileName={`LSQUniversityApplicationForm`}>
+            fileName={`LSQUniversityApplicationForm`}
+          >
             <div id="applicationPreview">
               <PreviewBody
                 display={"block"}

@@ -7,10 +7,11 @@ import {
   PRIVATE_AUTH_KEY,
   LEAD_ID,
   APPLICATION_FORM_ID,
-  utilityFunction,
+  utilityFunction
 } from "../../utils/Constants";
 import { logout } from "../../utils/API";
 import $ from "jquery";
+import moment from "moment";
 
 class ApplicationForm extends Component {
   constructor(props) {
@@ -18,18 +19,21 @@ class ApplicationForm extends Component {
     this.state = {
       userName: "",
       isLoginLoading: true,
-      activityId: "",
+      activityId: ""
     };
   }
 
   loadOverrideCSS = () => {
-    this.lsqFormContainer.querySelector(
-      'input[data-schemaname="mx_Declaration_Date"]',
-    ).value = new Date();
+    // console.log(
+    //   "Declaration Date",
+    //   (this.lsqFormContainer.querySelector(
+    //     'input[data-schemaname="mx_Declaration_Date"]'
+    //   ).value = moment().format("YYYY-MM-DD HH:mm:ss"))
+    // );
     var activityStyle = this.state.activityId ? "display:none" : "";
     this.lsqFormContainer.querySelector(".modal-footer").style = activityStyle;
     this.lsqFormContainer.querySelector(
-      ".lsq-form-action-back",
+      ".lsq-form-action-back"
     ).innerHTML = `<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a style=color:white href="/dashboard">Back</a>`;
     this.lsqFormContainer.querySelector(".lsq-form-header").style =
       "display:none";
@@ -37,7 +41,7 @@ class ApplicationForm extends Component {
       "display:unset";
 
     this.lsqFormContainer.querySelector(
-      ".lsq-external-form-container input[type=text]",
+      ".lsq-external-form-container input[type=text]"
     ).style = "color: #212b36 !important;font-size: 14px !important;  ";
 
     // this.lsqFormContainer.querySelector(".mx-custom").style =
@@ -53,7 +57,7 @@ class ApplicationForm extends Component {
     //   "color: #094D84 !important; font-weight: bold !important; ";
 
     this.lsqFormContainer.querySelector(
-      ".lsq-form-custom-tab-center-panel-wrapper",
+      ".lsq-form-custom-tab-center-panel-wrapper"
     ).style = "height:60px !important; border-right: 1px solid #ffffff";
     var parentClass = ".lsq-form-custom-tab-tabs.lsq-form-tabs-list-item";
     console.log(this.lsqFormContainer.querySelector(parentClass));
@@ -63,8 +67,8 @@ class ApplicationForm extends Component {
 
     console.log(
       this.lsqFormContainer.querySelector(
-        parentClass + "a[data-old-value='Application Fee']",
-      ),
+        parentClass + "a[data-old-value='Application Fee']"
+      )
     );
     this.setState({ isLoginLoading: false });
     // .prepend('<i class="fa fa-credit-card" aria-hidden="true"></i>');
@@ -75,8 +79,8 @@ class ApplicationForm extends Component {
       .lsqFormCustomTabs("destroy")
       .lsqFormCustomTabs({
         tabContentContainer: document.lsqformevaluator.ref.find(
-          ".lsq-form-tabs-content",
-        ),
+          ".lsq-form-tabs-content"
+        )
       })
       .children(".lsq-form-custom-tab-control-wrapper:first")
       .remove();
@@ -87,10 +91,10 @@ class ApplicationForm extends Component {
       document.lsqformevaluator.ref.lsqmultistepform(
         "setTabImmediate",
         thisElm.attr("data-tabid"),
-        thisElm,
+        thisElm
       );
       var allTabs = document.lsqformevaluator.container.find(
-        ".lsq-form-tabs-list-item",
+        ".lsq-form-tabs-list-item"
       );
       $.each(allTabs, function(t) {
         var $tab = $(this),
@@ -110,14 +114,14 @@ class ApplicationForm extends Component {
         var thisElm = $(this),
           tabId = thisElm.attr("href"),
           tabToBeShown = document.lsqformevaluator.ref.find(
-            ".mx-form-step-indicator[data-href='" + tabId + "']",
+            ".mx-form-step-indicator[data-href='" + tabId + "']"
           );
         document.lsqformevaluator.ref.lsqmultistepform(
           "setTabImmediate",
           tabToBeShown.attr("data-tabid"),
-          tabToBeShown,
+          tabToBeShown
         );
-      },
+      }
     );
 
     document.lsqformevaluator.prevBtn.click(this.extendPrevAndNextBtnListener);
@@ -201,11 +205,11 @@ class ApplicationForm extends Component {
     //   // shouldMarkActive ? tab.addClass("active") : tab.removeClass("active");
     // });
     var currentStep = document.lsqformevaluator.ref.lsqmultistepform(
-        "getCurrentStepIndicator",
+        "getCurrentStepIndicator"
       ),
       tabId = currentStep.attr("data-href");
     var allTabs = document.lsqformevaluator.container.find(
-      ".lsq-form-tabs-list-item",
+      ".lsq-form-tabs-list-item"
     );
     $.each(allTabs, function(t) {
       var $tab = $(this),
@@ -236,27 +240,27 @@ class ApplicationForm extends Component {
       id: `${APPLICATION_FORM_ID}`,
       authKeyProvider: utilityFunction,
       leadId: `${LEAD_ID}`,
-      activityId: `${id}`,
+      activityId: `${id}`
     });
 
     this.lsqFormContainer.addEventListener(
       "lsqformloadcomplete",
-      this.loadOverrideCSS,
+      this.loadOverrideCSS
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccessateachstep",
-      this.onLSQFormSubmissionSuccessAtEachStep,
+      this.onLSQFormSubmissionSuccessAtEachStep
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccess",
-      this.onLSQFormSubmissionSuccess,
+      this.onLSQFormSubmissionSuccess
     );
 
     this.lsqFormContainer.addEventListener(
       "LSQFormLoadError",
-      this.onLSQFormLoadError,
+      this.onLSQFormLoadError
     );
   }
 
@@ -285,7 +289,8 @@ class ApplicationForm extends Component {
                 id="lsq-form-modal"
                 data-form-id="3c6c587e-df79-11e9-aebf-02b00a4d022c"
                 className="modal-v4 fullscreen external lsq-external-form-container"
-                ref={elem => (this.lsqFormContainer = elem)}>
+                ref={elem => (this.lsqFormContainer = elem)}
+              >
                 <div class="lsq-form-container-wrapper"></div>
                 <div class="lsq-form-hidden-fields">
                   <input
