@@ -5,7 +5,7 @@ import "../assets/css/forgotPassword.scss";
 import Header from "./Dashboard/Header";
 import { logout, activityPost, activityPostEvent } from "../utils/API";
 import { ACCESS_KEY, SECRET_KEY, LEAD_ID } from "../utils/Constants";
-import { nonDigitRemove, momentFormat } from "../utils/functions";
+import { nonDigitRemove, momentFormat, lowerCase } from "../utils/functions";
 import "../assets/css/loader.scss";
 import moment from "moment";
 import ApplicationBox from "./Dashboard/ApplicationBox";
@@ -16,7 +16,7 @@ class Dashboard extends Component {
     this.state = {
       userName: "",
       activities: [],
-      applicationActivities: [],
+      applicationActivities: null,
       application: {},
       isDashboardLoading: false,
       applicationActivityId: null,
@@ -41,7 +41,6 @@ class Dashboard extends Component {
       const { data } = await activityPost(
         `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`,
       );
-      console.log("actvity field", data);
       if (data.RecordCount === 0) {
         this.props.history.push("/enquiryForm");
       }
@@ -73,7 +72,6 @@ class Dashboard extends Component {
         ? data.ProspectActivities[0].RelatedProspectId
         : "";
 
-      console.log("Data", data);
       this.setState({
         applicationActivities: applicationStatus,
         application: data,
@@ -102,7 +100,9 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (this.state.applicationActivities === "Submitted") {
+    } else if (
+      lowerCase(this.state.applicationActivities) === lowerCase("Submitted")
+    ) {
       return (
         <>
           <ApplicationBox
@@ -117,7 +117,28 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (this.state.applicationActivities === "Assessment Pending") {
+    } else if (
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Pending for Approval")
+    ) {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"pending-box"}
+            status={"Pending"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
+          />
+        </>
+      );
+    } else if (
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Assessment Pending")
+    ) {
       return (
         <>
           <ApplicationBox
@@ -132,7 +153,10 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (this.state.applicationActivities === "Application Rejected") {
+    } else if (
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Application Rejected")
+    ) {
       return (
         <>
           <ApplicationBox
@@ -148,7 +172,8 @@ class Dashboard extends Component {
         </>
       );
     } else if (
-      this.state.applicationActivities === "Awaiting Principal Approval"
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Awaiting Principal Approval")
     ) {
       return (
         <>
@@ -164,13 +189,16 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (this.state.applicationActivities === "Not Qualified for Test") {
+    } else if (
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Not Qualified For Test")
+    ) {
       return (
         <>
           <ApplicationBox
             name={"Application"}
             className={"reject-box"}
-            status={"Not Qualified for Test"}
+            status={"Not Qualified For Test"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
             btnClass={"btn btn-start"}
@@ -180,7 +208,8 @@ class Dashboard extends Component {
         </>
       );
     } else if (
-      this.state.applicationActivities === "Provisional Admission Granted"
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Provisional Admission Granted")
     ) {
       return (
         <>
@@ -196,7 +225,10 @@ class Dashboard extends Component {
           />
         </>
       );
-    } else if (this.state.applicationActivities === "Admission Rejected") {
+    } else if (
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Admission Rejected")
+    ) {
       return (
         <>
           <ApplicationBox
@@ -208,6 +240,39 @@ class Dashboard extends Component {
             btnClass={"btn btn-start"}
             link={`/applicationForm`}
             btnText={"Start New Application"}
+          />
+        </>
+      );
+    } else if (
+      lowerCase(this.state.applicationActivities) ===
+      lowerCase("Admission Done")
+    ) {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"approved-box"}
+            status={"Admission Done"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
+          />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={""}
+            status={""}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-view"}
+            link={`/applicationPreview/${this.state.applicationActivityId}`}
+            btnText={"View Application"}
           />
         </>
       );

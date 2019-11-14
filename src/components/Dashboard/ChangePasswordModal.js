@@ -39,7 +39,7 @@ class ChangePasswordModal extends Component {
       confirmPassword &&
       newPassword === confirmPassword &&
       newPassword.match(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       )
     );
   };
@@ -56,7 +56,6 @@ class ChangePasswordModal extends Component {
         const { data } = await updatePasword(updatePasswordData);
         this.setState({ successMessage: data.ResponseText });
       } catch (e) {
-        console.log("Update Password Error", e.response.data);
         this.setState({ errorMessage: e.response.data.ExceptionMessage });
       }
     } else {
@@ -74,7 +73,7 @@ class ChangePasswordModal extends Component {
     errors.newPasswordError = checkPassword(newPassword);
     errors.confirmPasswordError = validatePassword(
       newPassword,
-      confirmPassword
+      confirmPassword,
     );
     errors.currentPasswordError = required(currentPassword);
     this.setState({ errors });
@@ -94,8 +93,7 @@ class ChangePasswordModal extends Component {
         <Modal
           show={this.props.show}
           className="changePassword-modal"
-          onHide={this.props.onHide}
-        >
+          onHide={this.props.onHide}>
           <div className="col-md-12 text-right changePassword-close">
             <button className="btn btn-link" onClick={this.props.onHide}>
               <i className="fa fa-times" aria-hidden="true"></i>
@@ -120,8 +118,7 @@ class ChangePasswordModal extends Component {
                     textAlign: "center",
                     color: "#FD1F1F",
                     fontWeight: "bold",
-                  }}
-                >
+                  }}>
                   {errorMessage}
                 </div>
               ) : null}
@@ -174,8 +171,7 @@ class ChangePasswordModal extends Component {
               <div className="col-md-12 no-padding">
                 <button
                   className="btn changePassword-btn"
-                  onClick={this.updatePassword}
-                >
+                  onClick={this.updatePassword}>
                   Update Password
                 </button>
               </div>

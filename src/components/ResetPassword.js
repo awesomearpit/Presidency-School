@@ -60,9 +60,9 @@ class ResetPassword extends Component {
       try {
         const { data } = await post(
           `/api/Authentication/ResetPassword?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
-          resetPassData
+          resetPassData,
         );
-        console.log("Reset password", data);
+
         this.setState({
           successMessage: data.IsSuccessful,
           isResetLoading: false,
@@ -80,7 +80,7 @@ class ResetPassword extends Component {
     return (
       this.state.password &&
       this.state.password.match(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       ) &&
       this.state.confirmPassword &&
       this.state.password === this.state.confirmPassword
@@ -137,8 +137,7 @@ class ResetPassword extends Component {
                 <div className="col-md-12 no-padding">
                   <button
                     className="btn forgot-btn"
-                    onClick={this.resetPassword}
-                  >
+                    onClick={this.resetPassword}>
                     {this.state.isResetLoading ? (
                       <div className="d-inline-block">
                         <Loader

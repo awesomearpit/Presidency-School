@@ -19,45 +19,6 @@ class PdfBody extends Component {
   }
 
 
-  // async componentDidMount() {
-  //   let { activityId } = this.props.match.params;
-  //   this.setState({ activityId: activityId });
-  //   var id = activityId ? activityId : "";
-
-  //   try {
-  //     const { data } = await get(
-  //       `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`
-  //     );
-  //     this.setState({
-  //       leadsInfo: data[0],
-  //       displayName: data[0].firstName,
-  //     });
-
-  //     console.log("data leads", data);
-  //   } catch (e) {
-  //     console.log("error leads info", e);
-  //   }
-
-  //   try {
-  //     const { data } = await get(
-  //       `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`
-  //     );
-  //     console.log("data......", data.Fields)
-  //     let dataFields = data.Fields
-  //     this.setState({
-  //       dataFields: dataFields,
-  //       photoUrl:
-  //       dataFields[3].CustomObjectFormProperties.FieldProperties
-  //           .FormMetaData[1].FileURL, 
-  //       loadData: true
-  //     })
-  //   } catch (e) {
-  //     console.log("error", e);
-  //   }
-
-  //   this.props.loadData(this.state.loadData);
-  // }
-
   render() {
     const { leadsInfo, photoUrl, dataFields } = this.props;
     const date = moment(leadsInfo.mx_Date_of_Birth)
@@ -202,9 +163,9 @@ class PdfBody extends Component {
                     </div>
                     <div className="col-md-12" style={{fontSize: "14px",color: "#231F20",fontFamily: "Roboto",padding: "15px 0px 0px 0px"}}>In Words</div>
                     <div className="col-md-12 dob">
-                      Age as on 1st June :{" "}
+                      Age as on 31st May :{" "}
                       <div className="borderBox">
-                        {leadsInfo.mx_Age_as_on_1_June_2019}
+                        {leadsInfo.mx_Age_as_of_31st_May_2020}
                       </div>
                     </div>
                     <div className="col-md-12 dob">

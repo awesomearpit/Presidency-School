@@ -9,7 +9,7 @@ import {
   formDataPost,
   activityPostEvent,
   activityUpdatePost,
-  get
+  get,
 } from "../../utils/API";
 import "@progress/kendo-theme-bootstrap/dist/all.css";
 import PreviewBody from "./PreviewBody";
@@ -17,7 +17,7 @@ import {
   PRIVATE_AUTH_KEY,
   ACCESS_KEY,
   SECRET_KEY,
-  LEAD_ID
+  LEAD_ID,
 } from "../../utils/Constants";
 import atob from "atob";
 import axios from "axios";
@@ -34,14 +34,13 @@ class ApplicationPreview extends Component {
       leadsInfo: {},
       displayName: "",
       photoUrl: "",
-      dataFields: null
+      dataFields: null,
     };
     this.downloadPDF = this.downloadPDF.bind(this);
   }
 
   downloadPDF() {
     this.pdfExportComponent.save();
-    // console.log("save",this.pdfExportComponent.save())
   }
 
   exportPDFWithMethod = () => {
@@ -50,13 +49,12 @@ class ApplicationPreview extends Component {
       paperSize: "A4",
       margin: "0.3cm",
       scale: 0.6,
-      forcePageBreak: ".page-break"
+      forcePageBreak: ".page-break",
     })
       .then(group => {
         return exportPDF(group);
       })
       .then(dataUri => {
-        // console.log(dataUri.split(";base64,")[1]);
         this.setState({ binaryData: dataUri.split(";base64,")[1] });
       });
   };
@@ -69,7 +67,6 @@ class ApplicationPreview extends Component {
     if (prevState.binaryData !== this.state.binaryData) {
       var pdfData = atob(this.state.binaryData);
 
-      // var file = new File([pdfData], "arpit.pdf", { type: "application/pdf" });
       var dd = "data:application/pdf;base64," + this.state.binaryData;
       var arr = dd.split(","),
         mime = arr[0].match(/:(.*?);/)[1],
@@ -86,7 +83,7 @@ class ApplicationPreview extends Component {
       formData.append(
         "filedata",
         new Blob([u8arr], { type: mime }),
-        "application.pdf"
+        "application.pdf",
       );
       formData.set("AuthToken", PRIVATE_AUTH_KEY);
       formData.set("FileType", "CustomObjectDocument");
@@ -99,13 +96,10 @@ class ApplicationPreview extends Component {
       try {
         const { data } = await activityUpdatePost(
           "https://portalapi-in21.leadsquared.com/api/Form/UploadFile",
-          formData
+          formData,
         );
-        console.log("data", data.UploadCustomObjectFileResult);
         this.setState({ newKey: data.UploadCustomObjectFileResult.newKey });
-      } catch (e) {
-        console.log("error", e);
-      }
+      } catch (e) {}
 
       const updateActivityData = {
         ProspectActivityId: this.state.activityId,
@@ -118,66 +112,51 @@ class ApplicationPreview extends Component {
             Fields: [
               {
                 SchemaName: "mx_CustomObject_1",
-                Value: this.state.newKey
-              }
-            ]
-          }
-        ]
+                Value: this.state.newKey,
+              },
+            ],
+          },
+        ],
       };
-
-      console.log("updateActivityData", updateActivityData);
 
       try {
         const { data } = await activityUpdatePost(
           `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/CustomActivity/Update?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
-          updateActivityData
+          updateActivityData,
         );
-
-        console.log("Data", data);
-      } catch (e) {
-        console.log("error", e);
-      }
+      } catch (e) {}
     }
   }
 
   async componentDidMount() {
-    // let { activityId } = this.props.match.params;
-    // this.setState({ activityId: activityId });
     let { activityId } = this.props.match.params;
     this.setState({ activityId: activityId });
     var id = activityId ? activityId : "";
 
     try {
       const { data } = await get(
-        `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`
+        `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`,
       );
       this.setState({
         leadsInfo: data[0],
-        displayName: data[0].firstName
+        displayName: data[0].firstName,
       });
-
-      console.log("data leads", data);
-    } catch (e) {
-      console.log("error leads info", e);
-    }
+    } catch (e) {}
 
     try {
       const { data } = await get(
-        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`
+        `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`,
       );
-      console.log("data......", data.Fields);
       let dataFields = data.Fields;
       this.setState({
         dataFields: dataFields,
         photoUrl:
           dataFields[3].CustomObjectFormProperties.FieldProperties
             .FormMetaData[1].FileURL,
-        loadData: true
+        loadData: true,
       });
       this.exportPDFWithMethod();
-    } catch (e) {
-      console.log("error", e);
-    }
+    } catch (e) {}
   }
 
   logout = async () => {
@@ -195,20 +174,17 @@ class ApplicationPreview extends Component {
   };
 
   render() {
-    console.log("loadData", this.state.loadData);
     return (
       <>
         <Header logout={this.logout} getUserName={this.getUserName} />
         <div style={{ paddingTop: "100px" }}>
           <div
             className="app-form-preview-header"
-            style={{ textAlign: "right", paddingRight: "40px" }}
-          >
+            style={{ textAlign: "right", paddingRight: "40px" }}>
             <a
               href="javascript:void(0);"
               className="app-form-preview-download"
-              onClick={this.downloadPDF}
-            >
+              onClick={this.downloadPDF}>
               <i className="fa fa-download" aria-hidden="true"></i>Download PDF
             </a>
           </div>
@@ -224,8 +200,7 @@ class ApplicationPreview extends Component {
             paperSize="A4"
             scale={0.6}
             margin="0.3cm"
-            fileName={`LSQUniversityApplicationForm`}
-          >
+            fileName={`LSQUniversityApplicationForm`}>
             <div id="applicationPreview">
               <PreviewBody
                 display={"block"}

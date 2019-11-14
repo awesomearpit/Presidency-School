@@ -41,20 +41,6 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".required").style =
       "font-size: 14px !important;color: #212b36 !important;";
 
-    // this.lsqFormContainer.querySelector(".lsq-form-action-btn").click(event => {
-    //   console.log("event", event);
-    // });
-
-    // var parentClass = ".lsq-form-custom-tab-tabs";
-    // this.lsqFormContainer
-    //   .querySelector(parentClass + " a[data-old-value='Information']")
-    //   .prepend(`<i class="fa fa-2x fa-file-code-o " aria-hidden="true"></i>`);
-    // console.log(
-    //   "claaasss",
-    //   this.lsqFormContainer.querySelector(
-    //     parentClass + " a[data-old-value='Information']"
-    //   )
-    // );
     this.lsqFormContainer.querySelector(".lsq-form-action-back").style.display =
       "none";
     this.lsqFormContainer.querySelector(
@@ -69,25 +55,18 @@ class EnquiryForm extends Component {
     this.setState({ isLoginLoading: false });
   };
 
-  onLSQFormSubmissionSuccessAtEachStep = e => {
-    console.log("each step", e);
-  };
+  onLSQFormSubmissionSuccessAtEachStep = e => {};
 
   onLSQFormSubmissionSuccess = e => {
-    console.log("on success", e);
     this.props.history.push("/enquirySuccess");
   };
 
-  onLSQFormLoadError = e => {
-    console.log("on form load error", e);
-  };
+  onLSQFormLoadError = e => {};
 
   componentDidMount() {
     let { activityId } = this.props.match.params;
     this.setState({ activityId: activityId });
     var id = activityId ? activityId : "";
-
-    console.log("id", id);
 
     window.lsq_setupForm({
       id: `${ENQUIRY_FORM_ID}`,
@@ -128,7 +107,6 @@ class EnquiryForm extends Component {
   };
 
   render() {
-    console.log("Enquiry Form");
     return (
       <>
         {this.state.isLoginLoading ? (

@@ -13,9 +13,6 @@ const axiosInitializer = {
     } else {
       axios.defaults.headers.common["Authorization"] = PUBLIC_AUTH_KEY;
     }
-    // axios.defaults.headers.common["Authorization"] = !PRIVATE_AUTH_KEY
-    //   ? PUBLIC_AUTH_KEY
-    //   : PRIVATE_AUTH_KEY;
 
     //Request Interceptor
     axios.interceptors.request.use(
