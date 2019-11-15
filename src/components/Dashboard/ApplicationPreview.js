@@ -21,6 +21,7 @@ import {
 } from "../../utils/Constants";
 import atob from "atob";
 import axios from "axios";
+import moment from "moment";
 
 class ApplicationPreview extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class ApplicationPreview extends Component {
       displayName: "",
       photoUrl: "",
       dataFields: null,
+      activityDate: null,
     };
     this.downloadPDF = this.downloadPDF.bind(this);
   }
@@ -147,6 +149,9 @@ class ApplicationPreview extends Component {
       const { data } = await get(
         `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/GetActivityDetails?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&activityId=${id}&getfileurl=true`,
       );
+      let activityDate = data
+        ? moment(data.CreatedOnString).format("DD-MM-YYYY")
+        : null;
       let dataFields = data.Fields;
       this.setState({
         dataFields: dataFields,
@@ -154,6 +159,7 @@ class ApplicationPreview extends Component {
           dataFields[3].CustomObjectFormProperties.FieldProperties
             .FormMetaData[1].FileURL,
         loadData: true,
+        activityDate: activityDate,
       });
       this.exportPDFWithMethod();
     } catch (e) {}
@@ -189,11 +195,6 @@ class ApplicationPreview extends Component {
             </a>
           </div>
           <div className="page-header-border-bottom"></div>
-          {/* <a
-            href={`data:application/pdf;base64,${this.state.binaryData}`}
-            download="file.pdf">
-            Link download
-          </a> */}
           <PDFExport
             forcePageBreak=".page-break"
             ref={component => (this.pdfExportComponent = component)}
@@ -208,6 +209,7 @@ class ApplicationPreview extends Component {
                 leadsInfo={this.state.leadsInfo}
                 photoUrl={this.state.photoUrl}
                 dataFields={this.state.dataFields}
+                activityDate={this.state.activityDate}
               />
             </div>
           </PDFExport>

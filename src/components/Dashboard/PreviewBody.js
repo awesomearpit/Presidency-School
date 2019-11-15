@@ -1282,8 +1282,7 @@ class PdfBody extends Component {
                       </div>
                       <div className="col-md-12">
                         <div className="col-md-3 d-inline-block" style={{fontSize: "12px",color: "#000002","fontFamily": "Roboto",padding: "0px 10px 13px 10px",fontWeight:"bold"}}>
-                          {/* {moment(leadsInfo.mx_Declaration_Date).format("DD-MM-YYYY")} */}
-                          {moment().format("DD-MM-YYYY")}
+                          {this.props.activityDate}
                         </div>
                       </div>
                     </div>
