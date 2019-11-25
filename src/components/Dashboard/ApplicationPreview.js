@@ -22,6 +22,7 @@ import {
 import atob from "atob";
 import axios from "axios";
 import moment from "moment";
+import "../../assets/css/loader.scss";
 
 class ApplicationPreview extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class ApplicationPreview extends Component {
       photoUrl: "",
       dataFields: null,
       activityDate: null,
+      isPreviewLoading: false,
     };
     this.downloadPDF = this.downloadPDF.bind(this);
   }
@@ -132,7 +134,7 @@ class ApplicationPreview extends Component {
 
   async componentDidMount() {
     let { activityId } = this.props.match.params;
-    this.setState({ activityId: activityId });
+    this.setState({ activityId: activityId, isPreviewLoading: true });
     var id = activityId ? activityId : "";
 
     try {
@@ -160,6 +162,7 @@ class ApplicationPreview extends Component {
             .FormMetaData[1].FileURL,
         loadData: true,
         activityDate: activityDate,
+        isPreviewLoading: false,
       });
       this.exportPDFWithMethod();
     } catch (e) {}
@@ -182,6 +185,9 @@ class ApplicationPreview extends Component {
   render() {
     return (
       <>
+        {this.state.isPreviewLoading ? (
+          <div className="loading">Loading&#8230;</div>
+        ) : null}
         <Header logout={this.logout} getUserName={this.getUserName} />
         <div style={{ paddingTop: "100px" }}>
           <div
