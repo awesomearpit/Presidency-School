@@ -7,7 +7,7 @@ import {
   PRIVATE_AUTH_KEY,
   LEAD_ID,
   APPLICATION_FORM_ID,
-  utilityFunction,
+  utilityFunction
 } from "../../utils/Constants";
 import { logout } from "../../utils/API";
 import $ from "jquery";
@@ -20,6 +20,7 @@ class ApplicationForm extends Component {
       userName: "",
       isLoginLoading: true,
       activityId: "",
+      formId: ""
     };
   }
 
@@ -27,7 +28,7 @@ class ApplicationForm extends Component {
     var activityStyle = this.state.activityId ? "display:none" : "";
     this.lsqFormContainer.querySelector(".modal-footer").style = activityStyle;
     this.lsqFormContainer.querySelector(
-      ".lsq-form-action-back",
+      ".lsq-form-action-back"
     ).innerHTML = `<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a style=color:white href="/dashboard">Back</a>`;
     this.lsqFormContainer.querySelector(".lsq-form-header").style =
       "display:none";
@@ -35,14 +36,14 @@ class ApplicationForm extends Component {
       "display:unset";
 
     this.lsqFormContainer.querySelector(
-      ".lsq-external-form-container input[type=text]",
+      ".lsq-external-form-container input[type=text]"
     ).style = "color: #212b36 !important;font-size: 14px !important;  ";
 
     this.lsqFormContainer.querySelector(".number-input").style =
       "font-size: 14px !important; padding-bottom:3px !important";
 
     this.lsqFormContainer.querySelector(
-      ".lsq-form-custom-tab-center-panel-wrapper",
+      ".lsq-form-custom-tab-center-panel-wrapper"
     ).style = "height:60px !important; border-right: 1px solid #ffffff";
     var parentClass = ".lsq-form-custom-tab-tabs.lsq-form-tabs-list-item";
 
@@ -56,8 +57,8 @@ class ApplicationForm extends Component {
       .lsqFormCustomTabs("destroy")
       .lsqFormCustomTabs({
         tabContentContainer: document.lsqformevaluator.ref.find(
-          ".lsq-form-tabs-content",
-        ),
+          ".lsq-form-tabs-content"
+        )
       })
       .children(".lsq-form-custom-tab-control-wrapper:first")
       .remove();
@@ -68,10 +69,10 @@ class ApplicationForm extends Component {
       document.lsqformevaluator.ref.lsqmultistepform(
         "setTabImmediate",
         thisElm.attr("data-tabid"),
-        thisElm,
+        thisElm
       );
       var allTabs = document.lsqformevaluator.container.find(
-        ".lsq-form-tabs-list-item",
+        ".lsq-form-tabs-list-item"
       );
       $.each(allTabs, function(t) {
         var $tab = $(this),
@@ -91,14 +92,14 @@ class ApplicationForm extends Component {
         var thisElm = $(this),
           tabId = thisElm.attr("href"),
           tabToBeShown = document.lsqformevaluator.ref.find(
-            ".mx-form-step-indicator[data-href='" + tabId + "']",
+            ".mx-form-step-indicator[data-href='" + tabId + "']"
           );
         document.lsqformevaluator.ref.lsqmultistepform(
           "setTabImmediate",
           tabToBeShown.attr("data-tabid"),
-          tabToBeShown,
+          tabToBeShown
         );
-      },
+      }
     );
 
     document.lsqformevaluator.prevBtn.click(this.extendPrevAndNextBtnListener);
@@ -108,11 +109,11 @@ class ApplicationForm extends Component {
 
   extendPrevAndNextBtnListener = () => {
     var currentStep = document.lsqformevaluator.ref.lsqmultistepform(
-        "getCurrentStepIndicator",
+        "getCurrentStepIndicator"
       ),
       tabId = currentStep.attr("data-href");
     var allTabs = document.lsqformevaluator.container.find(
-      ".lsq-form-tabs-list-item",
+      ".lsq-form-tabs-list-item"
     );
     $.each(allTabs, function(t) {
       var $tab = $(this),
@@ -130,35 +131,35 @@ class ApplicationForm extends Component {
   onLSQFormLoadError = e => {};
 
   componentDidMount() {
-    let { activityId } = this.props.match.params;
-    this.setState({ activityId: activityId });
+    let { activityId, formId } = this.props.match.params;
+    this.setState({ activityId: activityId, formId: formId });
     var id = activityId ? activityId : "";
 
-    window.lsq_setupForm({
-      id: `${APPLICATION_FORM_ID}`,
+    window.lsq_setupPortalProcess({
+      id: `${formId}`,
       authKeyProvider: utilityFunction,
       leadId: `${LEAD_ID}`,
-      activityId: `${id}`,
+      activityId: `${id}`
     });
 
     this.lsqFormContainer.addEventListener(
       "lsqformloadcomplete",
-      this.loadOverrideCSS,
+      this.loadOverrideCSS
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccessateachstep",
-      this.onLSQFormSubmissionSuccessAtEachStep,
+      this.onLSQFormSubmissionSuccessAtEachStep
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccess",
-      this.onLSQFormSubmissionSuccess,
+      this.onLSQFormSubmissionSuccess
     );
 
     this.lsqFormContainer.addEventListener(
       "LSQFormLoadError",
-      this.onLSQFormLoadError,
+      this.onLSQFormLoadError
     );
   }
 
@@ -185,16 +186,17 @@ class ApplicationForm extends Component {
             <div className="application-box">
               <div
                 id="lsq-form-modal"
-                data-form-id="3c6c587e-df79-11e9-aebf-02b00a4d022c"
+                data-process-id={this.state.formId}
                 className="modal-v4 fullscreen external lsq-external-form-container"
-                ref={elem => (this.lsqFormContainer = elem)}>
+                ref={elem => (this.lsqFormContainer = elem)}
+              >
                 <div class="lsq-form-container-wrapper"></div>
                 <div class="lsq-form-hidden-fields">
                   <input
                     id="lsq-authKey"
                     name="lsq-authKey"
                     type="hidden"
-                    value="TFdzZ3M3L0RlMUR1YXhDL0UydFRuSVoxeG5hUFVoaUgvVndJc0JLdGZrYksxY1BURUMveWUwM0dmYlJLbEJTTXUxSFYzUXRpSE9TSTlxTk9IZ2xRdjB1ZWQxZmVBTHYwQVVyemRBeHV5ZVJ5eTB2NzMzZjkrNCtVc29DVk5hSldHRHlMVko3MklrUXNNOXlVVjIxMU9TeWhXQ25WdFlvc295TmxRTTJPeWlKak5aaUdnMnZzczF3ZHFzdTE1c0FUT2hHWFN6dFR2eVJic1BFZjY4cTB0UT09"
+                    value="K2RpWjRSNTltOThmTFlFUGlBdUtZTjdWM1dhNzU1aWR4Q1FBT2pMZTlaT21QNFBoWHloQ1dWWitkZlNLRDJzKzMzVVpmSWFtWWdESURBWnFjQUErNlNRZVZ3ckxBZVNWWDhEOXc3MnRKRzlRbnVFTFkwT2R1MCtEWm91aC9iZjdwQ2ptMkVMMUQwdUxkQ0lCWXVFK2R3bXdwUVE0UVBoNnBwYzROMjA5Z3BPM2doQW0rS0dlVnFzVGtTTm5wMFpPMFM1MkdFbzVYdVliYVBTZ0MzdzNjdz09"
                   />
                   <input
                     id="lsq-api-service-url"

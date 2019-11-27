@@ -19,56 +19,56 @@ class Routes extends Component {
         path: "/",
         exact: true,
         component: Homepage,
-        title: "homepage",
+        title: "homepage"
       },
       {
         path: "/forgotPassword",
         exact: true,
         component: ForgotPassword,
-        title: "forgotPassword",
+        title: "forgotPassword"
       },
       {
         path: "/ResetPassword/:leadId/:tempPassword",
         exact: true,
         component: ResetPassword,
-        title: "resetPassword",
+        title: "resetPassword"
       },
       {
         path: "/dashboard",
         exact: true,
         component: Dashboard,
-        title: "dashboard",
+        title: "dashboard"
       },
       {
         path: "/enquiryForm/:activityId?",
         exact: true,
         component: EnquiryForm,
-        title: "enquiryForm",
+        title: "enquiryForm"
       },
       {
         path: "/enquirySuccess",
         exact: true,
         component: EnquirySuccess,
-        title: "enquirySuccess",
+        title: "enquirySuccess"
       },
       {
         path: "/applicationSuccess",
         exact: true,
         component: ApplicationSuccess,
-        title: "applictionSuccess",
+        title: "applictionSuccess"
       },
       {
-        path: "/applicationForm/:activityId?",
+        path: "/applicationForm/:formId/:activityId?",
         exact: true,
         component: ApplicationForm,
-        title: "applicationForm",
+        title: "applicationForm"
       },
       {
         path: "/applicationPreview/:activityId?",
         exact: true,
         component: ApplicationPreview,
-        title: "applicationPreview",
-      },
+        title: "applicationPreview"
+      }
     ];
   }
 
