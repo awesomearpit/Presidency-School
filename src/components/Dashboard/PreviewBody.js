@@ -163,7 +163,7 @@ class PdfBody extends Component {
                     </div>
                     <div className="col-md-12" style={{fontSize: "14px",color: "#231F20",fontFamily: "Roboto",padding: "15px 0px 0px 0px"}}>In Words</div>
                     <div className="col-md-12 dob">
-                      Age as on 31st May :{" "}
+                      Age as on 31st May 2020 :{" "}
                       <div className="borderBox">
                         {leadsInfo.mx_Age_as_of_31st_May_2020}
                       </div>
@@ -385,7 +385,7 @@ class PdfBody extends Component {
                         Pin Code : <div className="borderBox">{leadsInfo.mx_Pincode}{" "}</div>
                       </div>
                       <div className="col-md-6 d-inline-block dob">
-                        Phone number Residence :<div className="borderBox">{leadsInfo.Phone}</div>
+                        Phone number Reference :<div className="borderBox">{leadsInfo.mx_Phone_Number_reference}</div>
                       </div>
                     </div>
                     <div className="col-md-12 office-use">Guardian Details</div>
@@ -858,7 +858,7 @@ class PdfBody extends Component {
                       <div className="col-md-6 d-inline-block dob">
                         City : <div className="borderBox">{leadsInfo.mx_City_Last_School_Attended}{" "}</div>
                       </div>
-                      <div className="col-md-3 d-inline-block dob">State<div className="borderBox">{leadsInfo.mx_State}</div></div>
+                      <div className="col-md-3 d-inline-block dob">State<div className="borderBox">{leadsInfo.mx_State_Last_attended}</div></div>
                       <div className="col-md-3 d-inline-block dob">
                         Country : <div className="borderBox">{leadsInfo.mx_Country_of_last_school_attended}</div>
                       </div>
