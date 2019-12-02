@@ -88,7 +88,6 @@ class Dashboard extends Component {
       const { data } = await get(
         `https://api-in21.leadsquared.com/v2/LeadManagement.svc/Leads.GetById?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&id=${LEAD_ID}`
       );
-      console.log("data", data[0].mx_School_Applying_for);
       this.setState({
         schoolApplingFor: data[0].mx_School_Applying_for,
         isDashboardLoading: false

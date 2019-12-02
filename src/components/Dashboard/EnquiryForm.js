@@ -8,7 +8,7 @@ import {
   PRIVATE_AUTH_KEY,
   LEAD_ID,
   getBranchName,
-  utilityFunction,
+  utilityFunction
 } from "../../utils/Constants";
 import { logout } from "../../utils/API";
 import "../../assets/css/loader.scss";
@@ -19,7 +19,7 @@ class EnquiryForm extends Component {
     this.state = {
       userName: "",
       activityId: "",
-      isLoginLoading: true,
+      isLoginLoading: true
     };
   }
 
@@ -28,11 +28,11 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".lsq-form-action-btn").textContent =
       "Submit Enquiry Form";
     this.lsqFormContainer.querySelector(
-      ".lsq-form-action-btn",
+      ".lsq-form-action-btn"
     ).style = activityStyle;
 
     this.lsqFormContainer.querySelector(
-      ".lsq-external-form-container input[type=text]",
+      ".lsq-external-form-container input[type=text]"
     ).style = "color: #212b36 !important;font-size: 14px !important;  ";
 
     this.lsqFormContainer.querySelector(".number-input").style =
@@ -44,11 +44,11 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".lsq-form-action-back").style.display =
       "none";
     this.lsqFormContainer.querySelector(
-      ".lsq-form-custom-tab-center-panel-wrapper",
+      ".lsq-form-custom-tab-center-panel-wrapper"
     ).style.display = "none";
     this.lsqFormContainer.querySelector(".popup-header").style.display = "none";
     this.lsqFormContainer.querySelector(
-      ".modal-header",
+      ".modal-header"
     ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School ${getBranchName()}, ${
       this.state.userName.split(" ")[0]
     },<br /><br /><span>Please fill in the enquiry form below to get started</span></div>`;
@@ -72,27 +72,27 @@ class EnquiryForm extends Component {
       id: `${ENQUIRY_FORM_ID}`,
       authKeyProvider: utilityFunction,
       leadId: `${LEAD_ID}`,
-      activityId: `${id}`,
+      activityId: `${id}`
     });
 
     this.lsqFormContainer.addEventListener(
       "lsqformloadcomplete",
-      this.loadOverrideCSS,
+      this.loadOverrideCSS
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccessateachstep",
-      this.onLSQFormSubmissionSuccessAtEachStep,
+      this.onLSQFormSubmissionSuccessAtEachStep
     );
 
     this.lsqFormContainer.addEventListener(
       "lsqformsubmissionsuccess",
-      this.onLSQFormSubmissionSuccess,
+      this.onLSQFormSubmissionSuccess
     );
 
     this.lsqFormContainer.addEventListener(
       "LSQFormLoadError",
-      this.onLSQFormLoadError,
+      this.onLSQFormLoadError
     );
   }
 
@@ -110,7 +110,7 @@ class EnquiryForm extends Component {
     return (
       <>
         {this.state.isLoginLoading ? (
-          <div class="loading">Loading&#8230;</div>
+          <div className="loading">Loading&#8230;</div>
         ) : null}
         <>
           <Header logout={this.logout} getUserName={this.getUserName} />
@@ -120,11 +120,12 @@ class EnquiryForm extends Component {
               <div
                 id="lsq-form-modal"
                 data-form-id="2197ea44-ddd0-11e9-aebf-02b00a4d022c"
-                class="modal-v4 fullscreen external lsq-external-form-container"
-                ref={elem => (this.lsqFormContainer = elem)}>
-                <div class="lsq-form-container-wrapper"></div>
+                className="modal-v4 fullscreen external lsq-external-form-container"
+                ref={elem => (this.lsqFormContainer = elem)}
+              >
+                <div className="lsq-form-container-wrapper"></div>
 
-                <div class="lsq-form-hidden-fields">
+                <div className="lsq-form-hidden-fields">
                   <input
                     id="lsq-authKey"
                     name="lsq-authKey"

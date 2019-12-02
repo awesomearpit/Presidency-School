@@ -847,7 +847,7 @@ class PdfBody extends Component {
                     <div className="col-md-12 office-use">Academic Record</div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-6 d-inline-block dob">
-                        School last attended<div className="borderBox"></div>
+                        School last attended:<div className="borderBox"></div>
                       </div>
                       <div className="col-md-6 d-inline-block dob">
                         Board of the School last attended :{" "}
@@ -858,7 +858,7 @@ class PdfBody extends Component {
                       <div className="col-md-6 d-inline-block dob">
                         City : <div className="borderBox">{leadsInfo.mx_City_Last_School_Attended}{" "}</div>
                       </div>
-                      <div className="col-md-3 d-inline-block dob">State<div className="borderBox">{leadsInfo.mx_State_Last_attended}</div></div>
+                      <div className="col-md-3 d-inline-block dob">State:<div className="borderBox">{leadsInfo.mx_State_Last_attended}</div></div>
                       <div className="col-md-3 d-inline-block dob">
                         Country : <div className="borderBox">{leadsInfo.mx_Country_of_last_school_attended}</div>
                       </div>

@@ -27,9 +27,6 @@ class ApplicationForm extends Component {
   loadOverrideCSS = () => {
     var activityStyle = this.state.activityId ? "display:none" : "";
     this.lsqFormContainer.querySelector(".modal-footer").style = activityStyle;
-    this.lsqFormContainer.querySelector(
-      ".lsq-form-action-back"
-    ).innerHTML = `<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a style=color:white href="/dashboard">Back</a>`;
     this.lsqFormContainer.querySelector(".lsq-form-header").style =
       "display:none";
     this.lsqFormContainer.querySelector(".lsq-form-custom-tab-wrapper").style =
@@ -101,6 +98,10 @@ class ApplicationForm extends Component {
         );
       }
     );
+
+    this.lsqFormContainer
+      .querySelector(".lsq-form-action-back")
+      .addEventListener("click", () => (window.location.href = "/dashboard"));
 
     document.lsqformevaluator.prevBtn.click(this.extendPrevAndNextBtnListener);
 
@@ -177,7 +178,7 @@ class ApplicationForm extends Component {
     return (
       <>
         {this.state.isLoginLoading ? (
-          <div class="loading">Loading&#8230;</div>
+          <div className="loading">Loading&#8230;</div>
         ) : null}
         <>
           <Header logout={this.logout} getUserName={this.getUserName} />
@@ -190,8 +191,8 @@ class ApplicationForm extends Component {
                 className="modal-v4 fullscreen external lsq-external-form-container"
                 ref={elem => (this.lsqFormContainer = elem)}
               >
-                <div class="lsq-form-container-wrapper"></div>
-                <div class="lsq-form-hidden-fields">
+                <div className="lsq-form-container-wrapper"></div>
+                <div className="lsq-form-hidden-fields">
                   <input
                     id="lsq-authKey"
                     name="lsq-authKey"
