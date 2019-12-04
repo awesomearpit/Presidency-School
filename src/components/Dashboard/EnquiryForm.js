@@ -49,7 +49,7 @@ class EnquiryForm extends Component {
     this.lsqFormContainer.querySelector(".popup-header").style.display = "none";
     this.lsqFormContainer.querySelector(
       ".modal-header"
-    ).innerHTML = `<div class="enquiry-form-header">Welcome to Precidency School ${getBranchName()}, ${
+    ).innerHTML = `<div class="enquiry-form-header">Welcome to Presidency School ${getBranchName()}, ${
       this.state.userName.split(" ")[0]
     },<br /><br /><span>Please fill in the enquiry form below to get started</span></div>`;
     this.setState({ isLoginLoading: false });

@@ -60,6 +60,7 @@ class Dashboard extends Component {
           Parameter: { ActivityEvent: 200 }
         }
       );
+
       var applicationStatus = data.ProspectActivities[0]
         ? data.ProspectActivities[0].ActivityFields["Status"]
         : "";
@@ -98,7 +99,14 @@ class Dashboard extends Component {
   }
 
   renderApplication = () => {
-    if (!this.state.applicationActivities) {
+    if (
+      !this.state.applicationActivities &&
+      (this.state.schoolApplingFor === "PSRTN" ||
+        this.state.schoolApplingFor === "PSNLO" ||
+        this.state.schoolApplingFor === "PSBE" ||
+        this.state.schoolApplingFor === "PSBN" ||
+        this.state.schoolApplingFor === "PSMNG")
+    ) {
       return (
         <>
           <ApplicationBox
@@ -107,9 +115,28 @@ class Dashboard extends Component {
             status={"Pending"}
             RelatedProspectId={this.state.relatedProspectId}
             ModifiedOn={this.state.applicationModified}
-            btnClass={"btn btn-view"}
-            link={`/applicationPreview/${this.state.applicationActivityId}`}
-            btnText={"View Application"}
+            btnClass={"btn btn-start"}
+            link={`/applicationForm/5bc16517-054b-4346-901e-4838e0bed41b/${this.state.applicationActivityId}`}
+            btnText={"Continue Application"}
+          />
+        </>
+      );
+    } else if (
+      !this.state.applicationActivities &&
+      (this.state.schoolApplingFor === "PSBS" ||
+        this.state.schoolApplingFor === "SPES")
+    ) {
+      return (
+        <>
+          <ApplicationBox
+            name={"Application"}
+            className={"pending-box"}
+            status={"Pending"}
+            RelatedProspectId={this.state.relatedProspectId}
+            ModifiedOn={this.state.applicationModified}
+            btnClass={"btn btn-start"}
+            link={`/applicationForm/793c3206-0ce9-11ea-aebf-02b00a4d022c/${this.state.applicationActivityId}`}
+            btnText={"Continue Application"}
           />
         </>
       );

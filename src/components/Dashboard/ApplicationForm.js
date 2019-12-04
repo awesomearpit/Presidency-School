@@ -26,7 +26,7 @@ class ApplicationForm extends Component {
 
   loadOverrideCSS = () => {
     var activityStyle = this.state.activityId ? "display:none" : "";
-    this.lsqFormContainer.querySelector(".modal-footer").style = activityStyle;
+    // this.lsqFormContainer.querySelector(".modal-footer").style = activityStyle;
     this.lsqFormContainer.querySelector(".lsq-form-header").style =
       "display:none";
     this.lsqFormContainer.querySelector(".lsq-form-custom-tab-wrapper").style =
