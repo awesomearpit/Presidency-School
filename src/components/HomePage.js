@@ -24,6 +24,7 @@ class Homepage extends Component {
       { value: "PSNLO", label: "Nandini Layout" },
       { value: "PSRTN", label: "R.T Nagar" },
       { value: "SPES", label: "ST Paul / Jaynagar" },
+      { value: "PSBSK", label: "Banashankari" }
     ];
     this.state = {
       email: "",
@@ -35,19 +36,20 @@ class Homepage extends Component {
       branchName: "",
       errors: {
         emailError: null,
-        passwordError: null,
-      },
+        passwordError: null
+      }
     };
     const branch = this.props.location.search.split("=")[1];
     if (branch) {
       localStorage.setItem("branchName", branch);
     }
+    this.branchCheck = branch;
   }
 
   validateAllInputs = () => {
     const errors = {
       emailError: null,
-      passwordError: null,
+      passwordError: null
     };
 
     const { email, password } = this.state;
@@ -62,13 +64,13 @@ class Homepage extends Component {
     if (!localStorage.getItem("branchName")) {
       this.setState({
         setShow: true,
-        show: true,
+        show: true
       });
     } else {
       if (getBranchName() == "") {
         this.setState({
           setShow: true,
-          show: true,
+          show: true
         });
       } else {
         this.setState({ branchName: localStorage.getItem("branchName") });
@@ -77,7 +79,7 @@ class Homepage extends Component {
 
     try {
       const { data } = await get(
-        `/api/Access/PublicToken?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`,
+        `/api/Access/PublicToken?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}`
       );
       axios.defaults.headers.common["Authorization"] = data.PublicAuthKey;
       cookie.save("PublicAuthKey", data.PublicAuthKey, { path: "/" });
@@ -109,7 +111,7 @@ class Homepage extends Component {
       this.setState({ isLoginLoading: true });
       const loginData = {
         EmailAddress: this.state.email,
-        Password: this.state.password,
+        Password: this.state.password
       };
 
       try {
@@ -120,7 +122,7 @@ class Homepage extends Component {
         this.setState({ isLoginLoading: false });
         try {
           const { data } = await activityPost(
-            `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`,
+            `https://api-in21.leadsquared.com/v2/ProspectActivity.svc/Retrieve?accessKey=${ACCESS_KEY}&secretKey=${SECRET_KEY}&leadId=${LEAD_ID}`
           );
           if (data.RecordCount === 0) {
             this.props.history.push("/enquiryForm");
@@ -136,7 +138,7 @@ class Homepage extends Component {
         console.log("Error login", e.response.data.ExceptionMessage);
         this.setState({
           errorMessage: e.response.data.ExceptionMessage,
-          isLoginLoading: false,
+          isLoginLoading: false
         });
       }
     } else {
@@ -156,7 +158,7 @@ class Homepage extends Component {
   handleBranchChange = e => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
     localStorage.setItem("branchName", value);
   };
@@ -164,13 +166,13 @@ class Homepage extends Component {
   showBranchModal = () => {
     this.setState({
       setShow: true,
-      show: true,
+      show: true
     });
   };
 
   closeBranchModal = () => {
     this.setState({
-      show: false,
+      show: false
     });
   };
 
@@ -202,11 +204,17 @@ class Homepage extends Component {
                     height="64px"
                   />
                 </div>
-                <div className="col-md-12 text-center logo-text">
+                <div
+                  className="col-md-12 text-center logo-text"
+                  style={{
+                    visibility: this.branchCheck ? "hidden" : "visible"
+                  }}
+                >
                   <select
                     name="branchName"
                     value={branchName}
-                    onChange={this.handleBranchChange}>
+                    onChange={this.handleBranchChange}
+                  >
                     <option></option>
                     {BRANCHES.map((branch, index) => (
                       <option value={branch.value} key={index}>
@@ -236,8 +244,9 @@ class Homepage extends Component {
                         <div
                           style={{
                             color: "#FD1F1F",
-                            fontSize: "12px",
-                          }}>
+                            fontSize: "12px"
+                          }}
+                        >
                           {errors.emailError}
                         </div>
                       ) : null}
@@ -247,8 +256,9 @@ class Homepage extends Component {
                             style={{
                               color: "#FD1F1F",
                               fontSize: "12px",
-                              fontWeight: "bold",
-                            }}>
+                              fontWeight: "bold"
+                            }}
+                          >
                             {errorMessage}
                           </span>
                         ) : null}
@@ -267,8 +277,9 @@ class Homepage extends Component {
                         <div
                           style={{
                             color: "#FD1F1F",
-                            fontSize: "12px",
-                          }}>
+                            fontSize: "12px"
+                          }}
+                        >
                           {errors.passwordError}
                         </div>
                       ) : null}
@@ -278,7 +289,8 @@ class Homepage extends Component {
                     </div>
                     <button
                       className="btn btn-primary login-button"
-                      type="submit">
+                      type="submit"
+                    >
                       {this.state.isLoginLoading ? (
                         <div className="d-inline-block">
                           <Loader

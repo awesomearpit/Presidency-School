@@ -16,12 +16,13 @@ export const BRANCHES = [
   { value: "PSNLO", label: "Nandini Layout" },
   { value: "PSRTN", label: "R.T Nagar" },
   { value: "SPES", label: "ST Paul / Jaynagar" },
+  { value: "PSBSK", label: "Banashankari" }
 ];
 export const getBranchName = () => {
   let branchName = "";
   if (localStorage.getItem("branchName")) {
     let branch = BRANCHES.find(
-      branch => branch.value === localStorage.getItem("branchName"),
+      branch => branch.value === localStorage.getItem("branchName")
     );
     if (branch) {
       branchName = branch.label;

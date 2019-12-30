@@ -83,7 +83,7 @@ class PdfBody extends Component {
                       <span>( As per Birth Certificate / Passport )</span>
                     </div>
                     <div className="col-md-12 student-name">
-                      {this.state.leadsInfo.FirstName}
+                      {leadsInfo.FirstName}  {leadsInfo.LastName}
                     </div>
                     <div className="col-md-12 no-padding">
                       <div className="col-md-1 no-padding d-inline-block">
@@ -161,7 +161,9 @@ class PdfBody extends Component {
                         )}
                       </div>
                     </div>
-                    <div className="col-md-12" style={{fontSize: "14px",color: "#231F20",fontFamily: "Roboto",padding: "15px 0px 0px 0px"}}>In Words</div>
+                    <div className="col-md-12" style={{fontSize: "14px",color: "#231F20",fontFamily: "Roboto",padding: "15px 0px 0px 0px"}}>In Words:{" "}<div className="borderBox">
+                        {leadsInfo.mx_In_words}
+                      </div></div>
                     <div className="col-md-12 dob">
                       Age as on 31st May 2020 :{" "}
                       <div className="borderBox">

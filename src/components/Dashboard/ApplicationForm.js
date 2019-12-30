@@ -47,7 +47,6 @@ class ApplicationForm extends Component {
     this.lsqFormContainer.querySelector(parentClass).style = "height:60px;";
 
     this.setState({ isLoginLoading: false });
-
     document.lsqformevaluator.container
       .find(".mx-custom-tabs-scroll-container.lsq-form-custom-tab-wrapper")
       .css("display", "")
@@ -60,70 +59,95 @@ class ApplicationForm extends Component {
       .children(".lsq-form-custom-tab-control-wrapper:first")
       .remove();
 
-    $("body").on("click", ".mx-form-step-indicator", function(e) {
-      var thisElm = $(this),
-        tabId = thisElm.attr("data-href");
-      document.lsqformevaluator.ref.lsqmultistepform(
-        "setTabImmediate",
-        thisElm.attr("data-tabid"),
-        thisElm
-      );
-      var allTabs = document.lsqformevaluator.container.find(
-        ".lsq-form-tabs-list-item"
-      );
-      $.each(allTabs, function(t) {
-        var $tab = $(this),
-          shouldMarkActive =
-            $tab.children("a[href='" + tabId + "']").length > 0;
-        shouldMarkActive ? $tab.addClass("active") : $tab.removeClass("active");
-      });
+    // $("body").on("click", ".mx-form-step-indicator", function(e) {
+    //   console.log("e", e);
+    //   var thisElm = $(this),
+    //     tabId = thisElm.attr("data-href");
+    //   document.lsqformevaluator.ref.lsqmultistepform(
+    //     "setTabImmediate",
+    //     thisElm.attr("data-tabid"),
+    //     thisElm
+    //   );
+    //   var allTabs = document.lsqformevaluator.container.find(
+    //     ".lsq-form-tabs-list-item"
+    //   );
+    //   $.each(allTabs, function(t) {
+    //     var $tab = $(this),
+    //       shouldMarkActive =
+    //         $tab.children("a[href='" + tabId + "']").length > 0;
+    //     console.log("active", shouldMarkActive);
+    //     shouldMarkActive ? $tab.addClass("active") : $tab.removeClass("active");
+    //   });
 
-      e.stopPropagation();
-      e.preventDefault();
-    });
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    // });
 
-    document.lsqformevaluator.container.on(
-      "click",
-      ".lsq-form-tabs-list-item a",
-      function(e) {
-        var thisElm = $(this),
-          tabId = thisElm.attr("href"),
-          tabToBeShown = document.lsqformevaluator.ref.find(
-            ".mx-form-step-indicator[data-href='" + tabId + "']"
-          );
-        document.lsqformevaluator.ref.lsqmultistepform(
-          "setTabImmediate",
-          tabToBeShown.attr("data-tabid"),
-          tabToBeShown
-        );
-      }
-    );
+    // document.lsqformevaluator.container.on(
+    //   "click",
+    //   ".lsq-form-tabs-list-item a",
+    //   function(e) {
+    //     var thisElm = $(this),
+    //       tabId = thisElm.attr("href"),
+    //       tabToBeShown = document.lsqformevaluator.ref.find(
+    //         ".mx-form-step-indicator[data-href='" + tabId + "']"
+    //       );
+    //     console.log("tabId", tabId);
+    //     document.lsqformevaluator.ref.lsqmultistepform(
+    //       "setTabImmediate",
+    //       tabToBeShown.attr("data-tabid"),
+    //       tabToBeShown
+    //     );
+    //   }
+    // );
 
     this.lsqFormContainer
       .querySelector(".lsq-form-action-back")
       .addEventListener("click", () => (window.location.href = "/dashboard"));
 
-    document.lsqformevaluator.prevBtn.click(this.extendPrevAndNextBtnListener);
+    // document.lsqformevaluator.prevBtn.click(this.extendPrevAndNextBtnListener);
 
-    document.lsqformevaluator.nextBtn.click(this.extendPrevAndNextBtnListener);
+    // document.lsqformevaluator.nextBtn.click(this.extendPrevAndNextBtnListener);
+    document.lsqformevaluator.ref
+      .find(".mx-form-step-indicator")
+      .on("lsqformstepindicatorclicked", function() {
+        var tabId = $(this).attr("data-href");
+        var allTabs = document.lsqformevaluator.container.find(
+          ".lsq-form-tabs-list-item"
+        );
+
+        $.each(allTabs, function(t) {
+          var $tab = $(this),
+            shouldMarkActive =
+              $tab.children("a[href='" + tabId + "']").length > 0;
+
+          shouldMarkActive
+            ? $tab.addClass("active")
+            : $tab.removeClass("active");
+        });
+      });
   };
 
-  extendPrevAndNextBtnListener = () => {
-    var currentStep = document.lsqformevaluator.ref.lsqmultistepform(
-        "getCurrentStepIndicator"
-      ),
-      tabId = currentStep.attr("data-href");
-    var allTabs = document.lsqformevaluator.container.find(
-      ".lsq-form-tabs-list-item"
-    );
-    $.each(allTabs, function(t) {
-      var $tab = $(this),
-        shouldMarkActive = $tab.children("a[href='" + tabId + "']").length > 0;
-      shouldMarkActive ? $tab.addClass("active") : $tab.removeClass("active");
-    });
-  };
+  // extendPrevAndNextBtnListener = () => {
+  //   var currentStep = document.lsqformevaluator.ref.lsqmultistepform(
+  //       "getCurrentStepIndicator"
+  //     ),
+  //     tabId = currentStep.attr("data-href");
+  //   var allTabs = document.lsqformevaluator.container.find(
+  //     ".lsq-form-tabs-list-item"
+  //   );
 
-  onLSQFormSubmissionSuccessAtEachStep = e => {};
+  //   $.each(allTabs, function(t) {
+  //     var $tab = $(this),
+  //       shouldMarkActive = $tab.children("a[href='" + tabId + "']").length > 0;
+
+  //     shouldMarkActive ? $tab.addClass("active") : $tab.removeClass("active");
+  //   });
+  // };
+
+  onLSQFormSubmissionSuccessAtEachStep = e => {
+    console.log("Each Step", e);
+  };
 
   onLSQFormSubmissionSuccess = e => {
     this.props.history.push("/applicationSuccess");

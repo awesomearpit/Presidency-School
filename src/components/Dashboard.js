@@ -124,7 +124,8 @@ class Dashboard extends Component {
     } else if (
       !this.state.applicationActivities &&
       (this.state.schoolApplingFor === "PSBS" ||
-        this.state.schoolApplingFor === "SPES")
+        this.state.schoolApplingFor === "SPES" ||
+        this.state.schoolApplingFor === "PSBSK")
     ) {
       return (
         <>
@@ -220,7 +221,8 @@ class Dashboard extends Component {
       lowerCase(this.state.applicationActivities) ===
         lowerCase("Application Rejected") &&
       (this.state.schoolApplingFor === "PSBS" ||
-        this.state.schoolApplingFor === "SPES")
+        this.state.schoolApplingFor === "SPES" ||
+        this.state.schoolApplingFor === "PSBSK")
     ) {
       return (
         <>
@@ -281,7 +283,8 @@ class Dashboard extends Component {
       lowerCase(this.state.applicationActivities) ===
         lowerCase("Not Qualified For Test") &&
       (this.state.schoolApplingFor === "PSBS" ||
-        this.state.schoolApplingFor === "SPES")
+        this.state.schoolApplingFor === "SPES" ||
+        this.state.schoolApplingFor === "PSBSK")
     ) {
       return (
         <>
@@ -342,7 +345,8 @@ class Dashboard extends Component {
       lowerCase(this.state.applicationActivities) ===
         lowerCase("Admission Rejected") &&
       (this.state.schoolApplingFor === "PSBS" ||
-        this.state.schoolApplingFor === "SPES")
+        this.state.schoolApplingFor === "SPES" ||
+        this.state.schoolApplingFor === "PSBSK")
     ) {
       return (
         <>
@@ -484,7 +488,8 @@ class Dashboard extends Component {
                         } else if (
                           activity.ActivityFields.Status === "Approved" &&
                           (this.state.schoolApplingFor === "PSBS" ||
-                            this.state.schoolApplingFor === "SPES")
+                            this.state.schoolApplingFor === "SPES" ||
+                            this.state.schoolApplingFor === "PSBSK")
                         ) {
                           return (
                             <>
@@ -526,6 +531,21 @@ class Dashboard extends Component {
                               btnClass={"btn btn-start"}
                               link={`/enquiryForm`}
                               btnText={"Start New Enquiry"}
+                            />
+                          );
+                        } else if (
+                          activity.ActivityFields.Status === "Pending"
+                        ) {
+                          return (
+                            <ApplicationBox
+                              name={"Enquiry"}
+                              className={"pending-box"}
+                              status={"Pending"}
+                              RelatedProspectId={activity.RelatedProspectId}
+                              ModifiedOn={activity.ModifiedOn}
+                              btnClass={"btn btn-view"}
+                              link={`/enquiryForm/${activity.Id}`}
+                              btnText={"View Application"}
                             />
                           );
                         }
