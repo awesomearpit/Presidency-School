@@ -309,7 +309,7 @@ class PdfBody extends Component {
                         </div>
                         <div className="col-md-12 family-text">
                           Aadhar Card No. :{" "}
-                          <div className="borderBox">{leadsInfo.mx_Father_Aadhaar_Card_No}</div>
+                          <div className="borderBox">{leadsInfo.mx_Father_Aadhaar_Card_Number}</div>
                         </div>
                       </div>
                     </div>
@@ -374,7 +374,7 @@ class PdfBody extends Component {
                         </div>
                         <div className="col-md-12 family-text">
                           Aadhar Card No. :{" "}
-                          <div className="borderBox">{leadsInfo.mx_Mother_Aadhaar_Card_No}</div>
+                          <div className="borderBox">{leadsInfo.mx_Mother_Aadhaar_Card_Number}</div>
                         </div>
                       </div>
                     </div>

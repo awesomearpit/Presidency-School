@@ -204,16 +204,12 @@ class Homepage extends Component {
                     height="64px"
                   />
                 </div>
-                <div
-                  className="col-md-12 text-center logo-text"
-                  style={{
-                    visibility: this.branchCheck ? "hidden" : "visible"
-                  }}
-                >
+                <div className="col-md-12 text-center logo-text">
                   <select
                     name="branchName"
                     value={branchName}
                     onChange={this.handleBranchChange}
+                    disabled={this.branchCheck ? true : false}
                   >
                     <option></option>
                     {BRANCHES.map((branch, index) => (
